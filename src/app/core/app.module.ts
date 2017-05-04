@@ -14,7 +14,8 @@ import { GameRouteComponent }           from '../route-components/game.route.com
 import { GameCreateRouteComponent }     from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent } from '../route-components/change-password.route.component';
 
-import {ChangePasswordFormComponent} from "../form-components/change-password.form.component";
+import {ChangePasswordFormComponent}    from "../form-components/change-password.form.component";
+import {LoginFormComponent}             from "../form-components/login.form.component";
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import {ChangePasswordFormComponent} from "../form-components/change-password.fo
         GameCreateRouteComponent,
         ChangePasswordRouteComponent,
 
-        ChangePasswordFormComponent
+        ChangePasswordFormComponent,
+        LoginFormComponent
     ],
     providers: [],
     bootstrap: [
