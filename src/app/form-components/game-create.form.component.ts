@@ -43,7 +43,7 @@ export class GameCreateFormComponent implements OnInit {
         this.chessApiClient.createGame(
             +this.model.opponent,
             creatorIsWhite
-        ).then(response => {
+        ).then(game => {
             this.router.navigate(['']);
             setTimeout(() => {
                 this._flashMessagesService.show(

@@ -1,4 +1,7 @@
 import {Component} from "@angular/core";
+import {Router} from "@angular/router";
+import {ChessApiClientService} from "../services/chess-api-client.service";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
     selector: 'form-game-vs-computer-create',
@@ -15,8 +18,22 @@ export class GameVsComputerCreateFormComponent {
         color: ''
     };
 
+    constructor(
+        private router: Router,
+        private chessApiClient: ChessApiClientService,
+        private _flashMessagesService: FlashMessagesService
+    ) {}
+
     onSubmit() {
-        console.log(this.model);
+        let creatorIsWhite = true;
+        if(this.model.color == 'Black') {
+            creatorIsWhite = null;
+        }
+        this.chessApiClient.createGameVsComputer(
+            creatorIsWhite
+        ).then(game => {
+            this.router.navigate(['game/' + game.id]);
+        });
     }
 
     get diagnostic() {

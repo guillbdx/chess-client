@@ -4,6 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import {Configuration} from "../Configuration";
 import {LanguageDetectorService} from "./language-detector.service";
 import {User} from "../entities/user.entity";
+import {Game} from "../entities/game.entity";
 
 @Injectable()
 export class ChessApiClientService {
@@ -97,7 +98,7 @@ export class ChessApiClientService {
             .then(response => response.json()._embedded.resources as User[]);
     }
 
-    createGame(guest: number, creatorIsWhite: boolean|null) {
+    createGame(guest: number, creatorIsWhite: boolean|null): Promise<Game> {
         let body = {
             guest: guest,
             creatorIsWhite: creatorIsWhite
@@ -106,7 +107,20 @@ export class ChessApiClientService {
             this.configuration.apiBaseUrl + '/games',
             body,
             {headers: this.headersWithBearer})
-            .toPromise();
+            .toPromise()
+            .then(response => response.json() as Game);
+    }
+
+    createGameVsComputer(creatorIsWhite: boolean|null): Promise<Game> {
+        let body = {
+            creatorIsWhite: creatorIsWhite
+        };
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/computer-games',
+            body,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => response.json() as Game);
     }
 
 }
