@@ -1,7 +1,8 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule }                     from '@angular/core';
+import { RouterModule, Routes }         from '@angular/router';
 
-import {CanAccessPrivateAreaGuard} from "../guards/can-access-private-area.guard";
+import {CanAccessPrivateAreaGuard}      from "../guards/can-access-private-area.guard";
+import {CanAccessOpenAreaGuard}         from "../guards/can-access-open-area.guard";
 
 import { LoginRouteComponent }          from '../route-components/login.route.component';
 import { RegisterRouteComponent }       from '../route-components/register.route.component';
@@ -14,11 +15,17 @@ import { ChangePasswordRouteComponent } from '../route-components/change-passwor
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginRouteComponent
+    component: LoginRouteComponent,
+    canActivate: [
+      CanAccessOpenAreaGuard
+    ]
   },
   {
     path: 'register',
-    component: RegisterRouteComponent
+    component: RegisterRouteComponent,
+    canActivate: [
+      CanAccessOpenAreaGuard
+    ]
   },
   {
     path: '',

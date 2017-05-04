@@ -1,26 +1,28 @@
-import { BrowserModule }        from '@angular/platform-browser';
-import { NgModule }             from '@angular/core';
-import { FormsModule }          from '@angular/forms';
-import { HttpModule }           from '@angular/http';
-import { AppRoutingModule }     from './app-routing.module';
-import {FlashMessagesModule}    from "angular2-flash-messages";
+import { BrowserModule }                    from '@angular/platform-browser';
+import { NgModule }                         from '@angular/core';
+import { FormsModule }                      from '@angular/forms';
+import { HttpModule }                       from '@angular/http';
+import { AppRoutingModule }                 from './app-routing.module';
+import {FlashMessagesModule}                from "angular2-flash-messages";
 
-import {Configuration}              from "../Configuration";
-import {CanAccessPrivateAreaGuard}  from "../guards/can-access-private-area.guard";
-import {XhrRequesterService}        from "../services/xhr-requester.service";
-import {LanguageDetectorService}    from "../services/language-detector.service";
-import {ChessApiClientService}      from "../services/chess-api-client.service";
+import {Configuration}                      from "../Configuration";
+import {XhrRequesterService}                from "../services/xhr-requester.service";
+import {LanguageDetectorService}            from "../services/language-detector.service";
+import {ChessApiClientService}              from "../services/chess-api-client.service";
 
-import { AppComponent }         from './app.component';
-import {NavigationComponent}    from "./navigation.component";
+import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
+import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
 
-import { LoginRouteComponent }          from '../route-components/login.route.component';
-import { RegisterRouteComponent }       from '../route-components/register.route.component';
-import { ProfileRouteComponent }        from '../route-components/profile.route.component';
-import { GamesRouteComponent }          from '../route-components/games.route.component';
-import { GameRouteComponent }           from '../route-components/game.route.component';
-import { GameCreateRouteComponent }     from '../route-components/game-create.route.component';
-import { ChangePasswordRouteComponent } from '../route-components/change-password.route.component';
+import { AppComponent }                     from './app.component';
+import {NavigationComponent}                from "./navigation.component";
+
+import { LoginRouteComponent }              from '../route-components/login.route.component';
+import { RegisterRouteComponent }           from '../route-components/register.route.component';
+import { ProfileRouteComponent }            from '../route-components/profile.route.component';
+import { GamesRouteComponent }              from '../route-components/games.route.component';
+import { GameRouteComponent }               from '../route-components/game.route.component';
+import { GameCreateRouteComponent }         from '../route-components/game-create.route.component';
+import { ChangePasswordRouteComponent }     from '../route-components/change-password.route.component';
 
 import {ChangePasswordFormComponent}        from "../form-components/change-password.form.component";
 import {LoginFormComponent}                 from "../form-components/login.form.component";
@@ -57,6 +59,7 @@ import {GameCreateFormComponent}            from "../form-components/game-create
     providers: [
         Configuration,
         CanAccessPrivateAreaGuard,
+        CanAccessOpenAreaGuard,
         LanguageDetectorService,
         XhrRequesterService,
         ChessApiClientService
