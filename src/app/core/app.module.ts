@@ -1,8 +1,9 @@
-import { BrowserModule }    from '@angular/platform-browser';
-import { NgModule }         from '@angular/core';
-import { FormsModule }      from '@angular/forms';
-import { HttpModule }       from '@angular/http';
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule }        from '@angular/platform-browser';
+import { NgModule }             from '@angular/core';
+import { FormsModule }          from '@angular/forms';
+import { HttpModule }           from '@angular/http';
+import { AppRoutingModule }     from './app-routing.module';
+import {FlashMessagesModule}    from "angular2-flash-messages";
 
 import {Configuration}              from "../Configuration";
 import {CanAccessPrivateAreaGuard}  from "../guards/can-access-private-area.guard";
@@ -32,7 +33,8 @@ import {GameCreateFormComponent}            from "../form-components/game-create
         BrowserModule,
         FormsModule,
         HttpModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FlashMessagesModule
     ],
     declarations: [
         AppComponent,
