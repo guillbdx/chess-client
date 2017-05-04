@@ -1,10 +1,10 @@
 export class ApiResponseEntity {
 
-    private status: number;
+    status: number;
 
-    private content: any;
+    content: any;
 
-    private errors: string[];
+    errors: string[];
 
     constructor(xhr: XMLHttpRequest) {
 

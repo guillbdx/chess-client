@@ -8,6 +8,7 @@ import {Configuration}              from "../Configuration";
 import {CanAccessPrivateAreaGuard}  from "../guards/can-access-private-area.guard";
 import {XhrRequesterService}        from "../services/xhr-requester.service";
 import {LanguageDetectorService}    from "../services/language-detector.service";
+import {ChessApiClientService}      from "../services/chess-api-client.service";
 
 import { AppComponent }         from './app.component';
 import {NavigationComponent}    from "./navigation.component";
@@ -55,7 +56,8 @@ import {GameCreateFormComponent}            from "../form-components/game-create
         Configuration,
         CanAccessPrivateAreaGuard,
         LanguageDetectorService,
-        XhrRequesterService
+        XhrRequesterService,
+        ChessApiClientService
     ],
     bootstrap: [
         AppComponent

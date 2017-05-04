@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
-import {XhrRequesterService} from "../services/xhr-requester.service";
+import {ApiResponseEntity} from "../entities/api-response.entity";
+import {ChessApiClientService} from "../services/chess-api-client.service";
 
 @Component({
     selector: 'form-login',
@@ -12,11 +13,19 @@ export class LoginFormComponent {
         password: ''
     };
 
-    constructor(private xhrRequesterService: XhrRequesterService) {}
+    constructor(private chessApiClient: ChessApiClientService) {}
 
     onSubmit() {
-        console.log(this.model);
-        this.xhrRequesterService.request();
+
+        this.chessApiClient.login(
+            this.model.username,
+            this.model.password
+        ).then(function(apiResponse: ApiResponseEntity) {
+            if(apiResponse.status == 200) {
+                localStorage.bearer = apiResponse.content;
+            }
+        });
+
     }
 
     get diagnostic() {
