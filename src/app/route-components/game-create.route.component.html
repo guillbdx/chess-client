@@ -12,9 +12,18 @@
 
                 <flash-messages></flash-messages>
 
-                <form-game-vs-computer-create></form-game-vs-computer-create>
+                <div class="text-center" [hidden]="formVsComputerIsVisible || formVsUserIsVisible">
+                    <button class="btn btn-info" (click)="displayFormVsUser()">
+                        Play<br>vs.<br>a user
+                    </button>
+                    <button class="btn btn-info" (click)="displayFormVsComputer()">
+                        Play<br>vs.<br>computer
+                    </button>
+                </div>
 
-                <form-game-create></form-game-create>
+                <form-game-vs-computer-create [hidden]="!formVsComputerIsVisible"></form-game-vs-computer-create>
+
+                <form-game-create [hidden]="!formVsUserIsVisible"></form-game-create>
 
             </div>
 
