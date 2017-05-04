@@ -11,6 +11,11 @@ import { ChangePasswordRouteComponent } from '../route-components/change-passwor
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     component: LoginRouteComponent
   },

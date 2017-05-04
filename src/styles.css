@@ -1,6 +1,125 @@
+/* Form validation */
 .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
 }
 .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
 }
+/* ------------------------------------------------------- */
+
+/* Games list */
+ul.games {
+    padding-left: 0;
+    list-style-type: none;
+}
+ul.games li {
+    margin-bottom: 20px;
+}
+ul.games li p.games-list-date {
+    margin: 0;
+    padding: 0;
+    font-size: smaller;
+}
+ul.games li a {
+    margin-left: 5px;
+}
+/* ------------------------------------------------------- */
+
+/* Messages container */
+.messages-container .alert ul {
+    padding-left: 10px;
+}
+/* ------------------------------------------------------- */
+
+/* Rotating refresh icon */
+.glyphicon-refresh-animate {
+    -animation: spin 1s infinite linear;
+    -ms-animation: spin 1s infinite linear;
+    -webkit-animation: spinw 1s infinite linear;
+    -moz-animation: spinm 1s infinite linear;
+}
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+@-webkit-keyframes spinw {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes spinm {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+/* ------------------------------------------------------- */
+
+/* Loader */
+#loader {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    z-index: 1000;
+    display: block;
+}
+#loader span {
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    font-size: 40px;
+}
+/* ------------------------------------------------------- */
+
+/* Navigation */
+nav {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 100;
+    color: white;
+    background: #18bc9c;
+    padding: 10px;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+}
+nav a#toggle-nav-content {
+    color: white;
+    font-size: 25px;
+}
+nav #nav-content {
+    margin-left: 45px;
+    position: relative;
+    padding-right: 50px;
+    left: -1000px;
+}
+nav #nav-content a {
+    color: white;
+}
+nav #nav-content ul {
+    padding: 0;
+    list-style-type: none;
+}
+nav #nav-content ul li {
+    margin-bottom: 15px;
+}
+nav.deployed {
+    width: auto;
+    height: auto;
+    padding-right: 30px;
+}
+nav.deployed #nav-content {
+    left: 0;
+}
+/* ------------------------------------------------------- */
