@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {ApiResponseEntity} from "../entities/api-response.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'form-login',
@@ -16,7 +17,8 @@ export class LoginFormComponent {
 
     constructor(
         private chessApiClient: ChessApiClientService,
-        private _flashMessagesService: FlashMessagesService
+        private _flashMessagesService: FlashMessagesService,
+        private router: Router
     ) {}
 
     onSubmit() {
@@ -29,6 +31,7 @@ export class LoginFormComponent {
         ).then(function(apiResponse: ApiResponseEntity) {
             if(apiResponse.status == 200) {
                 localStorage.bearer = apiResponse.content;
+                that.router.navigate(['']);
             }
             if(apiResponse.status == 401) {
                 that._flashMessagesService.show(
