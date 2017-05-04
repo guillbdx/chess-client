@@ -81,6 +81,7 @@ ul.games li a {
 }
 /* ------------------------------------------------------- */
 html,body {position: relative;}
+a {cursor: pointer;}
 /* Navigation */
 nav#nav {
     position: absolute;
@@ -93,7 +94,6 @@ nav#nav {
     border-radius: 5px;
     width: 45px;
     height: 45px;
-    border-radius: 5px;
 }
 nav#nav a#toggle-nav-content {
     position: absolute;
@@ -102,14 +102,13 @@ nav#nav a#toggle-nav-content {
     z-index: 10;
     color: white;
     font-size: 25px;
+
 }
 nav#nav #nav-content {
     position: absolute;
     left: 0;
     top: 0;
     z-index: 0;
-    width: auto;
-    height: auto;
     background: #18bc9c;
     padding: 50px 30px 30px 50px;
     border-radius: 5px;

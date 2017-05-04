@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  deployed = false;
+
+  toggleNavContent() {
+    this.deployed = ! this.deployed;
+  }
+
 }

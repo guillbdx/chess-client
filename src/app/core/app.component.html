@@ -1,8 +1,8 @@
 <nav id="nav" clas="deployed">
-    <a href="#" id="toggle-nav-content">
+    <a (click)="toggleNavContent()" id="toggle-nav-content">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
     </a>
-    <div id="nav-content">
+    <div id="nav-content" [hidden]="!deployed">
         <p>
             <strong class="profile-username">Username</strong>
         </p>
