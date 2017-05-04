@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {CanAccessPrivateAreaGuard} from "../guards/can-access-private-area.guard";
 
+import {XhrRequesterService} from "../services/xhr-requester.service";
+
 import { AppComponent }         from './app.component';
 import {NavigationComponent}    from "./navigation.component";
 
@@ -49,7 +51,8 @@ import {GameCreateFormComponent}            from "../form-components/game-create
         GameCreateFormComponent
     ],
     providers: [
-        CanAccessPrivateAreaGuard
+        CanAccessPrivateAreaGuard,
+        XhrRequesterService
     ],
     bootstrap: [
         AppComponent

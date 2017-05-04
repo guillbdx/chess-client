@@ -1,4 +1,4 @@
-class ApiResponseEntity {
+export class ApiResponseEntity {
 
     private status: number;
 
