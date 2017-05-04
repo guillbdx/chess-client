@@ -32,7 +32,7 @@
                 name="opponent">
             <option
                     *ngFor="let possibleOpponent of possibleOpponents"
-                    [value]="possibleOpponent">{{possibleOpponent}}</option>
+                    [value]="possibleOpponent.id">{{possibleOpponent.username}}</option>
         </select>
 
     </div>

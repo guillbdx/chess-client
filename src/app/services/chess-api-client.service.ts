@@ -3,6 +3,7 @@ import {Http, Headers} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {Configuration} from "../Configuration";
 import {LanguageDetectorService} from "./language-detector.service";
+import {User} from "../entities/user.entity";
 
 @Injectable()
 export class ChessApiClientService {
@@ -27,6 +28,19 @@ export class ChessApiClientService {
         });
     }
 
+    private createQuery(filters: Object) {
+        let paramQueries = [];
+        for(let key in filters) {
+            let value = filters[key];
+            if(value == null) {
+                continue;
+            }
+            let paramQuery = key + '=' + encodeURI(filters[key]);
+            paramQueries.push(paramQuery);
+        }
+        let query = paramQueries.join('&');
+        return query;
+    }
 
     login(username: string, password: string) {
         let body = {
@@ -60,6 +74,36 @@ export class ChessApiClientService {
         };
         return this.http.post(
             this.configuration.apiBaseUrl + '/account/change-password',
+            body,
+            {headers: this.headersWithBearer})
+            .toPromise();
+    }
+
+    getUsers(excludeSelf:boolean|null,
+             excludeComputer:boolean|null,
+             page: number,
+             limit: number): Promise<User[]> {
+
+        let query = this.createQuery({
+            exclude_self: excludeSelf,
+            page: page,
+            limit: limit
+        });
+
+        return this.http.get(
+            this.configuration.apiBaseUrl + '/users?' + query,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => response.json()._embedded.resources as User[]);
+    }
+
+    createGame(guest: number, creatorIsWhite: boolean|null) {
+        let body = {
+            guest: guest,
+            creatorIsWhite: creatorIsWhite
+        };
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/games',
             body,
             {headers: this.headersWithBearer})
             .toPromise();
