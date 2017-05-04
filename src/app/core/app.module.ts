@@ -18,6 +18,7 @@ import {ChangePasswordFormComponent}        from "../form-components/change-pass
 import {LoginFormComponent}                 from "../form-components/login.form.component";
 import {RegisterFormComponent}              from "../form-components/register.form.component";
 import {GameVsComputerCreateFormComponent}  from "../form-components/game-vs-computer-create.form.component";
+import {GameCreateFormComponent}            from "../form-components/game-create.form.component";
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import {GameVsComputerCreateFormComponent}  from "../form-components/game-vs-com
         ChangePasswordFormComponent,
         LoginFormComponent,
         RegisterFormComponent,
-        GameVsComputerCreateFormComponent
+        GameVsComputerCreateFormComponent,
+        GameCreateFormComponent
     ],
     providers: [],
     bootstrap: [
