@@ -3,12 +3,12 @@ import { NgModule }                         from '@angular/core';
 import { FormsModule }                      from '@angular/forms';
 import { HttpModule }                       from '@angular/http';
 import { AppRoutingModule }                 from './app-routing.module';
-import {FlashMessagesModule}                from "angular2-flash-messages";
+import { FlashMessagesModule }              from "angular2-flash-messages";
 
 import {Configuration}                      from "../Configuration";
-import {XhrRequesterService}                from "../services/xhr-requester.service";
 import {LanguageDetectorService}            from "../services/language-detector.service";
 import {ChessApiClientService}              from "../services/chess-api-client.service";
+import {ErrorsExtractorService}             from "../services/errors-extractor.service";
 
 import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
 import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
@@ -61,8 +61,8 @@ import {GameCreateFormComponent}            from "../form-components/game-create
         CanAccessPrivateAreaGuard,
         CanAccessOpenAreaGuard,
         LanguageDetectorService,
-        XhrRequesterService,
-        ChessApiClientService
+        ChessApiClientService,
+        ErrorsExtractorService
     ],
     bootstrap: [
         AppComponent
