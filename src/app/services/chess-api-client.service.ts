@@ -9,6 +9,8 @@ export class ChessApiClientService {
 
     private headers: Headers;
 
+    private headersWithBearer: Headers;
+
     constructor(
         private http: Http,
         private configuration: Configuration,
@@ -17,6 +19,11 @@ export class ChessApiClientService {
         this.headers = new Headers({
             'Content-Type': 'application/json',
             'Accept-Language' : this.languageDetector.getLanguage()
+        });
+        this.headersWithBearer = new Headers({
+            'Content-Type': 'application/json',
+            'Accept-Language' : this.languageDetector.getLanguage(),
+            'Authorization': 'Bearer ' + localStorage.bearer
         });
     }
 
@@ -47,5 +54,15 @@ export class ChessApiClientService {
             .toPromise();
     }
 
+    changePassword(password: string) {
+        let body = {
+            plainPassword: password
+        };
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/account/change-password',
+            body,
+            {headers: this.headersWithBearer})
+            .toPromise();
+    }
 
 }

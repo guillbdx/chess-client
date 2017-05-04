@@ -35,6 +35,12 @@ export class RegisterFormComponent {
             .then(response => {
                 localStorage.bearer = response.json();
                 this.router.navigate(['']);
+
+                setTimeout(() => {
+                    this._flashMessagesService.show(
+                        "You have successfully registered and now logged in !",
+                        { cssClass: 'alert-success', timeout: 5000 });
+                }, 100);
             });
     }
 
