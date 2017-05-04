@@ -80,9 +80,9 @@ ul.games li a {
     font-size: 40px;
 }
 /* ------------------------------------------------------- */
-
+html,body {position: relative;}
 /* Navigation */
-nav {
+nav#nav {
     position: absolute;
     left: 10px;
     top: 10px;
@@ -93,33 +93,37 @@ nav {
     border-radius: 5px;
     width: 45px;
     height: 45px;
+    border-radius: 5px;
 }
-nav a#toggle-nav-content {
+nav#nav a#toggle-nav-content {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    z-index: 10;
     color: white;
     font-size: 25px;
 }
-nav #nav-content {
-    margin-left: 45px;
-    position: relative;
-    padding-right: 50px;
-    left: -1000px;
+nav#nav #nav-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    width: auto;
+    height: auto;
+    background: #18bc9c;
+    padding: 50px 30px 30px 50px;
+    border-radius: 5px;
 }
-nav #nav-content a {
+nav#nav #nav-content a {
     color: white;
 }
-nav #nav-content ul {
+nav#nav #nav-content ul {
     padding: 0;
     list-style-type: none;
 }
-nav #nav-content ul li {
+nav#nav #nav-content ul li {
     margin-bottom: 15px;
 }
-nav.deployed {
-    width: auto;
-    height: auto;
-    padding-right: 30px;
-}
-nav.deployed #nav-content {
-    left: 0;
-}
+
+
 /* ------------------------------------------------------- */
