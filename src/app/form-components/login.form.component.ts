@@ -27,14 +27,13 @@ export class LoginFormComponent {
             this.model.username,
             this.model.password
         ).then(function(apiResponse: ApiResponseEntity) {
-
-            that._flashMessagesService.show(
-                'We are in about component!',
-                { cssClass: 'alert-success', timeout: 5000 });
-
-
             if(apiResponse.status == 200) {
                 localStorage.bearer = apiResponse.content;
+            }
+            if(apiResponse.status == 401) {
+                that._flashMessagesService.show(
+                    'Invalid credentials.',
+                    { cssClass: 'alert-danger', timeout: 5000 });
             }
         });
 
