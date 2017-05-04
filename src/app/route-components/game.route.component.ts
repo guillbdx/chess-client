@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-    template: '<h2>Game</h2>',
+    templateUrl: './game.route.component.html',
 })
 export class GameRouteComponent {};

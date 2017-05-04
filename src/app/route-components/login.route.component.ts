@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-    template: '<h2>Login</h2>',
+    templateUrl: './login.route.component.html',
 })
 export class LoginRouteComponent {}
