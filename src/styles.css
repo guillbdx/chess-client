@@ -1,3 +1,10 @@
+html,body {
+    position: relative;
+}
+a {
+    cursor: pointer;
+}
+
 /* Form validation */
 .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
@@ -7,27 +14,26 @@
 }
 /* ------------------------------------------------------- */
 
-/* Games list */
-ul.games {
-    padding-left: 0;
-    list-style-type: none;
-}
-ul.games li {
-    margin-bottom: 20px;
-}
-ul.games li p.games-list-date {
-    margin: 0;
-    padding: 0;
-    font-size: smaller;
-}
-ul.games li a {
-    margin-left: 5px;
-}
-/* ------------------------------------------------------- */
-
 /* Messages container */
 .messages-container .alert ul {
     padding-left: 10px;
+}
+/* ------------------------------------------------------- */
+
+/* Loader */
+#loader {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    z-index: 1000;
+    display: block;
+}
+#loader span {
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    font-size: 40px;
 }
 /* ------------------------------------------------------- */
 
@@ -62,67 +68,4 @@ ul.games li a {
         -moz-transform: rotate(360deg);
     }
 }
-/* ------------------------------------------------------- */
-
-/* Loader */
-#loader {
-    width: 100%;
-    height: 100%;
-    background: white;
-    position: absolute;
-    z-index: 1000;
-    display: block;
-}
-#loader span {
-    position: absolute;
-    left: 45%;
-    top: 45%;
-    font-size: 40px;
-}
-/* ------------------------------------------------------- */
-html,body {position: relative;}
-a {cursor: pointer;}
-/* Navigation */
-nav#nav {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    z-index: 100;
-    color: white;
-    background: #18bc9c;
-    padding: 10px;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-}
-nav#nav a#toggle-nav-content {
-    position: absolute;
-    left: 10px;
-    top: 8px;
-    z-index: 10;
-    color: white;
-    font-size: 25px;
-
-}
-nav#nav #nav-content {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 0;
-    background: #18bc9c;
-    padding: 50px 30px 30px 50px;
-    border-radius: 5px;
-}
-nav#nav #nav-content a {
-    color: white;
-}
-nav#nav #nav-content ul {
-    padding: 0;
-    list-style-type: none;
-}
-nav#nav #nav-content ul li {
-    margin-bottom: 15px;
-}
-
-
 /* ------------------------------------------------------- */

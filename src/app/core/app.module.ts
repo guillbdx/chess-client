@@ -4,7 +4,8 @@ import { FormsModule }      from '@angular/forms';
 import { HttpModule }       from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent }     from './app.component';
+import { AppComponent }         from './app.component';
+import {NavigationComponent}    from "./navigation.component";
 
 import { LoginRouteComponent }          from '../route-components/login.route.component';
 import { RegisterRouteComponent }       from '../route-components/register.route.component';
@@ -29,6 +30,7 @@ import {GameCreateFormComponent}            from "../form-components/game-create
     ],
     declarations: [
         AppComponent,
+        NavigationComponent,
 
         LoginRouteComponent,
         RegisterRouteComponent,

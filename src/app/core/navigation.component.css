@@ -1,0 +1,40 @@
+nav#nav {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 100;
+    color: white;
+    background: #18bc9c;
+    padding: 10px;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+}
+nav#nav a#toggle-nav-content {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    z-index: 10;
+    color: white;
+    font-size: 25px;
+
+}
+nav#nav #nav-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    background: #18bc9c;
+    padding: 50px 30px 30px 50px;
+    border-radius: 5px;
+}
+nav#nav #nav-content a {
+    color: white;
+}
+nav#nav #nav-content ul {
+    padding: 0;
+    list-style-type: none;
+}
+nav#nav #nav-content ul li {
+    margin-bottom: 15px;
+}
