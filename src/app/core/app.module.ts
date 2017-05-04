@@ -4,9 +4,9 @@ import { FormsModule }      from '@angular/forms';
 import { HttpModule }       from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
-import {CanAccessPrivateAreaGuard} from "../guards/can-access-private-area.guard";
-
-import {XhrRequesterService} from "../services/xhr-requester.service";
+import {CanAccessPrivateAreaGuard}  from "../guards/can-access-private-area.guard";
+import {XhrRequesterService}        from "../services/xhr-requester.service";
+import {LanguageDetectorService}    from "../services/language-detector.service";
 
 import { AppComponent }         from './app.component';
 import {NavigationComponent}    from "./navigation.component";
@@ -52,6 +52,7 @@ import {GameCreateFormComponent}            from "../form-components/game-create
     ],
     providers: [
         CanAccessPrivateAreaGuard,
+        LanguageDetectorService,
         XhrRequesterService
     ],
     bootstrap: [
