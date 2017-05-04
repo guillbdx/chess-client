@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'navigation',
@@ -9,8 +10,18 @@ export class NavigationComponent {
 
     deployed = false;
 
+    constructor(
+        private router: Router
+    ) {}
+
     toggleNavContent() {
         this.deployed = ! this.deployed;
+    }
+
+    logout() {
+        localStorage.clear();
+        this.toggleNavContent();
+        this.router.navigate(['login']);
     }
 
 }
