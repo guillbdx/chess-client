@@ -1,6 +1,8 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import {CanAccessPrivateAreaGuard} from "../guards/can-access-private-area.guard";
+
 import { LoginRouteComponent }          from '../route-components/login.route.component';
 import { RegisterRouteComponent }       from '../route-components/register.route.component';
 import { ProfileRouteComponent }        from '../route-components/profile.route.component';
@@ -11,11 +13,6 @@ import { ChangePasswordRouteComponent } from '../route-components/change-passwor
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  {
     path: 'login',
     component: LoginRouteComponent
   },
@@ -24,24 +21,39 @@ const routes: Routes = [
     component: RegisterRouteComponent
   },
   {
-    path: 'profile',
-    component: ProfileRouteComponent
+    path: '',
+    component: GamesRouteComponent,
+    canActivate: [
+      CanAccessPrivateAreaGuard
+    ]
   },
   {
-    path: 'games',
-    component: GamesRouteComponent
+    path: 'profile',
+    component: ProfileRouteComponent,
+    canActivate: [
+        CanAccessPrivateAreaGuard
+    ]
   },
   {
     path: 'game/:id',
-    component: GameRouteComponent
+    component: GameRouteComponent,
+    canActivate: [
+      CanAccessPrivateAreaGuard
+    ]
   },
   {
     path: 'game-create',
-    component: GameCreateRouteComponent
+    component: GameCreateRouteComponent,
+    canActivate: [
+      CanAccessPrivateAreaGuard
+    ]
   },
   {
     path: 'change-password',
-    component: ChangePasswordRouteComponent
+    component: ChangePasswordRouteComponent,
+    canActivate: [
+      CanAccessPrivateAreaGuard
+    ]
   },
 ];
 

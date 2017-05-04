@@ -4,6 +4,8 @@ import { FormsModule }      from '@angular/forms';
 import { HttpModule }       from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
+import {CanAccessPrivateAreaGuard} from "../guards/can-access-private-area.guard";
+
 import { AppComponent }         from './app.component';
 import {NavigationComponent}    from "./navigation.component";
 
@@ -46,7 +48,9 @@ import {GameCreateFormComponent}            from "../form-components/game-create
         GameVsComputerCreateFormComponent,
         GameCreateFormComponent
     ],
-    providers: [],
+    providers: [
+        CanAccessPrivateAreaGuard
+    ],
     bootstrap: [
         AppComponent
     ]
