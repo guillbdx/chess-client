@@ -16,6 +16,7 @@ import { ChangePasswordRouteComponent } from '../route-components/change-passwor
 
 import {ChangePasswordFormComponent}    from "../form-components/change-password.form.component";
 import {LoginFormComponent}             from "../form-components/login.form.component";
+import {RegisterFormComponent}          from "../form-components/register.form.component";
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import {LoginFormComponent}             from "../form-components/login.form.comp
         ChangePasswordRouteComponent,
 
         ChangePasswordFormComponent,
-        LoginFormComponent
+        LoginFormComponent,
+        RegisterFormComponent
     ],
     providers: [],
     bootstrap: [

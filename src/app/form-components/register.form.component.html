@@ -1,7 +1,7 @@
 <div class="container">
 
     <form
-            #loginForm="ngForm"
+            #registerForm="ngForm"
             (ngSubmit)="onSubmit()">
 
         <div class="form-group">
@@ -19,6 +19,26 @@
             <div [hidden]="username.valid || username.pristine"
                  class="alert alert-danger">
                 This field is required
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="email">Email</label>
+
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   required
+                   email
+                   [(ngModel)]="model.email"
+                   name="email"
+                   #email="ngModel">
+
+            <div [hidden]="email.valid || email.untouched"
+                 class="alert alert-danger">
+                This is not a valid email
             </div>
 
         </div>
@@ -45,7 +65,7 @@
         <button
                 type="submit"
                 class="btn btn-success"
-                [disabled]="!loginForm.form.valid">
+                [disabled]="!registerForm.form.valid">
             Submit</button>
 
     </form>
