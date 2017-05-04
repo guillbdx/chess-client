@@ -14,9 +14,10 @@ import { GameRouteComponent }           from '../route-components/game.route.com
 import { GameCreateRouteComponent }     from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent } from '../route-components/change-password.route.component';
 
-import {ChangePasswordFormComponent}    from "../form-components/change-password.form.component";
-import {LoginFormComponent}             from "../form-components/login.form.component";
-import {RegisterFormComponent}          from "../form-components/register.form.component";
+import {ChangePasswordFormComponent}        from "../form-components/change-password.form.component";
+import {LoginFormComponent}                 from "../form-components/login.form.component";
+import {RegisterFormComponent}              from "../form-components/register.form.component";
+import {GameVsComputerCreateFormComponent}  from "../form-components/game-vs-computer-create.form.component";
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import {RegisterFormComponent}          from "../form-components/register.form.c
 
         ChangePasswordFormComponent,
         LoginFormComponent,
-        RegisterFormComponent
+        RegisterFormComponent,
+        GameVsComputerCreateFormComponent
     ],
     providers: [],
     bootstrap: [
