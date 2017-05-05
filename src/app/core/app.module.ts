@@ -31,6 +31,8 @@ import {RegisterFormComponent}              from "../form-components/register.fo
 import {GameVsComputerCreateFormComponent}  from "../form-components/game-vs-computer-create.form.component";
 import {GameCreateFormComponent}            from "../form-components/game-create.form.component";
 
+import {TranslatePipe}                      from "../pipes/translate.pipe";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -55,7 +57,9 @@ import {GameCreateFormComponent}            from "../form-components/game-create
         LoginFormComponent,
         RegisterFormComponent,
         GameVsComputerCreateFormComponent,
-        GameCreateFormComponent
+        GameCreateFormComponent,
+
+        TranslatePipe
     ],
     providers: [
         Configuration,
