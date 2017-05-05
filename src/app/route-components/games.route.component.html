@@ -33,7 +33,7 @@
                         <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
                             {{ 'Started on' | translate }}
-                            {{ game.acceptedAt }}
+                            {{ game.acceptedAt | formatDate}}
                         </p>
                     </li>
                 </ul>
@@ -58,7 +58,7 @@
                         <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
                             {{ 'On' | translate}}
-                            {{ game.createdAt }}
+                            {{ game.createdAt | formatDate }}
                         </p>
                     </li>
                 </ul>
@@ -73,7 +73,7 @@
                         <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
                             {{ 'On' | translate}}
-                            {{ game.createdAt }}
+                            {{ game.createdAt | formatDate }}
                         </p>
                     </li>
                 </ul>
@@ -93,7 +93,7 @@
                         <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
                             {{ 'Ended on' | translate}}
-                            {{ game.endedAt }}
+                            {{ game.endedAt | formatDate }}
                         </p>
                     </li>
                 </ul>

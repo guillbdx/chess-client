@@ -11,6 +11,14 @@ export class I18nService {
         fr: frTranslations
     };
 
+    dateOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+    };
+
     private language = 'en';
 
     constructor(
@@ -27,6 +35,10 @@ export class I18nService {
             return key;
         }
         return this.translations[this.language][key];
+    }
+
+    formatDate(date: string): string {
+        return new Intl.DateTimeFormat(this.language, this.dateOptions).format(new Date(date));
     }
 
 }

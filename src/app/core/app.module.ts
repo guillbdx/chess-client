@@ -32,6 +32,7 @@ import {GameVsComputerCreateFormComponent}  from "../form-components/game-vs-com
 import {GameCreateFormComponent}            from "../form-components/game-create.form.component";
 
 import {TranslatePipe}                      from "../pipes/translate.pipe";
+import {FormatDatePipe}                     from "../pipes/format-date.pipe";
 
 @NgModule({
     imports: [
@@ -59,7 +60,8 @@ import {TranslatePipe}                      from "../pipes/translate.pipe";
         GameVsComputerCreateFormComponent,
         GameCreateFormComponent,
 
-        TranslatePipe
+        TranslatePipe,
+        FormatDatePipe
     ],
     providers: [
         Configuration,

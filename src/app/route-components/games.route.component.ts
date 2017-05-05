@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Game} from "../entities/game.entity";
 import {User} from "../entities/user.entity";
-import {Router} from "@angular/router";
+import {I18nService} from "../services/i18n.service";
 
 @Component({
     templateUrl: './games.route.component.html',
@@ -25,8 +25,12 @@ export class GamesRouteComponent implements OnInit {
 
     constructor(
         private chessApiClient: ChessApiClientService,
-        private router: Router
-    ) {}
+        private i18n: I18nService
+    ) {
+
+        console.log(this.i18n.formatDate('2017-05-05T17:55:24+02:00'));
+
+    }
 
     ngOnInit() {
         this.chessApiClient.getProfile()
