@@ -32,7 +32,7 @@ export let enTranslations = {
     "Games in progress": "Games in progress",
     "Games proposed by others": "Games proposed by others",
     "Games proposed to others": "Games proposed to others",
-    "Games ended": "Games ended",
+    "Ended games": "Ended games",
     "Create a game": "Create a game",
     "Game": "Game",
     "Game creation": "Game creation",
@@ -56,5 +56,11 @@ export let enTranslations = {
     'result_0-1/2': 'White in check',
     'result_1/2-0': 'Black in check',
     'result_1/2-1/2': 'Draw',
-    'result_*': ''
+    'result_*': '',
+    'Back to your games': 'Back to your games',
+    'You will play versus the computer. Chose your color.': 'You will play versus the computer. Chose your color.',
+    'Chose your color and opponent': 'Chose your color and opponent',
+    'Play versus computer': 'Play versus computer',
+    'Play versus another user': 'Play versus another user',
+    "You don't have any game. You should create one !": "You don't have any game. You should create one !"
 };

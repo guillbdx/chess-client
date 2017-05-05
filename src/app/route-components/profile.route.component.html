@@ -8,13 +8,13 @@
 
             <div class="col-xs-9">
 
-                <h3 class="translate">Profile</h3>
+                <h3>{{ 'Profile' | translate }}</h3>
 
                 <flash-messages></flash-messages>
 
                 <p>
                     <strong>
-                        <span class="translate">Username</span>
+                        <span>{{ 'Username' | translate }}</span>
                         : </strong>
                     <span *ngIf="profile">
                         {{ profile.username }}
@@ -23,7 +23,7 @@
 
                 <p>
                     <strong>
-                        <span class="translate">Email</span>
+                        <span>{{ 'Email' | translate }}</span>
                         : </strong>
                     <span *ngIf="profile">
                         {{ profile.email }}
@@ -41,7 +41,7 @@
             <div class="col-xs-9">
                 <p></p>
                 <p>
-                    <a href="change-password" class="translate">Change password</a>
+                    <a href="change-password">{{ 'Change password' | translate }}</a>
                 </p>
             </div>
             <div class="col-xs-1"></div>

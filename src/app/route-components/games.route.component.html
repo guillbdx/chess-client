@@ -8,18 +8,18 @@
 
             <div class="col-xs-10">
 
-                <h3 class="translate">Games</h3>
+                <h3>{{ 'Games' | translate }}</h3>
 
                 <flash-messages></flash-messages>
 
                 <p [hidden]="orderedGames.inProgress.length != 0 || orderedGames.proposedByOthers.length != 0 || orderedGames.proposedToOthers.length != 0 || orderedGames.ended.length != 0">
-                    You don't have any game. You should create one !
+                    {{ "You don't have any game. You should create one !" | translate}}
                 </p>
 
-                <a href="game-create" class="btn btn-info translate">Create a game</a>
+                <a href="game-create" class="btn btn-info translate">{{ 'Create a game' | translate }}</a>
 
-                <h4 class="translate" *ngIf="orderedGames.inProgress.length != 0">
-                    Games in progress
+                <h4 *ngIf="orderedGames.inProgress.length != 0">
+                    {{ 'Games in progress' | translate }}
                 </h4>
 
                 <ul class="games" id="games-in-progress">
@@ -27,17 +27,19 @@
                         <a
                                 href="game/12"
                                 class="go-to-game pull-right btn btn-primary btn-sm">
-                            Play
+                            {{ 'Play' | translate }}
                         </a>
-                        Versus <strong>{{ game.opponent.username }}</strong>
+                        {{ 'Versus' | translate }}
+                        <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
-                            Started on {{ game.acceptedAt }}
+                            {{ 'Started on' | translate }}
+                            {{ game.acceptedAt }}
                         </p>
                     </li>
                 </ul>
 
-                <h4 class="translate" *ngIf="orderedGames.proposedByOthers.length != 0">
-                    Games proposed by others
+                <h4 *ngIf="orderedGames.proposedByOthers.length != 0">
+                    {{ 'Games proposed by others' | translate }}
                 </h4>
 
                 <ul class="games" id="games-proposed-by-others">
@@ -45,35 +47,39 @@
                         <a
                                 class="refuse-game pull-right btn btn-danger btn-sm"
                                 (click)="refuse(game)">
-                            Refuse
+                            {{ 'Refuse' | translate }}
                         </a>
                         <a
                                 class="accept-game pull-right btn btn-success btn-sm"
                                 (click)="accept(game)">
-                            Accept
+                            {{ 'Accept' | translate }}
                         </a>
-                        By <strong>{{ game.opponent.username }}</strong>
+                        {{ 'Proposed by' | translate }}
+                        <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
-                            On {{ game.createdAt }}
+                            {{ 'On' | translate}}
+                            {{ game.createdAt }}
                         </p>
                     </li>
                 </ul>
 
-                <h4 class="translate" *ngIf="orderedGames.proposedToOthers.length != 0">
-                    Games proposed to others
+                <h4 *ngIf="orderedGames.proposedToOthers.length != 0">
+                    {{ 'Games proposed to others' | translate}}
                 </h4>
 
                 <ul class="games" id="games-proposed-to-others">
                     <li *ngFor="let game of orderedGames.proposedToOthers">
-                        To <strong>{{ game.opponent.username }}</strong>
+                        {{ 'Proposed to' | translate }}
+                        <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
-                            On {{ game.createdAt }}
+                            {{ 'On' | translate}}
+                            {{ game.createdAt }}
                         </p>
                     </li>
                 </ul>
 
-                <h4 class="translate" *ngIf="orderedGames.ended.length != 0">
-                    Games ended
+                <h4 *ngIf="orderedGames.ended.length != 0">
+                    {{ 'Ended games' | translate}}
                 </h4>
 
                 <ul class="games" id="games-ended">
@@ -81,11 +87,13 @@
                         <a
                                 href="game/12"
                                 class="go-to-game pull-right btn btn-primary btn-sm">
-                            See
+                            {{ 'See' | translate}}
                         </a>
-                        Versus <strong>{{ game.opponent.username }}</strong>
+                        {{ 'Versus' | translate }}
+                        <strong>{{ game.opponent.username }}</strong>
                         <p class="games-list-date">
-                            Ended on {{ game.endedAt }}
+                            {{ 'Ended on' | translate}}
+                            {{ game.endedAt }}
                         </p>
                     </li>
                 </ul>

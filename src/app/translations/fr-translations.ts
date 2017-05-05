@@ -32,7 +32,7 @@ export let frTranslations = {
     "Games in progress": "Parties en cours",
     "Games proposed by others": "Parties qui vous sont proposées",
     "Games proposed to others": "Parties que vous avez proposées",
-    "Games ended": "Parties terminées",
+    "Ended games": "Parties terminées",
     "Create a game": "Créer une partie",
     "Game": "Partie",
     "Game creation": "Créer une partie",
@@ -56,5 +56,11 @@ export let frTranslations = {
     'result_0-1/2': 'Les blancs sont en échec.',
     'result_1/2-0': 'Les noirs sont en échec.',
     'result_1/2-1/2': 'Pat.',
-    'result_*': ''
+    'result_*': '',
+    'Back to your games': 'Retour à vos parties',
+    'You will play versus the computer. Chose your color.': "Vous allez jouer contre l'ordinateur. Choisissez votre couleur.",
+    'Chose your color and opponent': 'Choisissez votre adversaire et votre couleur.',
+    'Play versus computer': "Jouer contre l'ordinateur",
+    'Play versus another user': "Jouer contre un autre utilisateur",
+    "You don't have any game. You should create one !": "Vous n'avez aucune partie en cours. Vous devriez en créer une !"
 };
