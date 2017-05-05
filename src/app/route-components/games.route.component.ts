@@ -20,11 +20,22 @@ export class GamesRouteComponent implements OnInit {
         ended: []
     };
 
+    profile: User;
+
     constructor(
         private chessApiClient: ChessApiClientService
     ) {}
 
     ngOnInit() {
+        this.chessApiClient.getProfile()
+            .then(user => {
+                this.profile = user;
+                this.retrieveGames();
+            });
+
+    }
+
+    private retrieveGames() {
         this.chessApiClient.getGames()
             .then(games => {
                 this.games = games;
@@ -44,15 +55,26 @@ export class GamesRouteComponent implements OnInit {
         for(let game of this.games) {
             game.creator = this.findUserById(game._links.creator.id);
             game.guest = this.findUserById(game._links.guest.id);
+            game.opponent = Game.getOpponentOf(game, this.profile);
         }
         this.orderGames();
     }
 
     private orderGames() {
         for(let game of this.games) {
-            if(game.acceptedAt != null) {
+            if(game.acceptedAt != null && game.endedAt == null) {
                 this.orderedGames.inProgress.push(game);
+                continue;
             }
+            if(game.acceptedAt != null && game.endedAt != null) {
+                this.orderedGames.ended.push(game);
+                continue;
+            }
+            if(game.guest.id == this.profile.id) {
+                this.orderedGames.proposedByOthers.push(game);
+                continue;
+            }
+            this.orderedGames.proposedToOthers.push(game);
         }
     }
 

@@ -22,6 +22,10 @@ export class ChessApiClientService {
             'Content-Type': 'application/json',
             'Accept-Language' : this.languageDetector.getLanguage()
         });
+        this.resetHeadersWithBearer();
+    }
+
+    private resetHeadersWithBearer() {
         this.headersWithBearer = new Headers({
             'Content-Type': 'application/json',
             'Accept-Language' : this.languageDetector.getLanguage(),
@@ -70,6 +74,7 @@ export class ChessApiClientService {
     }
 
     changePassword(password: string) {
+        this.resetHeadersWithBearer();
         let body = {
             plainPassword: password
         };
@@ -83,6 +88,8 @@ export class ChessApiClientService {
     getUsers(
         exclude_self:boolean|null,
         exclude_computer:boolean|null): Promise<User[]> {
+
+        this.resetHeadersWithBearer();
 
         let query = this.createQuery({
             exclude_self: exclude_self,
@@ -99,6 +106,7 @@ export class ChessApiClientService {
     }
 
     createGame(guest: number, creatorIsWhite: boolean|null): Promise<Game> {
+        this.resetHeadersWithBearer();
         let body = {
             guest: guest,
             creatorIsWhite: creatorIsWhite
@@ -112,6 +120,7 @@ export class ChessApiClientService {
     }
 
     createGameVsComputer(creatorIsWhite: boolean|null): Promise<Game> {
+        this.resetHeadersWithBearer();
         let body = {
             creatorIsWhite: creatorIsWhite
         };
@@ -124,6 +133,7 @@ export class ChessApiClientService {
     }
 
     getProfile(): Promise<User> {
+        this.resetHeadersWithBearer();
         return this.http.get(
             this.configuration.apiBaseUrl + '/account/profile',
             {headers: this.headersWithBearer})
@@ -132,7 +142,7 @@ export class ChessApiClientService {
     }
 
     getGames(): Promise<Game[]> {
-
+        this.resetHeadersWithBearer();
         let query = this.createQuery({
             page: 1,
             limit: 1000

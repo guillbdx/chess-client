@@ -7,14 +7,24 @@ export class Game {
         public guest: User,
         public opponent: User,
         public _links: any,
-        public acceptedAt: string
-    ) {}
+        public acceptedAt: string,
+        public endedAt: string,
+        public createdAt: string,
+        public updatedAt: string,
+    ) {
 
-    getOpponentOf(playerId: number):User {
-        if(this.creator.id == playerId) {
-            return this.guest;
+    }
+
+    static getOpponentOf(game: Game, user: User):User {
+
+        //console.log(game);
+        //console.log(user);
+
+        if(game.creator.id == user.id) {
+            return game.guest;
         }
-        return this.creator;
+        return game.creator;
+
     }
 
 }
