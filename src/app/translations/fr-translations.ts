@@ -62,5 +62,8 @@ export let frTranslations = {
     'Chose your color and opponent': 'Choisissez votre adversaire et votre couleur.',
     'Play versus computer': "Jouer contre l'ordinateur",
     'Play versus another user': "Jouer contre un autre utilisateur",
-    "You don't have any game. You should create one !": "Vous n'avez aucune partie en cours. Vous devriez en créer une !"
+    "You don't have any game. You should create one !": "Vous n'avez aucune partie en cours. Vous devriez en créer une !",
+    "This field is required": "Ce champ est obligatoire",
+    "This is not a valid email": "Ceci n'est pas une adresse email valide",
+    "Start": "Commencer"
 };

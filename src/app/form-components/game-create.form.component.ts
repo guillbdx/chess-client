@@ -11,11 +11,6 @@ import {I18nService} from "../services/i18n.service";
 })
 export class GameCreateFormComponent implements OnInit {
 
-    possibleColors = [
-        'White',
-        'Black'
-    ];
-
     possibleOpponents: User[];
 
     model = {
@@ -39,7 +34,7 @@ export class GameCreateFormComponent implements OnInit {
 
     onSubmit() {
         let creatorIsWhite = true;
-        if(this.model.color == 'Black') {
+        if(this.model.color == 'black') {
             creatorIsWhite = null;
         }
         this.chessApiClient.createGame(

@@ -2,17 +2,13 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {I18nService} from "../services/i18n.service";
 
 @Component({
     selector: 'form-game-vs-computer-create',
     templateUrl: './game-vs-computer-create.form.component.html'
 })
 export class GameVsComputerCreateFormComponent {
-
-    possibleColors = [
-        'White',
-        'Black'
-    ];
 
     model = {
         color: ''
@@ -21,12 +17,14 @@ export class GameVsComputerCreateFormComponent {
     constructor(
         private router: Router,
         private chessApiClient: ChessApiClientService,
-        private _flashMessagesService: FlashMessagesService
-    ) {}
+        private i18n: I18nService
+    ) {
+
+    }
 
     onSubmit() {
         let creatorIsWhite = true;
-        if(this.model.color == 'Black') {
+        if(this.model.color == 'black') {
             creatorIsWhite = null;
         }
         this.chessApiClient.createGameVsComputer(

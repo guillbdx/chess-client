@@ -5,7 +5,7 @@
 
     <div class="form-group">
 
-        <label for="username">Username</label>
+        <label for="username">{{ 'Username' | translate }}</label>
 
         <input type="text"
                class="form-control"
@@ -17,14 +17,14 @@
 
         <div [hidden]="username.valid || username.pristine"
              class="alert alert-danger">
-            This field is required
+            {{ 'This field is required' | translate }}
         </div>
 
     </div>
 
     <div class="form-group">
 
-        <label for="email">Email</label>
+        <label for="email">{{ 'Email' | translate }}</label>
 
         <input type="email"
                class="form-control"
@@ -37,14 +37,14 @@
 
         <div [hidden]="email.valid || email.untouched"
              class="alert alert-danger">
-            This is not a valid email
+            {{ 'This is not a valid email' | translate }}
         </div>
 
     </div>
 
     <div class="form-group">
 
-        <label for="password">Password</label>
+        <label for="password">{{ 'Password' | translate }}</label>
 
         <input type="password"
                class="form-control"
@@ -56,7 +56,7 @@
 
         <div [hidden]="password.valid || password.pristine"
              class="alert alert-danger">
-            This field is required
+            {{ 'This field is required' | translate }}
         </div>
 
     </div>
@@ -65,6 +65,6 @@
             type="submit"
             class="btn btn-success"
             [disabled]="!registerForm.form.valid">
-        Submit</button>
+        {{ 'Register' | translate }}</button>
 
 </form>

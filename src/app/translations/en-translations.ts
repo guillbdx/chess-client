@@ -62,5 +62,8 @@ export let enTranslations = {
     'Chose your color and opponent': 'Chose your color and opponent',
     'Play versus computer': 'Play versus computer',
     'Play versus another user': 'Play versus another user',
-    "You don't have any game. You should create one !": "You don't have any game. You should create one !"
+    "You don't have any game. You should create one !": "You don't have any game. You should create one !",
+    "This field is required": "This field is required",
+    "This is not a valid email": "This is not a valid email",
+    "Start": "Start"
 };
