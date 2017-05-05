@@ -16,14 +16,18 @@
                     <strong>
                         <span class="translate">Username</span>
                         : </strong>
-                    <span class="profile-username">Username</span>
+                    <span *ngIf="profile">
+                        {{ profile.username }}
+                    </span>
                 </p>
 
                 <p>
                     <strong>
                         <span class="translate">Email</span>
                         : </strong>
-                    <span class="profile-email">Email</span>
+                    <span *ngIf="profile">
+                        {{ profile.email }}
+                    </span>
                 </p>
 
             </div>
