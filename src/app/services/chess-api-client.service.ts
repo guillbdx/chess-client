@@ -93,7 +93,7 @@ export class ChessApiClientService {
 
         let query = this.createQuery({
             exclude_self: exclude_self,
-            exclude_computer: true,
+            exclude_computer: exclude_computer,
             page: 1,
             limit: 1000
         });
