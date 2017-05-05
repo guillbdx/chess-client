@@ -80,15 +80,13 @@ export class ChessApiClientService {
             .toPromise();
     }
 
-    getUsers(excludeSelf:boolean|null,
-             excludeComputer:boolean|null,
-             page: number,
-             limit: number): Promise<User[]> {
+    getUsers(): Promise<User[]> {
 
         let query = this.createQuery({
-            exclude_self: excludeSelf,
-            page: page,
-            limit: limit
+            exclude_self: true,
+            exclude_computer: true,
+            page: 1,
+            limit: 1000
         });
 
         return this.http.get(
