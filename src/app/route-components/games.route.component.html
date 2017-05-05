@@ -12,9 +12,15 @@
 
                 <flash-messages></flash-messages>
 
+                <p [hidden]="orderedGames.inProgress.length != 0 || orderedGames.proposedByOthers.length != 0 || orderedGames.proposedToOthers.length != 0 || orderedGames.ended.length != 0">
+                    You don't have any game. You should create one !
+                </p>
+
                 <a href="game-create" class="btn btn-info translate">Create a game</a>
 
-                <h4 class="translate">Games in progress</h4>
+                <h4 class="translate" *ngIf="orderedGames.inProgress.length != 0">
+                    Games in progress
+                </h4>
 
                 <ul class="games" id="games-in-progress">
                     <li *ngFor="let game of orderedGames.inProgress">
@@ -30,7 +36,9 @@
                     </li>
                 </ul>
 
-                <h4 class="translate">Games proposed by others</h4>
+                <h4 class="translate" *ngIf="orderedGames.proposedByOthers.length != 0">
+                    Games proposed by others
+                </h4>
 
                 <ul class="games" id="games-proposed-by-others">
                     <li *ngFor="let game of orderedGames.proposedByOthers">
@@ -51,7 +59,9 @@
                     </li>
                 </ul>
 
-                <h4 class="translate">Games proposed to others</h4>
+                <h4 class="translate" *ngIf="orderedGames.proposedToOthers.length != 0">
+                    Games proposed to others
+                </h4>
 
                 <ul class="games" id="games-proposed-to-others">
                     <li *ngFor="let game of orderedGames.proposedToOthers">
@@ -62,7 +72,9 @@
                     </li>
                 </ul>
 
-                <h4 class="translate">Games ended</h4>
+                <h4 class="translate" *ngIf="orderedGames.ended.length != 0">
+                    Games ended
+                </h4>
 
                 <ul class="games" id="games-ended">
                     <li *ngFor="let game of orderedGames.ended">

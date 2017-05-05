@@ -17,9 +17,6 @@ export class Game {
 
     static getOpponentOf(game: Game, user: User):User {
 
-        //console.log(game);
-        //console.log(user);
-
         if(game.creator.id == user.id) {
             return game.guest;
         }

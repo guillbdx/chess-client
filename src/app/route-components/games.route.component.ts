@@ -76,6 +76,7 @@ export class GamesRouteComponent implements OnInit {
             }
             this.orderedGames.proposedToOthers.push(game);
         }
+
     }
 
     private findUserById(id: number): User {
