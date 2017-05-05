@@ -9,6 +9,7 @@ import {Configuration}                      from "../Configuration";
 import {LanguageDetectorService}            from "../services/language-detector.service";
 import {ChessApiClientService}              from "../services/chess-api-client.service";
 import {ErrorsExtractorService}             from "../services/errors-extractor.service";
+import {I18nService}                        from "../services/i18n.service";
 
 import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
 import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
@@ -62,7 +63,8 @@ import {GameCreateFormComponent}            from "../form-components/game-create
         CanAccessOpenAreaGuard,
         LanguageDetectorService,
         ChessApiClientService,
-        ErrorsExtractorService
+        ErrorsExtractorService,
+        I18nService
     ],
     bootstrap: [
         AppComponent

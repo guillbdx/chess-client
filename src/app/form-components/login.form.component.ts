@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
+import {I18nService} from "../services/i18n.service";
 
 @Component({
     selector: 'form-login',
@@ -17,8 +18,13 @@ export class LoginFormComponent {
     constructor(
         private chessApiClient: ChessApiClientService,
         private _flashMessagesService: FlashMessagesService,
-        private router: Router
-    ) {}
+        private router: Router,
+        private i18n: I18nService
+    ) {
+
+        console.log(this.i18n.translate('Wrong credentials'));
+
+    }
 
     private handleInvalidCredentials(error: any): void {
         this._flashMessagesService.show(
