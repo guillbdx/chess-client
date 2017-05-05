@@ -123,4 +123,12 @@ export class ChessApiClientService {
             .then(response => response.json() as Game);
     }
 
+    getProfile(): Promise<User> {
+        return this.http.get(
+            this.configuration.apiBaseUrl + '/account/profile',
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => response.json() as User);
+    }
+
 }

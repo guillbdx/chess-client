@@ -27,6 +27,7 @@ nav#nav #nav-content {
     background: #18bc9c;
     padding: 50px 30px 30px 50px;
     border-radius: 5px;
+    min-width: 200px;
 }
 nav#nav #nav-content a {
     color: white;

@@ -4,7 +4,9 @@
     </a>
     <div id="nav-content" [hidden]="!deployed">
         <p>
-            <strong class="profile-username">Username</strong>
+            <strong *ngIf="profile">
+                {{ profile.username }}
+            </strong>
         </p>
         <ul>
             <li>

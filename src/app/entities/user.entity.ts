@@ -1,9 +1,10 @@
 export class User {
 
     constructor(
-        private id: number,
-        private username: string,
-        private isComputer: boolean
+        public id: number,
+        public username: string,
+        public email: string,
+        public isComputer: boolean
     ) {}
 
 }
