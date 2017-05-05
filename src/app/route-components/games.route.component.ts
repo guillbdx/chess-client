@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Game} from "../entities/game.entity";
 import {User} from "../entities/user.entity";
+import {Router} from "@angular/router";
 
 @Component({
     templateUrl: './games.route.component.html',
@@ -23,7 +24,8 @@ export class GamesRouteComponent implements OnInit {
     profile: User;
 
     constructor(
-        private chessApiClient: ChessApiClientService
+        private chessApiClient: ChessApiClientService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -36,6 +38,12 @@ export class GamesRouteComponent implements OnInit {
     }
 
     private retrieveGames() {
+        this.orderedGames = {
+            inProgress: [],
+            proposedByOthers: [],
+            proposedToOthers: [],
+            ended: []
+        };
         this.chessApiClient.getGames()
             .then(games => {
                 this.games = games;
@@ -86,6 +94,20 @@ export class GamesRouteComponent implements OnInit {
             }
         }
         return null;
+    }
+
+    refuse(game: Game) {
+        this.chessApiClient.refuseGame(game)
+            .then(response => {
+                this.retrieveGames();
+            });
+    }
+
+    accept(game: Game) {
+        this.chessApiClient.acceptGame(game)
+            .then(response => {
+                this.retrieveGames();
+            });
     }
 
 };

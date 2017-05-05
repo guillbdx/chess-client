@@ -156,4 +156,22 @@ export class ChessApiClientService {
 
     }
 
+    refuseGame(game: Game) {
+        this.resetHeadersWithBearer();
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/games/' + game.id + '/refuse',
+            null,
+            {headers: this.headersWithBearer})
+            .toPromise();
+    }
+
+    acceptGame(game: Game) {
+        this.resetHeadersWithBearer();
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/games/' + game.id + '/accept',
+            null,
+            {headers: this.headersWithBearer})
+            .toPromise();
+    }
+
 }

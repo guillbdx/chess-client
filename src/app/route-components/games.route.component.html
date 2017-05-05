@@ -43,13 +43,13 @@
                 <ul class="games" id="games-proposed-by-others">
                     <li *ngFor="let game of orderedGames.proposedByOthers">
                         <a
-                                href="#"
-                                class="refuse-game pull-right btn btn-danger btn-sm">
+                                class="refuse-game pull-right btn btn-danger btn-sm"
+                                (click)="refuse(game)">
                             Refuse
                         </a>
                         <a
-                                href="#"
-                                class="accept-game pull-right btn btn-success btn-sm">
+                                class="accept-game pull-right btn btn-success btn-sm"
+                                (click)="accept(game)">
                             Accept
                         </a>
                         By <strong>{{ game.opponent.username }}</strong>
