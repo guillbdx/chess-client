@@ -7,7 +7,7 @@ export let frTranslations = {
     "Versus": "Contre",
     "Proposed by": "Proposé par",
     "Proposed to": "Proposé à",
-    "Wrong credentials": "Veuillez vérifier votre nom d'utilisateur ou votre mot de passe.",
+    "Wrong credentials": "Veuillez vérifier votre nom d'utilisateur et votre mot de passe.",
     "You are now signed up and logged in !": "Vous êtes maintenant inscrit et connecté !",
     "Your password has been updated.": "Votre mot de passe a bien été modifié.",
     "You should be logged in.": "Vous devriez être connecté.",

@@ -3,6 +3,7 @@ import { ChessApiClientService } from "../services/chess-api-client.service";
 import {User} from "../entities/user.entity";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {I18nService} from "../services/i18n.service";
 
 @Component({
     selector: 'form-game-create',
@@ -25,7 +26,8 @@ export class GameCreateFormComponent implements OnInit {
     constructor(
         private chessApiClient: ChessApiClientService,
         private router: Router,
-        private _flashMessagesService: FlashMessagesService
+        private _flashMessagesService: FlashMessagesService,
+        private i18n: I18nService
     ) {}
 
     ngOnInit() {
@@ -47,7 +49,7 @@ export class GameCreateFormComponent implements OnInit {
             this.router.navigate(['']);
             setTimeout(() => {
                 this._flashMessagesService.show(
-                    "The game has been created. It will start when your opponent will have accepted the invitation.",
+                    this.i18n.translate('The game has been created. Waiting for opponent acceptation.'),
                     { cssClass: 'alert-success', timeout: 5000 });
             }, 100);
         });

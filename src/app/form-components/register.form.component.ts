@@ -3,6 +3,7 @@ import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {ErrorsExtractorService} from "../services/errors-extractor.service";
+import {I18nService} from "../services/i18n.service";
 
 @Component({
     selector: 'form-register',
@@ -20,7 +21,8 @@ export class RegisterFormComponent {
         private _flashMessagesService: FlashMessagesService,
         private router: Router,
         private chessApiClient: ChessApiClientService,
-        private errorsExtractor: ErrorsExtractorService
+        private errorsExtractor: ErrorsExtractorService,
+        private i18n: I18nService
     ) {}
 
     private handleError(error: any): void {
@@ -38,7 +40,7 @@ export class RegisterFormComponent {
 
                 setTimeout(() => {
                     this._flashMessagesService.show(
-                        "You have successfully registered and now logged in !",
+                        this.i18n.translate("You are now signed up and logged in !"),
                         { cssClass: 'alert-success', timeout: 5000 });
                 }, 100);
             });

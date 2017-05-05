@@ -1,7 +1,12 @@
 import {Injectable} from "@angular/core";
+import {I18nService} from "./i18n.service";
 
 @Injectable()
 export class ErrorsExtractorService {
+
+    constructor(
+        private i18n: I18nService
+    ) {}
 
     extract(content: any) {
         let messages = [];
@@ -22,8 +27,7 @@ export class ErrorsExtractorService {
                     let fieldError = fieldErrors[i];
                     let message = '';
                     let propertyNameCapitalized = propertyName.charAt(0).toUpperCase() + propertyName.slice(1);
-                    // let translatedPropertyNameCapitalized = translator.translate(propertyNameCapitalized);
-                    let translatedPropertyNameCapitalized = propertyNameCapitalized;
+                    let translatedPropertyNameCapitalized = this.i18n.translate(propertyNameCapitalized);
                     message += translatedPropertyNameCapitalized + ' : ';
                     message += fieldError;
                     messages.push(message);

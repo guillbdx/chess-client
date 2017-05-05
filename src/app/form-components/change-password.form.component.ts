@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {ChessApiClientService} from "../services/chess-api-client.service";
+import {I18nService} from "../services/i18n.service";
 
 @Component({
     selector: 'form-change-password',
@@ -16,7 +17,8 @@ export class ChangePasswordFormComponent {
     constructor(
         private router: Router,
         private _flashMessagesService: FlashMessagesService,
-        private chessApiClient: ChessApiClientService
+        private chessApiClient: ChessApiClientService,
+        private i18n: I18nService
     ) {}
 
     onSubmit() {
@@ -25,7 +27,7 @@ export class ChangePasswordFormComponent {
                 this.router.navigate(['profile']);
                 setTimeout(() => {
                     this._flashMessagesService.show(
-                        "Your password has been successfully updated.",
+                        this.i18n.translate("Your password has been updated."),
                         { cssClass: 'alert-success', timeout: 5000 });
                 }, 100);
             });

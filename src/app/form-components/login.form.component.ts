@@ -20,15 +20,11 @@ export class LoginFormComponent {
         private _flashMessagesService: FlashMessagesService,
         private router: Router,
         private i18n: I18nService
-    ) {
-
-        console.log(this.i18n.translate('Wrong credentials'));
-
-    }
+    ) {}
 
     private handleInvalidCredentials(error: any): void {
         this._flashMessagesService.show(
-            'Invalid credentials.',
+            this.i18n.translate('Wrong credentials'),
             { cssClass: 'alert-danger', timeout: 5000 });
     }
 
