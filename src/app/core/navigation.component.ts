@@ -33,7 +33,6 @@ export class NavigationComponent implements OnInit {
         this.chessApiClient.getProfile()
             .then(user => {
                 this.profile = user;
-                console.log(this.profile);
             });
     }
 

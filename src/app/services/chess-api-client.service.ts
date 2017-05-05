@@ -80,10 +80,12 @@ export class ChessApiClientService {
             .toPromise();
     }
 
-    getUsers(): Promise<User[]> {
+    getUsers(
+        exclude_self:boolean|null,
+        exclude_computer:boolean|null): Promise<User[]> {
 
         let query = this.createQuery({
-            exclude_self: true,
+            exclude_self: exclude_self,
             exclude_computer: true,
             page: 1,
             limit: 1000
@@ -127,6 +129,21 @@ export class ChessApiClientService {
             {headers: this.headersWithBearer})
             .toPromise()
             .then(response => response.json() as User);
+    }
+
+    getGames(): Promise<Game[]> {
+
+        let query = this.createQuery({
+            page: 1,
+            limit: 1000
+        });
+
+        return this.http.get(
+            this.configuration.apiBaseUrl + '/games?' + query,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => response.json()._embedded.resources as Game[]);
+
     }
 
 }

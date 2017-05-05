@@ -29,7 +29,7 @@ export class GameCreateFormComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.chessApiClient.getUsers()
+        this.chessApiClient.getUsers(true, true)
             .then(users => {
                 this.possibleOpponents = users;
             });

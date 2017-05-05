@@ -17,7 +17,7 @@
                 <h4 class="translate">Games in progress</h4>
 
                 <ul class="games" id="games-in-progress">
-                    <li>
+                    <li *ngFor="let game of orderedGames.inProgress">
                         <a
                                 href="game/12"
                                 class="go-to-game pull-right btn btn-primary btn-sm">
