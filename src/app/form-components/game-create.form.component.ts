@@ -24,7 +24,7 @@ export class GameCreateFormComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.chessApiClient.getUsers(null, null)
+        this.chessApiClient.getUsers(true, true)
             .then(response => {
                 switch(response.status) {
                     case 200 :
