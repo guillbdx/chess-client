@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Game} from "../entities/game.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
-import {LoaderService} from "../services/loader.service";
 import {SecurityService} from "../services/security.service";
+import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
 @Component({
     templateUrl: './game.route.component.html',
@@ -19,7 +19,9 @@ export class GameRouteComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private chessApiClient: ChessApiClientService,
-        private security: SecurityService
+        private security: SecurityService,
+        private myFlashMessages: MyFlashMessagesService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -43,7 +45,8 @@ export class GameRouteComponent implements OnInit {
 
                         break;
                     case 404 :
-
+                        this.router.navigate(['']);
+                        this.myFlashMessages.addError("This game doesn't exist. It might have been removed.");
                         break;
                 }
             });

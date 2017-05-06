@@ -57,5 +57,6 @@ export let enTranslations = {
     "You don't have any game. You should create one !": "You don't have any game. You should create one !",
     "This field is required": "This field is required",
     "This is not a valid email": "This is not a valid email",
-    "Start": "Start"
+    "Start": "Start",
+    "This game doesn't exist. It might have been removed.": "This game doesn't exist. It might have been removed."
 };

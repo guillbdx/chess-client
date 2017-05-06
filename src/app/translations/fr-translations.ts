@@ -57,5 +57,6 @@ export let frTranslations = {
     "You don't have any game. You should create one !": "Vous n'avez aucune partie en cours. Vous devriez en créer une !",
     "This field is required": "Ce champ est obligatoire",
     "This is not a valid email": "Ceci n'est pas une adresse email valide",
-    "Start": "Commencer"
+    "Start": "Commencer",
+    "This game doesn't exist. It might have been removed.": "Cette partie n'existe pas. Elle a peut-être été supprimée."
 };
