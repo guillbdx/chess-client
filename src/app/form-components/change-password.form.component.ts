@@ -32,7 +32,8 @@ export class ChangePasswordFormComponent {
                         this.myFlashMessages.addSuccess("Your password has been updated.");
                         break;
                     case 400 :
-
+                        this.router.navigate(['profile']);
+                        this.myFlashMessages.addError("A problem has occurred. We cannot comply with your request.");
                         break;
                     case 401 :
                         this.security.logout();

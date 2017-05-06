@@ -52,7 +52,8 @@ export class GameCreateFormComponent implements OnInit {
                         this.myFlashMessages.addSuccess('The game has been created. Waiting for opponent acceptation.');
                         break;
                     case 400 :
-
+                        this.router.navigate(['']);
+                        this.myFlashMessages.addError("A problem has occurred. We cannot comply with your request.");
                         break;
                     case 401 :
                         this.security.logout();

@@ -5,6 +5,8 @@ import {User} from "../entities/user.entity";
 import {I18nService} from "../services/i18n.service";
 import {LoaderService} from "../services/loader.service";
 import {SecurityService} from "../services/security.service";
+import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {Router} from "@angular/router";
 
 @Component({
     templateUrl: './games.route.component.html',
@@ -27,7 +29,9 @@ export class GamesRouteComponent implements OnInit {
 
     constructor(
         private chessApiClient: ChessApiClientService,
-        private security: SecurityService
+        private security: SecurityService,
+        private myFlashMessages: MyFlashMessagesService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -132,10 +136,11 @@ export class GamesRouteComponent implements OnInit {
                         this.security.logout();
                         break;
                     case 403 :
-
+                        this.router.navigate(['']);
+                        this.myFlashMessages.addError("You are not a player on this game.");
                         break;
                     case 404 :
-
+                        this.myFlashMessages.addError("This game doesn't exist. It might have been removed.");
                         break;
                 }
             });
@@ -152,10 +157,11 @@ export class GamesRouteComponent implements OnInit {
                         this.security.logout();
                         break;
                     case 403 :
-
+                        this.router.navigate(['']);
+                        this.myFlashMessages.addError("You are not a player on this game.");
                         break;
                     case 404 :
-
+                        this.myFlashMessages.addError("This game doesn't exist. It might have been removed.");
                         break;
                 }
             });

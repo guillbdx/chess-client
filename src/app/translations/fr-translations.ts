@@ -58,5 +58,7 @@ export let frTranslations = {
     "This field is required": "Ce champ est obligatoire",
     "This is not a valid email": "Ceci n'est pas une adresse email valide",
     "Start": "Commencer",
-    "This game doesn't exist. It might have been removed.": "Cette partie n'existe pas. Elle a peut-être été supprimée."
+    "This game doesn't exist. It might have been removed.": "Cette partie n'existe pas. Elle a peut-être été supprimée.",
+    "You are not a player on this game.": "Vous n'êtes pas un joueur de cette partie.",
+    "A problem has occurred. We cannot comply with your request.": "Un problème est survenu. Nous ne pouvons donner suite à votre demande."
 };

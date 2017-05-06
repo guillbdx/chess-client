@@ -58,5 +58,7 @@ export let enTranslations = {
     "This field is required": "This field is required",
     "This is not a valid email": "This is not a valid email",
     "Start": "Start",
-    "This game doesn't exist. It might have been removed.": "This game doesn't exist. It might have been removed."
+    "This game doesn't exist. It might have been removed.": "This game doesn't exist. It might have been removed.",
+    "You are not a player on this game.": "You are not a player on this game.",
+    "A problem has occurred. We cannot comply with your request.": "A problem has occurred. We cannot comply with your request."
 };

@@ -42,7 +42,8 @@ export class GameRouteComponent implements OnInit {
                         this.security.logout();
                         break;
                     case 403 :
-
+                        this.router.navigate(['']);
+                        this.myFlashMessages.addError("You are not a player on this game.");
                         break;
                     case 404 :
                         this.router.navigate(['']);
