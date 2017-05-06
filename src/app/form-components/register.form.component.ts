@@ -2,7 +2,6 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {ErrorsExtractorService} from "../services/errors-extractor.service";
-import {LoaderService} from "../services/loader.service";
 import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
 @Component({
@@ -21,15 +20,8 @@ export class RegisterFormComponent {
         private router: Router,
         private chessApiClient: ChessApiClientService,
         private errorsExtractor: ErrorsExtractorService,
-        private loader: LoaderService,
         private myFlashMessages: MyFlashMessagesService
     ) {}
-
-    private handleError(error: any): void {
-        let errors = this.errorsExtractor.extract(error.json());
-        this.myFlashMessages.addError(errors[0]);
-        this.loader.hide();
-    }
 
     private loginAfterRegister(username: string, password: string) {
         this.chessApiClient.login(username, password)
@@ -41,11 +33,18 @@ export class RegisterFormComponent {
     }
 
     onSubmit() {
-        this.loader.show();
         this.chessApiClient.register(this.model.username, this.model.email, this.model.password)
             .then(response => {
-                this.loginAfterRegister(this.model.username, this.model.password);
-            }).catch(error => this.handleError(error));
+                switch(response.status) {
+                    case 201 :
+                        this.loginAfterRegister(this.model.username, this.model.password);
+                        break;
+                    case 400 :
+                        let errors = this.errorsExtractor.extract(response.json());
+                        this.myFlashMessages.addError(errors[0]);
+                        break;
+                }
+            });
     }
 
     get diagnostic() {

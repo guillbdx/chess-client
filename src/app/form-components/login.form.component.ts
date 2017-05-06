@@ -20,16 +20,19 @@ export class LoginFormComponent {
         private myFlashMessages: MyFlashMessagesService
     ) {}
 
-    private handleInvalidCredentials(error: any): void {
-        this.myFlashMessages.addError('Wrong credentials');
-    }
-
     onSubmit() {
         this.chessApiClient.login(this.model.username, this.model.password)
             .then(response => {
-                localStorage.bearer = response.json();
-                this.router.navigate(['']);
-            }).catch(error => this.handleInvalidCredentials(error));
+                switch(response.status) {
+                    case 200 :
+                        localStorage.bearer = response.json();
+                        this.router.navigate(['']);
+                        break;
+                    case 401 :
+                        this.myFlashMessages.addError('Wrong credentials');
+                        break;
+                }
+            });
     }
 
     get diagnostic() {

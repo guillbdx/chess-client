@@ -65,6 +65,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
 
     }
@@ -86,6 +89,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -105,6 +111,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -129,6 +138,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response.json()._embedded.resources as User[]
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -149,6 +161,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response.json() as Game;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -168,6 +183,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response.json() as Game;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -183,6 +201,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response.json() as User;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -203,6 +224,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response.json()._embedded.resources as Game[];
+            }, error => {
+                this.loader.hide();
+                return error;
             });
 
     }
@@ -220,6 +244,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -236,6 +263,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
@@ -251,6 +281,9 @@ export class ChessApiClientService {
             .then(response => {
                 this.loader.hide();
                 return response.json() as Game;
+            }, error => {
+                this.loader.hide();
+                return error;
             });
     }
 
