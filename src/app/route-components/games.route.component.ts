@@ -26,11 +26,9 @@ export class GamesRouteComponent implements OnInit {
 
     constructor(
         private chessApiClient: ChessApiClientService,
-        private loader: LoaderService
     ) {}
 
     ngOnInit() {
-        this.loader.show();
         this.chessApiClient.getProfile()
             .then(user => {
                 this.profile = user;
@@ -86,7 +84,6 @@ export class GamesRouteComponent implements OnInit {
             }
             this.orderedGames.proposedToOthers.push(game);
         }
-        this.loader.hide();
     }
 
     private findUserById(id: number): User {
@@ -99,7 +96,6 @@ export class GamesRouteComponent implements OnInit {
     }
 
     refuse(game: Game) {
-        this.loader.show();
         this.chessApiClient.refuseGame(game)
             .then(response => {
                 this.retrieveGames();
@@ -107,7 +103,6 @@ export class GamesRouteComponent implements OnInit {
     }
 
     accept(game: Game) {
-        this.loader.show();
         this.chessApiClient.acceptGame(game)
             .then(response => {
                 this.retrieveGames();

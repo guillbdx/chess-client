@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Router} from "@angular/router";
-import {LoaderService} from "../services/loader.service";
 import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
 @Component({
@@ -18,17 +17,14 @@ export class LoginFormComponent {
     constructor(
         private chessApiClient: ChessApiClientService,
         private router: Router,
-        private loader: LoaderService,
         private myFlashMessages: MyFlashMessagesService
     ) {}
 
     private handleInvalidCredentials(error: any): void {
         this.myFlashMessages.addError('Wrong credentials');
-        this.loader.hide();
     }
 
     onSubmit() {
-        this.loader.show();
         this.chessApiClient.login(this.model.username, this.model.password)
             .then(response => {
                 localStorage.bearer = response.json();

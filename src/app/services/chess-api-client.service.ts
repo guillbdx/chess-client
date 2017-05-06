@@ -5,6 +5,7 @@ import {Configuration} from "../Configuration";
 import {LanguageDetectorService} from "./language-detector.service";
 import {User} from "../entities/user.entity";
 import {Game} from "../entities/game.entity";
+import {LoaderService} from "./loader.service";
 
 @Injectable()
 export class ChessApiClientService {
@@ -16,7 +17,8 @@ export class ChessApiClientService {
     constructor(
         private http: Http,
         private configuration: Configuration,
-        private languageDetector: LanguageDetectorService
+        private languageDetector: LanguageDetectorService,
+        private loader: LoaderService
     ) {
         this.headers = new Headers({
             'Content-Type': 'application/json',
@@ -46,8 +48,11 @@ export class ChessApiClientService {
         let query = paramQueries.join('&');
         return query;
     }
-
+    
     login(username: string, password: string) {
+
+        this.loader.show();
+
         let body = {
             username: username,
             password: password
@@ -56,11 +61,18 @@ export class ChessApiClientService {
             this.configuration.apiBaseUrl + '/security/login',
             body,
             {headers: this.headers})
-            .toPromise();
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            });
 
     }
 
     register(username: string, email: string, password: string) {
+
+        this.loader.show();
+
         let body = {
             username: username,
             email: email,
@@ -70,11 +82,18 @@ export class ChessApiClientService {
             this.configuration.apiBaseUrl + '/security/register',
             body,
             {headers: this.headers})
-            .toPromise();
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            });
     }
 
     changePassword(password: string) {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         let body = {
             plainPassword: password
         };
@@ -82,13 +101,18 @@ export class ChessApiClientService {
             this.configuration.apiBaseUrl + '/account/change-password',
             body,
             {headers: this.headersWithBearer})
-            .toPromise();
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            });
     }
 
     getUsers(
         exclude_self:boolean|null,
         exclude_computer:boolean|null): Promise<User[]> {
 
+        this.loader.show();
         this.resetHeadersWithBearer();
 
         let query = this.createQuery({
@@ -102,11 +126,17 @@ export class ChessApiClientService {
             this.configuration.apiBaseUrl + '/users?' + query,
             {headers: this.headersWithBearer})
             .toPromise()
-            .then(response => response.json()._embedded.resources as User[]);
+            .then(response => {
+                this.loader.hide();
+                return response.json()._embedded.resources as User[]
+            });
     }
 
     createGame(guest: number, creatorIsWhite: boolean|null): Promise<Game> {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         let body = {
             guest: guest,
             creatorIsWhite: creatorIsWhite
@@ -116,11 +146,17 @@ export class ChessApiClientService {
             body,
             {headers: this.headersWithBearer})
             .toPromise()
-            .then(response => response.json() as Game);
+            .then(response => {
+                this.loader.hide();
+                return response.json() as Game;
+            });
     }
 
     createGameVsComputer(creatorIsWhite: boolean|null): Promise<Game> {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         let body = {
             creatorIsWhite: creatorIsWhite
         };
@@ -129,20 +165,32 @@ export class ChessApiClientService {
             body,
             {headers: this.headersWithBearer})
             .toPromise()
-            .then(response => response.json() as Game);
+            .then(response => {
+                this.loader.hide();
+                return response.json() as Game;
+            });
     }
 
     getProfile(): Promise<User> {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         return this.http.get(
             this.configuration.apiBaseUrl + '/account/profile',
             {headers: this.headersWithBearer})
             .toPromise()
-            .then(response => response.json() as User);
+            .then(response => {
+                this.loader.hide();
+                return response.json() as User;
+            });
     }
 
     getGames(): Promise<Game[]> {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         let query = this.createQuery({
             page: 1,
             limit: 1000
@@ -152,35 +200,58 @@ export class ChessApiClientService {
             this.configuration.apiBaseUrl + '/games?' + query,
             {headers: this.headersWithBearer})
             .toPromise()
-            .then(response => response.json()._embedded.resources as Game[]);
+            .then(response => {
+                this.loader.hide();
+                return response.json()._embedded.resources as Game[];
+            });
 
     }
 
     refuseGame(game: Game) {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         return this.http.post(
             this.configuration.apiBaseUrl + '/games/' + game.id + '/refuse',
             null,
             {headers: this.headersWithBearer})
-            .toPromise();
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            });
     }
 
     acceptGame(game: Game) {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         return this.http.post(
             this.configuration.apiBaseUrl + '/games/' + game.id + '/accept',
             null,
             {headers: this.headersWithBearer})
-            .toPromise();
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            });
     }
 
     getGame(id: number): Promise<Game> {
+
+        this.loader.show();
         this.resetHeadersWithBearer();
+
         return this.http.get(
             this.configuration.apiBaseUrl + '/games/' + id,
             {headers: this.headersWithBearer})
             .toPromise()
-            .then(response => response.json() as Game);
+            .then(response => {
+                this.loader.hide();
+                return response.json() as Game;
+            });
     }
 
 }
