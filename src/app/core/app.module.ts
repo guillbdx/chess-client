@@ -34,6 +34,7 @@ import {GameCreateFormComponent}            from "../form-components/game-create
 
 import {TranslatePipe}                      from "../pipes/translate.pipe";
 import {FormatDatePipe}                     from "../pipes/format-date.pipe";
+import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
 @NgModule({
     imports: [
@@ -72,7 +73,8 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         ChessApiClientService,
         ErrorsExtractorService,
         I18nService,
-        LoaderService
+        LoaderService,
+        MyFlashMessagesService
     ],
     bootstrap: [
         AppComponent

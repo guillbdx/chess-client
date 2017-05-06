@@ -5,6 +5,7 @@ import {ChessApiClientService} from "../services/chess-api-client.service";
 import {ErrorsExtractorService} from "../services/errors-extractor.service";
 import {I18nService} from "../services/i18n.service";
 import {LoaderService} from "../services/loader.service";
+import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
 @Component({
     selector: 'form-register',
@@ -19,19 +20,16 @@ export class RegisterFormComponent {
     };
 
     constructor(
-        private _flashMessagesService: FlashMessagesService,
         private router: Router,
         private chessApiClient: ChessApiClientService,
         private errorsExtractor: ErrorsExtractorService,
-        private i18n: I18nService,
-        private loader: LoaderService
+        private loader: LoaderService,
+        private myFlashMessages: MyFlashMessagesService
     ) {}
 
     private handleError(error: any): void {
         let errors = this.errorsExtractor.extract(error.json());
-        this._flashMessagesService.show(
-            errors[0],
-            { cssClass: 'alert-danger', timeout: 5000 });
+        this.myFlashMessages.addError(errors[0]);
         this.loader.hide();
     }
 
@@ -40,12 +38,7 @@ export class RegisterFormComponent {
             .then(response => {
                 localStorage.bearer = response.json();
                 this.router.navigate(['']);
-
-                setTimeout(() => {
-                    this._flashMessagesService.show(
-                        this.i18n.translate("You are now signed up and logged in !"),
-                        { cssClass: 'alert-success', timeout: 5000 });
-                }, 100);
+                this.myFlashMessages.addSuccess("You are now signed up and logged in !");
             });
     }
 
