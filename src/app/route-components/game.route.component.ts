@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Game} from "../entities/game.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {LoaderService} from "../services/loader.service";
+import {SecurityService} from "../services/security.service";
 
 @Component({
     templateUrl: './game.route.component.html',
@@ -18,6 +19,7 @@ export class GameRouteComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private chessApiClient: ChessApiClientService,
+        private security: SecurityService
     ) {}
 
     ngOnInit() {
@@ -35,7 +37,7 @@ export class GameRouteComponent implements OnInit {
                         this.game = response.json();
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                     case 403 :
 

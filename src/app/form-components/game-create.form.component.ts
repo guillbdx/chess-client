@@ -3,6 +3,7 @@ import { ChessApiClientService } from "../services/chess-api-client.service";
 import {User} from "../entities/user.entity";
 import {Router} from "@angular/router";
 import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {SecurityService} from "../services/security.service";
 
 @Component({
     selector: 'form-game-create',
@@ -20,7 +21,8 @@ export class GameCreateFormComponent implements OnInit {
     constructor(
         private chessApiClient: ChessApiClientService,
         private router: Router,
-        private myFlashMessages: MyFlashMessagesService
+        private myFlashMessages: MyFlashMessagesService,
+        private security: SecurityService
     ) {}
 
     ngOnInit() {
@@ -31,7 +33,7 @@ export class GameCreateFormComponent implements OnInit {
                         this.possibleOpponents = response.json()._embedded.resources;
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
             });
@@ -53,7 +55,7 @@ export class GameCreateFormComponent implements OnInit {
 
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
         });

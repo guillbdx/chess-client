@@ -4,6 +4,7 @@ import {Game} from "../entities/game.entity";
 import {User} from "../entities/user.entity";
 import {I18nService} from "../services/i18n.service";
 import {LoaderService} from "../services/loader.service";
+import {SecurityService} from "../services/security.service";
 
 @Component({
     templateUrl: './games.route.component.html',
@@ -26,6 +27,7 @@ export class GamesRouteComponent implements OnInit {
 
     constructor(
         private chessApiClient: ChessApiClientService,
+        private security: SecurityService
     ) {}
 
     ngOnInit() {
@@ -38,7 +40,7 @@ export class GamesRouteComponent implements OnInit {
                         this.retrieveGames();
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
             });
@@ -62,7 +64,7 @@ export class GamesRouteComponent implements OnInit {
                         this.retrieveUsers();
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
             });
@@ -77,7 +79,7 @@ export class GamesRouteComponent implements OnInit {
                         this.linkUsersToGames();
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
             });
@@ -127,7 +129,7 @@ export class GamesRouteComponent implements OnInit {
                         this.retrieveGames();
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                     case 403 :
 
@@ -147,7 +149,7 @@ export class GamesRouteComponent implements OnInit {
                         this.retrieveGames();
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                     case 403 :
 

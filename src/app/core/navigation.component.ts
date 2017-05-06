@@ -36,7 +36,7 @@ export class NavigationComponent implements OnInit {
                         this.profile = response.json();
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
             });

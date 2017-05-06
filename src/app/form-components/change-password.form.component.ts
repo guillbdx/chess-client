@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {LoaderService} from "../services/loader.service";
 import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {SecurityService} from "../services/security.service";
 
 @Component({
     selector: 'form-change-password',
@@ -17,7 +18,8 @@ export class ChangePasswordFormComponent {
     constructor(
         private router: Router,
         private chessApiClient: ChessApiClientService,
-        private myFlashMessages: MyFlashMessagesService
+        private myFlashMessages: MyFlashMessagesService,
+        private security: SecurityService
     ) {}
 
     onSubmit() {
@@ -33,7 +35,7 @@ export class ChangePasswordFormComponent {
 
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
 

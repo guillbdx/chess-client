@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
+import {SecurityService} from "../services/security.service";
 
 @Component({
     selector: 'form-game-vs-computer-create',
@@ -15,6 +16,7 @@ export class GameVsComputerCreateFormComponent {
     constructor(
         private router: Router,
         private chessApiClient: ChessApiClientService,
+        private security: SecurityService
     ) {
 
     }
@@ -35,7 +37,7 @@ export class GameVsComputerCreateFormComponent {
 
                         break;
                     case 401 :
-
+                        this.security.logout();
                         break;
                 }
         });
