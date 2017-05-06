@@ -174,4 +174,13 @@ export class ChessApiClientService {
             .toPromise();
     }
 
+    getGame(id: number): Promise<Game> {
+        this.resetHeadersWithBearer();
+        return this.http.get(
+            this.configuration.apiBaseUrl + '/games/' + id,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => response.json() as Game);
+    }
+
 }

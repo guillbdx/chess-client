@@ -4,6 +4,7 @@ import {User} from "../entities/user.entity";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {I18nService} from "../services/i18n.service";
+import {LoaderService} from "../services/loader.service";
 
 @Component({
     selector: 'form-game-create',
@@ -22,17 +23,21 @@ export class GameCreateFormComponent implements OnInit {
         private chessApiClient: ChessApiClientService,
         private router: Router,
         private _flashMessagesService: FlashMessagesService,
-        private i18n: I18nService
+        private i18n: I18nService,
+        private loader: LoaderService
     ) {}
 
     ngOnInit() {
+        this.loader.show();
         this.chessApiClient.getUsers(true, true)
             .then(users => {
                 this.possibleOpponents = users;
+                this.loader.hide();
             });
     }
 
     onSubmit() {
+        this.loader.show();
         let creatorIsWhite = true;
         if(this.model.color == 'black') {
             creatorIsWhite = null;

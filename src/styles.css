@@ -14,12 +14,6 @@ a {
 }
 /* ------------------------------------------------------- */
 
-/* Messages container */
-.messages-container .alert ul {
-    padding-left: 10px;
-}
-/* ------------------------------------------------------- */
-
 /* Loader */
 #loader {
     width: 100%;
@@ -27,12 +21,12 @@ a {
     background: white;
     position: absolute;
     z-index: 1000;
-    display: block;
+    display: none;
 }
 #loader span {
     position: absolute;
     left: 45%;
-    top: 45%;
+    top: 100px;
     font-size: 40px;
 }
 /* ------------------------------------------------------- */

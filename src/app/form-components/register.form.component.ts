@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {ErrorsExtractorService} from "../services/errors-extractor.service";
 import {I18nService} from "../services/i18n.service";
+import {LoaderService} from "../services/loader.service";
 
 @Component({
     selector: 'form-register',
@@ -22,7 +23,8 @@ export class RegisterFormComponent {
         private router: Router,
         private chessApiClient: ChessApiClientService,
         private errorsExtractor: ErrorsExtractorService,
-        private i18n: I18nService
+        private i18n: I18nService,
+        private loader: LoaderService
     ) {}
 
     private handleError(error: any): void {
@@ -30,6 +32,7 @@ export class RegisterFormComponent {
         this._flashMessagesService.show(
             errors[0],
             { cssClass: 'alert-danger', timeout: 5000 });
+        this.loader.hide();
     }
 
     private loginAfterRegister(username: string, password: string) {
@@ -47,6 +50,7 @@ export class RegisterFormComponent {
     }
 
     onSubmit() {
+        this.loader.show();
         this.chessApiClient.register(this.model.username, this.model.email, this.model.password)
             .then(response => {
                 this.loginAfterRegister(this.model.username, this.model.password);

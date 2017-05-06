@@ -10,6 +10,7 @@ import {LanguageDetectorService}            from "../services/language-detector.
 import {ChessApiClientService}              from "../services/chess-api-client.service";
 import {ErrorsExtractorService}             from "../services/errors-extractor.service";
 import {I18nService}                        from "../services/i18n.service";
+import {LoaderService}                      from "../services/loader.service";
 
 import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
 import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
@@ -70,7 +71,8 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         LanguageDetectorService,
         ChessApiClientService,
         ErrorsExtractorService,
-        I18nService
+        I18nService,
+        LoaderService
     ],
     bootstrap: [
         AppComponent

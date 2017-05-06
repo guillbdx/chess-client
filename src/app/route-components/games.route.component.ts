@@ -3,6 +3,7 @@ import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Game} from "../entities/game.entity";
 import {User} from "../entities/user.entity";
 import {I18nService} from "../services/i18n.service";
+import {LoaderService} from "../services/loader.service";
 
 @Component({
     templateUrl: './games.route.component.html',
@@ -25,14 +26,11 @@ export class GamesRouteComponent implements OnInit {
 
     constructor(
         private chessApiClient: ChessApiClientService,
-        private i18n: I18nService
-    ) {
-
-        console.log(this.i18n.formatDate('2017-05-05T17:55:24+02:00'));
-
-    }
+        private loader: LoaderService
+    ) {}
 
     ngOnInit() {
+        this.loader.show();
         this.chessApiClient.getProfile()
             .then(user => {
                 this.profile = user;
@@ -88,7 +86,7 @@ export class GamesRouteComponent implements OnInit {
             }
             this.orderedGames.proposedToOthers.push(game);
         }
-
+        this.loader.hide();
     }
 
     private findUserById(id: number): User {
@@ -101,6 +99,7 @@ export class GamesRouteComponent implements OnInit {
     }
 
     refuse(game: Game) {
+        this.loader.show();
         this.chessApiClient.refuseGame(game)
             .then(response => {
                 this.retrieveGames();
@@ -108,6 +107,7 @@ export class GamesRouteComponent implements OnInit {
     }
 
     accept(game: Game) {
+        this.loader.show();
         this.chessApiClient.acceptGame(game)
             .then(response => {
                 this.retrieveGames();
