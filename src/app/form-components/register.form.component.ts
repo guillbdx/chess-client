@@ -1,9 +1,7 @@
 import {Component} from "@angular/core";
-import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {ErrorsExtractorService} from "../services/errors-extractor.service";
-import {I18nService} from "../services/i18n.service";
 import {LoaderService} from "../services/loader.service";
 import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
