@@ -35,6 +35,7 @@ import {GameCreateFormComponent}            from "../form-components/game-create
 import {TranslatePipe}                      from "../pipes/translate.pipe";
 import {FormatDatePipe}                     from "../pipes/format-date.pipe";
 import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {SecurityService} from "../services/security.service";
 
 @NgModule({
     imports: [
@@ -74,7 +75,8 @@ import {MyFlashMessagesService} from "../services/my-flash-messages.service";
         ErrorsExtractorService,
         I18nService,
         LoaderService,
-        MyFlashMessagesService
+        MyFlashMessagesService,
+        SecurityService
     ],
     bootstrap: [
         AppComponent

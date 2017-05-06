@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {User} from "../entities/user.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
+import {SecurityService} from "../services/security.service";
 
 @Component({
     selector: 'navigation',
@@ -15,8 +15,8 @@ export class NavigationComponent implements OnInit {
     profile: User;
 
     constructor(
-        private router: Router,
-        private chessApiClient: ChessApiClientService
+        private chessApiClient: ChessApiClientService,
+        private security: SecurityService
     ) {}
 
     toggleNavContent() {
@@ -24,9 +24,8 @@ export class NavigationComponent implements OnInit {
     }
 
     logout() {
-        localStorage.clear();
         this.toggleNavContent();
-        this.router.navigate(['login']);
+        this.security.logout();
     }
 
     ngOnInit() {
