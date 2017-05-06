@@ -31,8 +31,15 @@ export class NavigationComponent implements OnInit {
 
     ngOnInit() {
         this.chessApiClient.getProfile()
-            .then(user => {
-                this.profile = user;
+            .then(response => {
+                switch(response.status) {
+                    case 200 :
+                        this.profile = response.json();
+                        break;
+                    case 401 :
+
+                        break;
+                }
             });
     }
 

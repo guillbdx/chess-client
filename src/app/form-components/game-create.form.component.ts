@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ChessApiClientService } from "../services/chess-api-client.service";
 import {User} from "../entities/user.entity";
 import {Router} from "@angular/router";
-import {LoaderService} from "../services/loader.service";
 import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
 @Component({
@@ -21,31 +20,42 @@ export class GameCreateFormComponent implements OnInit {
     constructor(
         private chessApiClient: ChessApiClientService,
         private router: Router,
-        private loader: LoaderService,
         private myFlashMessages: MyFlashMessagesService
     ) {}
 
     ngOnInit() {
-        this.loader.show();
-        this.chessApiClient.getUsers(true, true)
-            .then(users => {
-                this.possibleOpponents = users;
-                this.loader.hide();
+        this.chessApiClient.getUsers(null, null)
+            .then(response => {
+                switch(response.status) {
+                    case 200 :
+                        this.possibleOpponents = response.json()._embedded.resources;
+                        break;
+                    case 401 :
+
+                        break;
+                }
             });
     }
 
     onSubmit() {
-        this.loader.show();
         let creatorIsWhite = true;
         if(this.model.color == 'black') {
             creatorIsWhite = null;
         }
-        this.chessApiClient.createGame(
-            +this.model.opponent,
-            creatorIsWhite
-        ).then(game => {
-            this.router.navigate(['']);
-            this.myFlashMessages.addSuccess('The game has been created. Waiting for opponent acceptation.');
+        this.chessApiClient.createGame(+this.model.opponent,creatorIsWhite)
+            .then(response => {
+                switch(response.status) {
+                    case 201 :
+                        this.router.navigate(['']);
+                        this.myFlashMessages.addSuccess('The game has been created. Waiting for opponent acceptation.');
+                        break;
+                    case 400 :
+
+                        break;
+                    case 401 :
+
+                        break;
+                }
         });
     }
 

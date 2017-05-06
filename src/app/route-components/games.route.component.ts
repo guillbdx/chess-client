@@ -29,33 +29,57 @@ export class GamesRouteComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+
         this.chessApiClient.getProfile()
-            .then(user => {
-                this.profile = user;
-                this.retrieveGames();
+            .then(response => {
+                switch(response.status) {
+                    case 200 :
+                        this.profile = response.json();
+                        this.retrieveGames();
+                        break;
+                    case 401 :
+
+                        break;
+                }
             });
 
     }
 
     private retrieveGames() {
+
         this.orderedGames = {
             inProgress: [],
             proposedByOthers: [],
             proposedToOthers: [],
             ended: []
         };
+
         this.chessApiClient.getGames()
-            .then(games => {
-                this.games = games;
-                this.retrieveUsers();
+            .then(response => {
+                switch(response.status) {
+                    case 200 :
+                        this.games = response.json()._embedded.resources;
+                        this.retrieveUsers();
+                        break;
+                    case 401 :
+
+                        break;
+                }
             });
     }
 
     private retrieveUsers() {
         this.chessApiClient.getUsers(null, null)
-            .then(users => {
-                this.users = users;
-                this.linkUsersToGames();
+            .then(response => {
+                switch(response.status) {
+                    case 200 :
+                        this.users = response.json()._embedded.resources;
+                        this.linkUsersToGames();
+                        break;
+                    case 401 :
+
+                        break;
+                }
             });
     }
 
@@ -98,14 +122,40 @@ export class GamesRouteComponent implements OnInit {
     refuse(game: Game) {
         this.chessApiClient.refuseGame(game)
             .then(response => {
-                this.retrieveGames();
+                switch(response.status) {
+                    case 204 :
+                        this.retrieveGames();
+                        break;
+                    case 401 :
+
+                        break;
+                    case 403 :
+
+                        break;
+                    case 404 :
+
+                        break;
+                }
             });
     }
 
     accept(game: Game) {
         this.chessApiClient.acceptGame(game)
             .then(response => {
-                this.retrieveGames();
+                switch(response.status) {
+                    case 204 :
+                        this.retrieveGames();
+                        break;
+                    case 401 :
+
+                        break;
+                    case 403 :
+
+                        break;
+                    case 404 :
+
+                        break;
+                }
             });
     }
 

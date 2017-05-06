@@ -17,16 +17,26 @@ export class ChangePasswordFormComponent {
     constructor(
         private router: Router,
         private chessApiClient: ChessApiClientService,
-        private loader: LoaderService,
         private myFlashMessages: MyFlashMessagesService
     ) {}
 
     onSubmit() {
-        this.loader.show();
         this.chessApiClient.changePassword(this.model.password)
             .then(response => {
-                this.router.navigate(['profile']);
-                this.myFlashMessages.addSuccess("Your password has been updated.");
+
+                switch(response.status) {
+                    case 204 :
+                        this.router.navigate(['profile']);
+                        this.myFlashMessages.addSuccess("Your password has been updated.");
+                        break;
+                    case 400 :
+
+                        break;
+                    case 401 :
+
+                        break;
+                }
+
             });
     }
 

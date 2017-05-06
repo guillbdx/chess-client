@@ -119,7 +119,7 @@ export class ChessApiClientService {
 
     getUsers(
         exclude_self:boolean|null,
-        exclude_computer:boolean|null): Promise<User[]> {
+        exclude_computer:boolean|null) {
 
         this.loader.show();
         this.resetHeadersWithBearer();
@@ -137,14 +137,14 @@ export class ChessApiClientService {
             .toPromise()
             .then(response => {
                 this.loader.hide();
-                return response.json()._embedded.resources as User[]
+                return response;
             }, error => {
                 this.loader.hide();
                 return error;
             });
     }
 
-    createGame(guest: number, creatorIsWhite: boolean|null): Promise<Game> {
+    createGame(guest: number, creatorIsWhite: boolean|null) {
 
         this.loader.show();
         this.resetHeadersWithBearer();
@@ -160,14 +160,14 @@ export class ChessApiClientService {
             .toPromise()
             .then(response => {
                 this.loader.hide();
-                return response.json() as Game;
+                return response;
             }, error => {
                 this.loader.hide();
                 return error;
             });
     }
 
-    createGameVsComputer(creatorIsWhite: boolean|null): Promise<Game> {
+    createGameVsComputer(creatorIsWhite: boolean|null) {
 
         this.loader.show();
         this.resetHeadersWithBearer();
@@ -182,14 +182,14 @@ export class ChessApiClientService {
             .toPromise()
             .then(response => {
                 this.loader.hide();
-                return response.json() as Game;
+                return response;
             }, error => {
                 this.loader.hide();
                 return error;
             });
     }
 
-    getProfile(): Promise<User> {
+    getProfile() {
 
         this.loader.show();
         this.resetHeadersWithBearer();
@@ -200,14 +200,14 @@ export class ChessApiClientService {
             .toPromise()
             .then(response => {
                 this.loader.hide();
-                return response.json() as User;
+                return response;
             }, error => {
                 this.loader.hide();
                 return error;
             });
     }
 
-    getGames(): Promise<Game[]> {
+    getGames() {
 
         this.loader.show();
         this.resetHeadersWithBearer();
@@ -223,7 +223,7 @@ export class ChessApiClientService {
             .toPromise()
             .then(response => {
                 this.loader.hide();
-                return response.json()._embedded.resources as Game[];
+                return response;
             }, error => {
                 this.loader.hide();
                 return error;
@@ -269,7 +269,7 @@ export class ChessApiClientService {
             });
     }
 
-    getGame(id: number): Promise<Game> {
+    getGame(id: number) {
 
         this.loader.show();
         this.resetHeadersWithBearer();
@@ -280,7 +280,7 @@ export class ChessApiClientService {
             .toPromise()
             .then(response => {
                 this.loader.hide();
-                return response.json() as Game;
+                return response;
             }, error => {
                 this.loader.hide();
                 return error;
