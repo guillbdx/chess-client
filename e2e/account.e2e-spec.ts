@@ -1,57 +1,121 @@
-import { ClientPage } from './login.po';
-import { protractor, browser, element, by } from 'protractor';
+import { ClientPage } from './client-page.po';
+import { browser, element, by } from 'protractor';
 
-describe('Login feature', () => {
+describe('User general features : register, login, change password, retrieving profile, remove account.', () => {
 
-    let page: ClientPage;
+    let page = new ClientPage();
+
+    let testUsername = page.generateRandomUsername();
 
     beforeEach(() => {
-        page = new ClientPage();
+        browser.get('');
     });
 
-    it('should redirect on login page when i come on root page while not logged in', () => {
-        browser.get('/');
-        let titleElement = element(by.css('h3'));
-        let title = titleElement.getText();
-        expect(titleElement.isPresent()).toBeTruthy();
-        expect(title).toEqual('Login');
+    /*-------------------------------------------------------------------*/
+    /* LOGIN AND LOGOUT */
+    /*-------------------------------------------------------------------*/
+
+    it("Login with wrong credentials", () => {
+        page.fillForm({
+            username: 'test0',
+            password: 'xxx'
+        });
+        page.clickOnButton('Login');
+        page.expectErrorMessage('Wrong credentials');
     });
 
-    it('should display an error message when i try to log with wrong credentials', () => {
+    it("Login with valid credentials then logout", () => {
+        page.fillForm({
+            username: 'test0',
+            password: 'test'
+        });
+        page.clickOnButton('Login');
+        page.expectOnPage('Games');
 
-        browser.get('/');
-
-        let usernameInput = element(by.css('input#username'));
-        let passwordInput = element(by.css('input#password'));
-        let submitButton = element(by.buttonText('Login'));
-
-        usernameInput.sendKeys('xxx');
-        passwordInput.sendKeys('yyy');
-        submitButton.click();
-
-        let alertErrorContainer = element(by.css('.alert-danger'));
-        let alertErrorContent = alertErrorContainer.getText();
-        expect(alertErrorContainer.isPresent()).toBeTruthy();
-        expect(alertErrorContent).toEqual('Wrong credentials');
+        page.deployNav();
+        page.clickOnLogout();
+        page.expectOnPage('Login');
 
     });
 
-    it('should drive me to Games page when i log with proper credentials', () => {
-        browser.get('/');
+    /*-------------------------------------------------------------------*/
+    /* REGISTRATION */
+    /*-------------------------------------------------------------------*/
 
-        let usernameInput = element(by.css('input#username'));
-        let passwordInput = element(by.css('input#password'));
-        let submitButton = element(by.buttonText('Login'));
+    it("Register with a wrong email", () => {
+        page.clickOnLink('Sign up now !');
+        page.fillForm({
+            username: 'xxx',
+            email: 'yyy',
+            password: 'zzz'
+        });
+        page.expectSubmitButtonIsDisabled('Register');
+    });
 
-        usernameInput.sendKeys('test0');
-        passwordInput.sendKeys('test');
-        submitButton.click();
+    it("Register with an email already in use", () => {
+        page.clickOnLink('Sign up now !');
+        page.fillForm({
+            username: 'test0',
+            email: 'test0@test.com',
+            password: 'test'
+        });
+        page.clickOnButton('Register');
+        page.expectErrorMessage('Username : This value is already used.');
+    });
 
-        let titleElement = element(by.css('h3'));
-        let title = titleElement.getText();
-        expect(titleElement.isPresent()).toBeTruthy();
-        expect(title).toEqual('Games');
+    it("Register with valid credentials", () => {
+        page.clickOnLink('Sign up now !');
 
+        page.fillForm({
+            username: testUsername,
+            email: testUsername + '@test.com',
+            password: 'test'
+        });
+        page.clickOnButton('Register');
+    });
+
+    /*-------------------------------------------------------------------*/
+    /* PROFILE AND CHANGE PASSWORD */
+    /*-------------------------------------------------------------------*/
+
+    it("Login with valid credentials and retrieve my profile and change my password.", () => {
+        page.fillForm({
+            username: testUsername,
+            password: 'test'
+        });
+        page.clickOnButton('Login');
+        page.expectOnPage('Games');
+        page.deployNav();
+        page.goToProfile();
+        page.expectOnPage('Profile');
+        page.clickOnLink('Change password');
+        page.expectOnPage('New password');
+        page.fillForm({
+            password: 'myNewPassword'
+        });
+        page.clickOnButton('Change');
+        page.expectOnPage('Profile');
+        page.deployNav();
+        page.clickOnLogout();
+        page.expectOnPage('Login');
+    });
+
+    it('Login with previous credentials', () => {
+        page.fillForm({
+            username: testUsername,
+            password: 'test'
+        });
+        page.clickOnButton('Login');
+        page.expectErrorMessage('Wrong credentials');
+    });
+
+    it('Login with new credentials', () => {
+        page.fillForm({
+            username: testUsername,
+            password: 'myNewPassword'
+        });
+        page.clickOnButton('Login');
+        page.expectOnPage('Games');
     });
 
 });
