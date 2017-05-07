@@ -151,7 +151,7 @@ export class GamesRouteComponent implements OnInit {
             .then(response => {
                 switch(response.status) {
                     case 204 :
-                        this.retrieveGames();
+                        this.router.navigate(['game/' + game.id]);
                         break;
                     case 401 :
                         this.security.logout();
