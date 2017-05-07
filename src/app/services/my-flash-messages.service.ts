@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {FlashMessagesService} from "angular2-flash-messages";
 import {I18nService} from "./i18n.service";
 
 @Injectable()
@@ -8,21 +7,13 @@ export class MyFlashMessagesService {
     private alert = document.getElementById('alert');
 
     constructor(
-        private flashMessagesService: FlashMessagesService,
         private i18n: I18nService
     ) {
-
-        console.log('contructor');
-
         this.displayMessages();
-
-
     }
 
 
     displayMessages() {
-
-        console.log('display');
 
         this.alert.innerHTML = '';
 

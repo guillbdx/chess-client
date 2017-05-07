@@ -10,8 +10,6 @@
 
                 <h3>{{ 'Game creation' | translate }}</h3>
 
-                <flash-messages></flash-messages>
-
                 <div class="text-center" [hidden]="formVsComputerIsVisible || formVsUserIsVisible">
                     <button class="btn btn-info" (click)="displayFormVsUser()">
                         {{ 'Play versus another user' | translate}}

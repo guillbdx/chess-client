@@ -3,7 +3,6 @@ import { NgModule }                         from '@angular/core';
 import { FormsModule }                      from '@angular/forms';
 import { HttpModule }                       from '@angular/http';
 import { AppRoutingModule }                 from './app-routing.module';
-import { FlashMessagesModule }              from "angular2-flash-messages";
 
 import {Configuration}                      from "../Configuration";
 import {LanguageDetectorService}            from "../services/language-detector.service";
@@ -43,7 +42,6 @@ import {SecurityService} from "../services/security.service";
         FormsModule,
         HttpModule,
         AppRoutingModule,
-        FlashMessagesModule
     ],
     declarations: [
         AppComponent,

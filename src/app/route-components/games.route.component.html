@@ -10,8 +10,6 @@
 
                 <h3>{{ 'Games' | translate }}</h3>
 
-                <flash-messages></flash-messages>
-
                 <p [hidden]="orderedGames.inProgress.length != 0 || orderedGames.proposedByOthers.length != 0 || orderedGames.proposedToOthers.length != 0 || orderedGames.ended.length != 0">
                     {{ "You don't have any game. You should create one !" | translate}}
                 </p>
