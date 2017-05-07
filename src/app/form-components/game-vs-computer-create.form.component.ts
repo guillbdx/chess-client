@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {SecurityService} from "../services/security.service";
-import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {FlashMessagesService} from "../services/flash-messages.service";
 
 @Component({
     selector: 'form-game-vs-computer-create',
@@ -18,7 +18,7 @@ export class GameVsComputerCreateFormComponent {
         private router: Router,
         private chessApiClient: ChessApiClientService,
         private security: SecurityService,
-        private myFlashMessages: MyFlashMessagesService
+        private flashMessages: FlashMessagesService
     ) {
 
     }
@@ -37,7 +37,7 @@ export class GameVsComputerCreateFormComponent {
                         break;
                     case 400 :
                         this.router.navigate(['']);
-                        this.myFlashMessages.addError("A problem has occurred. We cannot comply with your request.");
+                        this.flashMessages.addError("A problem has occurred. We cannot comply with your request.");
                         break;
                     case 401 :
                         this.security.logout();

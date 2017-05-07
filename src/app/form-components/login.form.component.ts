@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Router} from "@angular/router";
-import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {FlashMessagesService} from "../services/flash-messages.service";
 
 @Component({
     selector: 'form-login',
@@ -17,7 +17,7 @@ export class LoginFormComponent {
     constructor(
         private chessApiClient: ChessApiClientService,
         private router: Router,
-        private myFlashMessages: MyFlashMessagesService
+        private flashMessages: FlashMessagesService
     ) {}
 
     onSubmit() {
@@ -27,10 +27,10 @@ export class LoginFormComponent {
                     case 200 :
                         localStorage.bearer = response.json();
                         this.router.navigate(['']);
-                        this.myFlashMessages.displayMessages();
+                        this.flashMessages.displayMessages();
                         break;
                     case 401 :
-                        this.myFlashMessages.addError('Wrong credentials');
+                        this.flashMessages.addError('Wrong credentials');
                         break;
                 }
             });

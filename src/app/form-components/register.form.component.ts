@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {ErrorsExtractorService} from "../services/errors-extractor.service";
-import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {FlashMessagesService} from "../services/flash-messages.service";
 
 @Component({
     selector: 'form-register',
@@ -20,7 +20,7 @@ export class RegisterFormComponent {
         private router: Router,
         private chessApiClient: ChessApiClientService,
         private errorsExtractor: ErrorsExtractorService,
-        private myFlashMessages: MyFlashMessagesService
+        private flashMessages: FlashMessagesService
     ) {}
 
     private loginAfterRegister(username: string, password: string) {
@@ -28,7 +28,7 @@ export class RegisterFormComponent {
             .then(response => {
                 localStorage.bearer = response.json();
                 this.router.navigate(['']);
-                this.myFlashMessages.addSuccess("You are now signed up and logged in !");
+                this.flashMessages.addSuccess("You are now signed up and logged in !");
             });
     }
 
@@ -41,7 +41,7 @@ export class RegisterFormComponent {
                         break;
                     case 400 :
                         let errors = this.errorsExtractor.extract(response.json());
-                        this.myFlashMessages.addError(errors[0]);
+                        this.flashMessages.addError(errors[0]);
                         break;
                 }
             });

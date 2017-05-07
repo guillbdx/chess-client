@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {LoaderService} from "../services/loader.service";
-import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {FlashMessagesService} from "../services/flash-messages.service";
 import {SecurityService} from "../services/security.service";
 
 @Component({
@@ -18,7 +18,7 @@ export class ChangePasswordFormComponent {
     constructor(
         private router: Router,
         private chessApiClient: ChessApiClientService,
-        private myFlashMessages: MyFlashMessagesService,
+        private flashMessages: FlashMessagesService,
         private security: SecurityService
     ) {}
 
@@ -29,11 +29,11 @@ export class ChangePasswordFormComponent {
                 switch(response.status) {
                     case 204 :
                         this.router.navigate(['profile']);
-                        this.myFlashMessages.addSuccess("Your password has been updated.");
+                        this.flashMessages.addSuccess("Your password has been updated.");
                         break;
                     case 400 :
                         this.router.navigate(['profile']);
-                        this.myFlashMessages.addError("A problem has occurred. We cannot comply with your request.");
+                        this.flashMessages.addError("A problem has occurred. We cannot comply with your request.");
                         break;
                     case 401 :
                         this.security.logout();

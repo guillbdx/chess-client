@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {I18nService} from "./i18n.service";
 
 @Injectable()
-export class MyFlashMessagesService {
+export class FlashMessagesService {
 
     private alert = document.getElementById('alert');
 

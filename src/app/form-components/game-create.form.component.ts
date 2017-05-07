@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ChessApiClientService } from "../services/chess-api-client.service";
 import {User} from "../entities/user.entity";
 import {Router} from "@angular/router";
-import {MyFlashMessagesService} from "../services/my-flash-messages.service";
+import {FlashMessagesService} from "../services/flash-messages.service";
 import {SecurityService} from "../services/security.service";
 
 @Component({
@@ -21,7 +21,7 @@ export class GameCreateFormComponent implements OnInit {
     constructor(
         private chessApiClient: ChessApiClientService,
         private router: Router,
-        private myFlashMessages: MyFlashMessagesService,
+        private flashMessages: FlashMessagesService,
         private security: SecurityService
     ) {}
 
@@ -49,11 +49,11 @@ export class GameCreateFormComponent implements OnInit {
                 switch(response.status) {
                     case 201 :
                         this.router.navigate(['']);
-                        this.myFlashMessages.addSuccess('The game has been created. Waiting for opponent acceptation.');
+                        this.flashMessages.addSuccess('The game has been created. Waiting for opponent acceptation.');
                         break;
                     case 400 :
                         this.router.navigate(['']);
-                        this.myFlashMessages.addError("A problem has occurred. We cannot comply with your request.");
+                        this.flashMessages.addError("A problem has occurred. We cannot comply with your request.");
                         break;
                     case 401 :
                         this.security.logout();

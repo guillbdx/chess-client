@@ -10,6 +10,8 @@ import {ChessApiClientService}              from "../services/chess-api-client.s
 import {ErrorsExtractorService}             from "../services/errors-extractor.service";
 import {I18nService}                        from "../services/i18n.service";
 import {LoaderService}                      from "../services/loader.service";
+import {FlashMessagesService}             from "../services/flash-messages.service";
+import {SecurityService}                    from "../services/security.service";
 
 import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
 import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
@@ -33,8 +35,6 @@ import {GameCreateFormComponent}            from "../form-components/game-create
 
 import {TranslatePipe}                      from "../pipes/translate.pipe";
 import {FormatDatePipe}                     from "../pipes/format-date.pipe";
-import {MyFlashMessagesService} from "../services/my-flash-messages.service";
-import {SecurityService} from "../services/security.service";
 
 @NgModule({
     imports: [
@@ -73,7 +73,7 @@ import {SecurityService} from "../services/security.service";
         ErrorsExtractorService,
         I18nService,
         LoaderService,
-        MyFlashMessagesService,
+        FlashMessagesService,
         SecurityService
     ],
     bootstrap: [
