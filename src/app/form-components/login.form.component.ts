@@ -27,6 +27,7 @@ export class LoginFormComponent {
                     case 200 :
                         localStorage.bearer = response.json();
                         this.router.navigate(['']);
+                        this.myFlashMessages.displayMessages();
                         break;
                     case 401 :
                         this.myFlashMessages.addError('Wrong credentials');

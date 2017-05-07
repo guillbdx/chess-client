@@ -5,26 +5,55 @@ import {I18nService} from "./i18n.service";
 @Injectable()
 export class MyFlashMessagesService {
 
+    private alert = document.getElementById('alert');
+
     constructor(
         private flashMessagesService: FlashMessagesService,
         private i18n: I18nService
-    ) {}
+    ) {
 
-    private add(message: string, type: string): void {
-        let translatedMessage = this.i18n.translate(message);
-        setTimeout(() => {
-            this.flashMessagesService.show(
-                translatedMessage,
-                { cssClass: 'alert-' + type, timeout: 5000 });
-        }, 100);
+        console.log('contructor');
+
+        this.displayMessages();
+
+
     }
 
-    addSuccess(message: string): void {
-        this.add(message, 'success');
+
+    displayMessages() {
+
+        console.log('display');
+
+        this.alert.innerHTML = '';
+
+        if(localStorage.getItem('error') != null) {
+
+            let contentError = '<div class="alert alert-danger">';
+            contentError += localStorage.getItem('error');
+            contentError += '</div>';
+            this.alert.innerHTML += contentError;
+
+            localStorage.removeItem('error');
+        }
+        if(localStorage.getItem('success') != null) {
+
+            let contentSuccess = '<div class="alert alert-success">';
+            contentSuccess += localStorage.getItem('success');
+            contentSuccess += '</div>';
+            this.alert.innerHTML += contentSuccess;
+
+            localStorage.removeItem('success');
+        }
     }
 
-    addError(message: string): void {
-        this.add(message, 'danger');
+    addSuccess(message: string, displayOnTheSpot = false): void {
+        localStorage.success = this.i18n.translate(message);
+        this.displayMessages();
+    }
+
+    addError(message: string, displayOnTheSpot = false): void {
+        localStorage.error = this.i18n.translate(message);
+        this.displayMessages();
     }
 
 }

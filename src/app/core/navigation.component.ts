@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../entities/user.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {SecurityService} from "../services/security.service";
+import {MyFlashMessagesService} from "../services/my-flash-messages.service";
 
 @Component({
     selector: 'navigation',
@@ -16,7 +17,8 @@ export class NavigationComponent implements OnInit {
 
     constructor(
         private chessApiClient: ChessApiClientService,
-        private security: SecurityService
+        private security: SecurityService,
+        private myFlashMessages: MyFlashMessagesService
     ) {}
 
     toggleNavContent() {
@@ -26,6 +28,7 @@ export class NavigationComponent implements OnInit {
     logout() {
         this.toggleNavContent();
         this.security.logout();
+        this.myFlashMessages.displayMessages();
     }
 
     ngOnInit() {

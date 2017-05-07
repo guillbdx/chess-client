@@ -25,7 +25,7 @@
                 <ul class="games" id="games-in-progress">
                     <li *ngFor="let game of orderedGames.inProgress">
                         <a
-                                [routerLink]="['/game', game.id]"
+                                href="game/{{game.id}}"
                                 class="go-to-game pull-right btn btn-primary btn-sm">
                             {{ 'Play' | translate }}
                         </a>
@@ -85,7 +85,7 @@
                 <ul class="games" id="games-ended">
                     <li *ngFor="let game of orderedGames.ended">
                         <a
-                                [routerLink]="['/game', game.id]"
+                                href="game/{{game.id}}"
                                 class="go-to-game pull-right btn btn-primary btn-sm">
                             {{ 'See' | translate}}
                         </a>
