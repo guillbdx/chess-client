@@ -65,4 +65,11 @@ export class ClientPage {
         return username;
     }
 
+    expectListHasItems(listId: string) {
+        let ul = element(by.id(listId));
+        expect(ul.isPresent()).toBeTruthy();
+        let lis = ul.all(by.css('li'));
+        expect(lis.count()).toBeGreaterThan(0);
+    }
+
 }
