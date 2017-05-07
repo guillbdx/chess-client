@@ -22,44 +22,14 @@ a {
     position: absolute;
     z-index: 1000;
     display: none;
+    text-align:center;
 }
-#loader span {
-    position: absolute;
-    left: 45%;
-    top: 100px;
-    font-size: 40px;
+#loader img {
+    margin-top: 100px;
 }
 /* ------------------------------------------------------- */
+.alert-success, .alert-error {
+    margin-top: 25px;
+}
 
-/* Rotating refresh icon */
-.glyphicon-refresh-animate {
-    -animation: spin 1s infinite linear;
-    -ms-animation: spin 1s infinite linear;
-    -webkit-animation: spinw 1s infinite linear;
-    -moz-animation: spinm 1s infinite linear;
-}
-@keyframes spin {
-    from {
-        transform: scale(1) rotate(0deg);
-    }
-    to {
-        transform: scale(1) rotate(360deg);
-    }
-}
-@-webkit-keyframes spinw {
-    from {
-        -webkit-transform: rotate(0deg);
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-    }
-}
-@-moz-keyframes spinm {
-    from {
-        -moz-transform: rotate(0deg);
-    }
-    to {
-        -moz-transform: rotate(360deg);
-    }
-}
 /* ------------------------------------------------------- */

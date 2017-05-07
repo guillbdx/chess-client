@@ -4,7 +4,7 @@ nav#nav {
     top: 10px;
     z-index: 100;
     color: white;
-    background: #18bc9c;
+    background: #5cb85c;
     padding: 10px;
     border-radius: 5px;
     width: 45px;
@@ -24,7 +24,7 @@ nav#nav #nav-content {
     left: 0;
     top: 0;
     z-index: 0;
-    background: #18bc9c;
+    background: #5cb85c;
     padding: 50px 30px 30px 50px;
     border-radius: 5px;
     min-width: 200px;
