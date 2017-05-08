@@ -72,6 +72,28 @@ export class ClientPage {
         expect(lis.count()).toBeGreaterThan(0);
     }
 
+    expectListNotHasItems(listId: string) {
+        let ul = element(by.id(listId));
+        expect(ul.isPresent()).toBeTruthy();
+        let lis = ul.all(by.css('li'));
+        expect(lis.count()).toEqual(0);
+    }
+
+    //---------------------------------------------------
+    // Shortcuts
+    //---------------------------------------------------
+
+    register(username: string, email: string, password: string) {
+        browser.get('');
+        this.clickOnLink('Sign up now !');
+        this.fillForm({
+            username: username,
+            email: email,
+            password: password
+        });
+        this.clickOnButton('Register');
+    }
+
     login(username: string, password: string) {
         browser.get('');
         this.fillForm({
