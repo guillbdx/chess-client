@@ -10,7 +10,7 @@ import {ChessApiClientService}              from "../services/chess-api-client.s
 import {ErrorsExtractorService}             from "../services/errors-extractor.service";
 import {I18nService}                        from "../services/i18n.service";
 import {LoaderService}                      from "../services/loader.service";
-import {FlashMessagesService}             from "../services/flash-messages.service";
+import {FlashMessagesService}               from "../services/flash-messages.service";
 import {SecurityService}                    from "../services/security.service";
 
 import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
@@ -26,6 +26,7 @@ import { GamesRouteComponent }              from '../route-components/games.rout
 import { GameRouteComponent }               from '../route-components/game.route.component';
 import { GameCreateRouteComponent }         from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent }     from '../route-components/change-password.route.component';
+import {AccountDeleteRouteComponent}        from "../route-components/account-delete.route.component";
 
 import {ChangePasswordFormComponent}        from "../form-components/change-password.form.component";
 import {LoginFormComponent}                 from "../form-components/login.form.component";
@@ -54,6 +55,7 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         GameRouteComponent,
         GameCreateRouteComponent,
         ChangePasswordRouteComponent,
+        AccountDeleteRouteComponent,
 
         ChangePasswordFormComponent,
         LoginFormComponent,

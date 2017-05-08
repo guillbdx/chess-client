@@ -11,61 +11,69 @@ import { GamesRouteComponent }          from '../route-components/games.route.co
 import { GameRouteComponent }           from '../route-components/game.route.component';
 import { GameCreateRouteComponent }     from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent } from '../route-components/change-password.route.component';
+import { AccountDeleteRouteComponent }  from '../route-components/account-delete.route.component';
 
 const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginRouteComponent,
-    canActivate: [
-      CanAccessOpenAreaGuard
-    ]
-  },
-  {
-    path: 'register',
-    component: RegisterRouteComponent,
-    canActivate: [
-      CanAccessOpenAreaGuard
-    ]
-  },
-  {
-    path: '',
-    component: GamesRouteComponent,
-    canActivate: [
-      CanAccessPrivateAreaGuard
-    ]
-  },
-  {
-    path: 'profile',
-    component: ProfileRouteComponent,
-    canActivate: [
-        CanAccessPrivateAreaGuard
-    ]
-  },
-  {
-    path: 'game/:id',
-    component: GameRouteComponent,
-    canActivate: [
-      CanAccessPrivateAreaGuard
-    ]
-  },
-  {
-    path: 'game-create',
-    component: GameCreateRouteComponent,
-    canActivate: [
-      CanAccessPrivateAreaGuard
-    ]
-  },
-  {
-    path: 'change-password',
-    component: ChangePasswordRouteComponent,
-    canActivate: [
-      CanAccessPrivateAreaGuard
-    ]
-  },
-];
+    {
+        path: 'login',
+        component: LoginRouteComponent,
+        canActivate: [
+            CanAccessOpenAreaGuard
+        ]
+    },
+    {
+        path: 'register',
+        component: RegisterRouteComponent,
+        canActivate: [
+            CanAccessOpenAreaGuard
+        ]
+    },
+    {
+        path: '',
+        component: GamesRouteComponent,
+        canActivate: [
+            CanAccessPrivateAreaGuard
+        ]
+    },
+    {
+        path: 'profile',
+        component: ProfileRouteComponent,
+        canActivate: [
+            CanAccessPrivateAreaGuard
+        ]
+    },
+    {
+        path: 'game/:id',
+        component: GameRouteComponent,
+        canActivate: [
+            CanAccessPrivateAreaGuard
+        ]
+    },
+    {
+        path: 'game-create',
+        component: GameCreateRouteComponent,
+        canActivate: [
+            CanAccessPrivateAreaGuard
+        ]
+    },
+    {
+        path: 'change-password',
+        component: ChangePasswordRouteComponent,
+        canActivate: [
+            CanAccessPrivateAreaGuard
+        ]
+    },
+    {
+        path: 'account-delete',
+        component: AccountDeleteRouteComponent,
+        canActivate: [
+            CanAccessPrivateAreaGuard
+        ]
+    },
+    ];
 
-@NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
-})
+    @NgModule({
+        imports: [ RouterModule.forRoot(routes) ],
+        exports: [ RouterModule ]
+    })
 export class AppRoutingModule {}

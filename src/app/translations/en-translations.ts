@@ -60,5 +60,8 @@ export let enTranslations = {
     "Start": "Start",
     "This game doesn't exist. It might have been removed.": "This game doesn't exist. It might have been removed.",
     "You are not a player on this game.": "You are not a player on this game.",
-    "A problem has occurred. We cannot comply with your request.": "A problem has occurred. We cannot comply with your request."
+    "A problem has occurred. We cannot comply with your request.": "A problem has occurred. We cannot comply with your request.",
+    "Delete your account": "Delete your account",
+    "Yes, delete my account": "Yes, delete my account",
+    "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?": "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?"
 };

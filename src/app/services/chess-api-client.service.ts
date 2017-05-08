@@ -287,4 +287,24 @@ export class ChessApiClientService {
             });
     }
 
+    deleteAccount() {
+
+        this.loader.show();
+        this.resetHeadersWithBearer();
+
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/account/remove',
+            null,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            }, error => {
+                this.loader.hide();
+                return error;
+            });
+
+    }
+
 }

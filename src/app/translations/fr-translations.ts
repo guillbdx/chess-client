@@ -39,7 +39,7 @@ export let frTranslations = {
     "Create": "Créer",
     "White": "Blanc",
     "Black": "Noir",
-    "Change password": "Changez votre mot de passe",
+    "Change password": "Changer votre mot de passe",
     "Change": "Changer",
     "Back to your profile": "Retour à votre profil",
     "Started on": "Commencée le",
@@ -60,5 +60,8 @@ export let frTranslations = {
     "Start": "Commencer",
     "This game doesn't exist. It might have been removed.": "Cette partie n'existe pas. Elle a peut-être été supprimée.",
     "You are not a player on this game.": "Vous n'êtes pas un joueur de cette partie.",
-    "A problem has occurred. We cannot comply with your request.": "Un problème est survenu. Nous ne pouvons donner suite à votre demande."
+    "A problem has occurred. We cannot comply with your request.": "Un problème est survenu. Nous ne pouvons donner suite à votre demande.",
+    "Delete your account": "Supprimer votre compte",
+    "Yes, delete my account": "Oui, supprimer mon compte",
+    "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?": "Attention ! Vous êtes sur le point de supprimer votre compte. Toutes vos parties seront supprimées. Êtes-vous sûr(e) de vouloir continuer ?"
 };
