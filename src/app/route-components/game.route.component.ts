@@ -7,17 +7,17 @@ import {FlashMessagesService} from "../services/flash-messages.service";
 import {User} from "../entities/user.entity";
 
 @Component({
-    templateUrl: './game.route.component.html',
+    templateUrl: './game.route.component.html'
 })
 export class GameRouteComponent implements OnInit {
 
     private sub: any;
 
     id: number;
-
     profile: User;
-
     game: Game;
+
+    loaded = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -113,6 +113,7 @@ export class GameRouteComponent implements OnInit {
         this.game.opponent = Game.getOpponentOf(this.game, this.profile);
         this.game.currentUserColor = Game.getUserColor(this.game, this.profile);
         this.game.isCurrentUserTurn = Game.isUserTurn(this.game, this.profile);
+        this.loaded = true;
     }
 
 };
