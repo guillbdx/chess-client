@@ -23,6 +23,11 @@ export class ClientPage {
         link.click();
     }
 
+    goToGames() {
+        let link = element(by.id('navGames'));
+        link.click();
+    }
+
     clickOnLogout() {
         let link = element(by.id('logout-link'));
         link.click();

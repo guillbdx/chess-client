@@ -1,7 +1,7 @@
 import { ClientPage } from './client-page.po';
 import { browser, element, by } from 'protractor';
 
-describe('Games listing, and game page.', () => {
+describe('Game creation, accept and refuse.', () => {
 
     let page = new ClientPage();
 
