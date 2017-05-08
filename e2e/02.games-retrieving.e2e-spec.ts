@@ -6,14 +6,13 @@ describe('Games listing, and game page.', () => {
     let page = new ClientPage();
 
     beforeEach(() => {
-        page.login('test0', 'test');
     });
 
     afterEach(() => {
-        page.logout();
     });
 
     it('There are some games in each category.', () => {
+        page.login('test0', 'test');
         page.expectListHasItems('games-in-progress');
         page.expectListHasItems('games-proposed-by-others');
         page.expectListHasItems('games-proposed-to-others');
@@ -29,6 +28,8 @@ describe('Games listing, and game page.', () => {
         expect(link.isPresent()).toBeTruthy();
         link.click();
         page.expectOnPage('Game');
+        page.clickOnLink('Back to your games');
+        page.expectOnPage('Games');
 
     });
 
@@ -41,6 +42,9 @@ describe('Games listing, and game page.', () => {
         expect(link.isPresent()).toBeTruthy();
         link.click();
         page.expectOnPage('Game');
+
+        page.logout();
+        page.expectOnPage('Login');
 
     });
 

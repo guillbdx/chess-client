@@ -14,6 +14,7 @@ export class ClientPage {
 
     deployNav() {
         let deployNavLink = element(by.id('toggle-nav-content'));
+        expect(deployNavLink.isDisplayed()).toBeTruthy();
         deployNavLink.click();
     }
 
