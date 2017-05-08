@@ -5,8 +5,6 @@ describe('User general features : register, login, change password, retrieving p
 
     let page = new ClientPage();
 
-    let testUsername = page.generateRandomUsername();
-
     beforeEach(() => {
         browser.get('');
     });
@@ -67,21 +65,21 @@ describe('User general features : register, login, change password, retrieving p
         page.clickOnLink('Sign up now !');
 
         page.fillForm({
-            username: testUsername,
-            email: testUsername + '@test.com',
-            password: 'test'
+            username: 'e2e0',
+            email: 'e2e0@test.com',
+            password: 'e2e'
         });
         page.clickOnButton('Register');
     });
 
     /*-------------------------------------------------------------------*/
-    /* PROFILE AND CHANGE PASSWORD */
+    /* PROFILE, CHANGE PASSWORD AND DELETE ACCOUNT */
     /*-------------------------------------------------------------------*/
 
     it("Login with valid credentials and retrieve my profile and change my password.", () => {
         page.fillForm({
-            username: testUsername,
-            password: 'test'
+            username: 'e2e0',
+            password: 'e2e'
         });
         page.clickOnButton('Login');
         page.expectOnPage('Games');
@@ -102,8 +100,8 @@ describe('User general features : register, login, change password, retrieving p
 
     it('Login with previous credentials', () => {
         page.fillForm({
-            username: testUsername,
-            password: 'test'
+            username: 'e2e0',
+            password: 'e2e'
         });
         page.clickOnButton('Login');
         page.expectErrorMessage('Wrong credentials');
@@ -111,13 +109,47 @@ describe('User general features : register, login, change password, retrieving p
 
     it('Login with new credentials', () => {
         page.fillForm({
-            username: testUsername,
+            username: 'e2e0',
             password: 'myNewPassword'
         });
         page.clickOnButton('Login');
         page.expectOnPage('Games');
+
         page.deployNav();
         page.clickOnLogout();
+        page.expectOnPage('Login');
+    });
+
+    it('Delete account', () => {
+
+        page.fillForm({
+            username: 'e2e0',
+            password: 'myNewPassword'
+        });
+        page.clickOnButton('Login');
+        page.expectOnPage('Games');
+
+        page.deployNav();
+        page.goToProfile();
+        page.expectOnPage('Profile');
+
+        page.clickOnLink('Delete your account');
+        page.expectOnPage('Delete your account');
+
+        page.clickOnButton('Yes, delete my account');
+        page.expectOnPage('Login');
+
+    });
+
+    it('Try to login again', () => {
+
+        page.fillForm({
+            username: 'e2e0',
+            password: 'myNewPassword'
+        });
+        page.clickOnButton('Login');
+        page.expectErrorMessage('Wrong credentials');
+
     });
 
 });
