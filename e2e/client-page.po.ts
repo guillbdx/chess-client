@@ -72,4 +72,18 @@ export class ClientPage {
         expect(lis.count()).toBeGreaterThan(0);
     }
 
+    login(username: string, password: string) {
+        browser.get('');
+        this.fillForm({
+            username: username,
+            password: password
+        });
+        this.clickOnButton('Login');
+    }
+
+    logout() {
+        this.deployNav();
+        this.clickOnLogout();
+    }
+
 }

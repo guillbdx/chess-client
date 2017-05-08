@@ -116,6 +116,8 @@ describe('User general features : register, login, change password, retrieving p
         });
         page.clickOnButton('Login');
         page.expectOnPage('Games');
+        page.deployNav();
+        page.clickOnLogout();
     });
 
 });
