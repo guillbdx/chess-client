@@ -57,14 +57,6 @@ export class ClientPage {
         expect(title).toEqual(pageTitle);
     }
 
-    generateRandomUsername() {
-        let username = "e2e-test-";
-        let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for( let i=0; i < 5; i++ )
-            username += possible.charAt(Math.floor(Math.random() * possible.length));
-        return username;
-    }
-
     expectListHasItems(listId: string) {
         let ul = element(by.id(listId));
         expect(ul.isPresent()).toBeTruthy();
@@ -106,6 +98,15 @@ export class ClientPage {
     logout() {
         this.deployNav();
         this.clickOnLogout();
+    }
+
+    deleteAccount() {
+        this.deployNav();
+        this.goToProfile();
+        this.expectOnPage('Profile');
+        this.clickOnLink('Delete your account');
+        this.expectOnPage('Delete your account');
+        this.clickOnButton('Yes, delete my account');
     }
 
 }

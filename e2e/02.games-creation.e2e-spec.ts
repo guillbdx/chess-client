@@ -5,8 +5,7 @@ describe('Games listing, and game page.', () => {
 
     let page = new ClientPage();
 
-    let testUsername = page.generateRandomUsername();
-    page.register(testUsername, testUsername + '@test.com', 'test');
+    page.register('e2e0', 'e2e0@test.com', 'e2e');
 
     beforeEach(() => {
 
@@ -17,7 +16,7 @@ describe('Games listing, and game page.', () => {
     });
 
     it('I can create a game versus computer', () => {
-        page.login(testUsername, 'test');
+        page.login('e2e0', 'e2e');
         page.expectOnPage('Games');
         page.expectListNotHasItems('games-in-progress');
         page.clickOnLink('Create a game');
@@ -58,7 +57,9 @@ describe('Games listing, and game page.', () => {
 
     });
 
-
+    it('Delete account', () => {
+        page.deleteAccount();
+    })
 
 
 
