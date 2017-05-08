@@ -144,6 +144,25 @@ export class ChessApiClientService {
             });
     }
 
+    getUser(id: number) {
+
+        this.loader.show();
+        this.resetHeadersWithBearer();
+
+        return this.http.get(
+            this.configuration.apiBaseUrl + '/users/' + id,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            }, error => {
+                this.loader.hide();
+                return error;
+            });
+
+    }
+
     createGame(guest: number, creatorIsWhite: boolean|null) {
 
         this.loader.show();
