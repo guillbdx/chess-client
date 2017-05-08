@@ -71,6 +71,23 @@ export class ClientPage {
         expect(lis.count()).toEqual(0);
     }
 
+    clickOnOption(selectId: string, optionText: string) {
+
+        let opponentSelect = element(by.id(selectId));
+        expect(opponentSelect.isDisplayed()).toBeTruthy();
+
+        let options = opponentSelect.all(by.css('option'));
+        expect(options.isPresent()).toBeTruthy();
+
+        options.each((option) => {
+            option.getText().then((text) => {
+                if(text == optionText) {
+                    option.click();
+                }
+            });
+        });
+    }
+
     //---------------------------------------------------
     // Shortcuts
     //---------------------------------------------------
