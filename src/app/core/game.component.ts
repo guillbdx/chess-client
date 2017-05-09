@@ -52,7 +52,7 @@ export class GameComponent implements OnInit {
     }
 
     hideOtherColorContainer() {
-        if(this.game.getUserColor(this.profile) == Game.COLOR_WHITE ) {
+        if(this.game.getColorByUser(this.profile) == Game.COLOR_WHITE ) {
             document.getElementById('chessboard-wrapper-by-black').style.display = 'none';
         } else {
             document.getElementById('chessboard-wrapper-by-white').style.display = 'none';

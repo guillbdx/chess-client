@@ -9,9 +9,9 @@
     <tr>
         <td class="player" colspan="9">
                 <span
-                        *ngIf="game.isUserTurn(profile)"
+                        *ngIf="game.playingColor == 'w'"
                         class="turn glyphicon glyphicon-asterisk"></span>
-            <span class="name">{{ profile.username }}</span>
+            <span class="name">{{ game.getUserByColor('w').username }}</span>
         </td>
     </tr>
     </thead>
@@ -174,9 +174,9 @@
     <tr>
         <td class="player" colspan="9">
                 <span
-                        *ngIf="!game.isUserTurn(profile)"
+                        *ngIf="game.playingColor == 'b'"
                         class="turn glyphicon glyphicon-asterisk"></span>
-            <span class="name">{{ game.getOpponent(profile).username }}</span>
+            <span class="name">{{ game.getUserByColor('b').username }}</span>
         </td>
     </tr>
     </tfoot>
@@ -189,9 +189,9 @@
         <tr>
             <td class="player" colspan="9">
                 <span
-                        *ngIf="!game.isUserTurn(profile)"
+                        *ngIf="game.playingColor == 'b'"
                         class="turn glyphicon glyphicon-asterisk"></span>
-                <span class="name">{{ game.getOpponent(profile).username }}</span>
+                <span class="name">{{ game.getUserByColor('b').username }}</span>
             </td>
         </tr>
     </thead>
@@ -354,9 +354,9 @@
         <tr>
             <td class="player" colspan="9">
                 <span
-                        *ngIf="game.isUserTurn(profile)"
+                        *ngIf="game.playingColor == 'w'"
                         class="turn glyphicon glyphicon-asterisk"></span>
-                <span class="name">{{ profile.username }}</span>
+                <span class="name">{{ game.getUserByColor('w').username }}</span>
             </td>
         </tr>
     </tfoot>

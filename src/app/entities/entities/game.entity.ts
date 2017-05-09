@@ -47,7 +47,7 @@ export class Game {
         return sentence;
     }
 
-    getUserColor(user: User): string {
+    getColorByUser(user: User): string {
         if(this.creator.id == user.id) {
             if(this.creatorIsWhite) {
                 return Game.COLOR_WHITE;
@@ -63,9 +63,26 @@ export class Game {
         }
     }
 
-    isUserTurn(user: User): boolean {
-        let userColor = this.getUserColor(user);
-        return userColor == this.playingColor;
+    getUserByColor(color: string): User {
+
+        if(this.creatorIsWhite) {
+            if(color == Game.COLOR_WHITE) {
+                return this.creator;
+            } else {
+                return this.guest;
+            }
+        }
+
+        if(!this.creatorIsWhite) {
+            if(color == Game.COLOR_WHITE) {
+                return this.guest;
+            } else {
+                return this.creator;
+            }
+        }
+
     }
+
+
 
 }
