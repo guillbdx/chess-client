@@ -3,17 +3,28 @@ import {Game} from "../entities/game.entity";
 import {ChessApiClientService} from "../../services/chess-api-client.service";
 import {Injectable} from "@angular/core";
 import {UserFactory} from "./user.factory";
+import {Router} from "@angular/router";
+import {FlashMessagesService} from "../../services/flash-messages.service";
 
 @Injectable()
 export class GameFactory {
 
     constructor(
         private chessApiClient: ChessApiClientService,
-        private userFactory: UserFactory
+        private userFactory: UserFactory,
+        private router: Router,
+        private flashMessages: FlashMessagesService
     ) {}
 
     getGame(id: number) {
         return this.chessApiClient.getGame(id).then(response => {
+
+            if(response.status != 200) {
+                this.router.navigate(['']);
+                this.flashMessages.addError("You are not a player on this game.");
+                return;
+            }
+
             let data = response.json();
             return this.userFactory.getUser(data._links.creator.id).then(creator => {
                 return this.userFactory.getUser(data._links.guest.id).then(guest => {

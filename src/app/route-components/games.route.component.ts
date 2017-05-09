@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Game} from "../entities/entities/game.entity";
 import {User} from "../entities/entities/user.entity";
-import {I18nService} from "../services/i18n.service";
-import {LoaderService} from "../services/loader.service";
 import {SecurityService} from "../services/security.service";
 import {FlashMessagesService} from "../services/flash-messages.service";
 import {Router} from "@angular/router";
