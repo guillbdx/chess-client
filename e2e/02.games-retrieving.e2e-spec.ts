@@ -27,7 +27,7 @@ describe('Games listing, and game page.', () => {
         let link = game.element(by.linkText('Play'));
         expect(link.isPresent()).toBeTruthy();
         link.click();
-        page.expectOnPage('Game');
+        page.expectOnGamePage();
         page.clickOnLink('Back to your games');
         page.expectOnPage('Games');
 
@@ -41,7 +41,7 @@ describe('Games listing, and game page.', () => {
         let link = game.element(by.linkText('See'));
         expect(link.isPresent()).toBeTruthy();
         link.click();
-        page.expectOnPage('Game');
+        page.expectOnGamePage();
 
         page.logout();
         page.expectOnPage('Login');

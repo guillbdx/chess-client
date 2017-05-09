@@ -16,7 +16,12 @@ export class GamesRouteComponent implements OnInit {
 
     profile: User;
 
-    games: any;
+    games = {
+        inProgress: [],
+        proposedByOthers: [],
+        proposedToOthers: [],
+        ended: []
+    };
 
     loaded = false;
 
@@ -32,8 +37,9 @@ export class GamesRouteComponent implements OnInit {
     ngOnInit() {
         this.userFactory.getProfile().then(profile => {
             this.profile = profile;
+            this.retrieveGames();
         });
-        this.retrieveGames();
+
     }
 
     retrieveGames() {

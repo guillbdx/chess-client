@@ -34,7 +34,8 @@ describe('Game creation, accept and refuse.', () => {
         page.clickOnOption('colorVsComputer', 'Black');
         page.clickOnButton('Start');
 
-        page.expectOnPage('Game');
+        browser.pause(1000);
+        page.expectOnGamePage();
         page.clickOnLink('Back to your games');
         page.expectOnPage('Games');
         page.expectListHasItems('games-in-progress');
@@ -83,7 +84,8 @@ describe('Game creation, accept and refuse.', () => {
         page.expectListHasItems('games-proposed-by-others');
 
         page.clickOnLink('Accept');
-        page.expectOnPage('Game');
+        browser.pause(1000);
+        page.expectOnGamePage();
         page.clickOnLink('Back to your games');
         page.expectOnPage('Games');
 

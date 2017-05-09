@@ -63,6 +63,11 @@ export class ClientPage {
         expect(title).toEqual(pageTitle);
     }
 
+    expectOnGamePage() {
+        let chessBoard = element(by.id('chessboard-wrapper-by-white'));
+        expect(chessBoard.isPresent()).toBeTruthy();
+    }
+
     expectListHasItems(listId: string) {
         let ul = element(by.id(listId));
         expect(ul.isPresent()).toBeTruthy();
