@@ -1,8 +1,8 @@
+/* Chessboard wrapper */
 .chessboard-wrapper {
     width: 100%;
 }
 .chessboard-wrapper td {
-    border: solid 1px black;
     width: 11.11%;
     vertical-align: middle;
 }
@@ -16,4 +16,18 @@
 .chessboard-wrapper td.square-name {
     text-align: center;
     font-size: smaller;
+}
+/*-----------------------------------------*/
+
+/* Chessboard */
+.chessboard {
+    width: 100%;
+}
+.chessboard td {
+}
+.chessboard td.dark {
+    background: #d18b47;
+}
+.chessboard td.light {
+    background: #ffce9e;
 }
