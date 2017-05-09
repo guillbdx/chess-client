@@ -1,0 +1,19 @@
+.chessboard-wrapper {
+    width: 100%;
+}
+.chessboard-wrapper td {
+    border: solid 1px black;
+    width: 11.11%;
+    vertical-align: middle;
+}
+.chessboard-wrapper td.player {
+    font-size: larger;
+}
+.chessboard-wrapper td.player span.turn {
+    float: right;
+    color: #b62516;
+}
+.chessboard-wrapper td.square-name {
+    text-align: center;
+    font-size: smaller;
+}
