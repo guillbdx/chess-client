@@ -1,53 +1,51 @@
 <navigation></navigation>
 
-<div class="view need-authentication" id="profile">
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
 
-            <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
 
-            <div class="col-xs-9">
+        <div class="col-xs-9">
 
-                <h3>{{ 'Profile' | translate }}</h3>
+            <h3>{{ 'Profile' | translate }}</h3>
 
-                <p>
-                    <strong>
-                        <span>{{ 'Username' | translate }}</span>
-                        : </strong>
-                    <span *ngIf="profile">
-                        {{ profile.username }}
-                    </span>
-                </p>
+            <p>
+                <strong>
+                    <span>{{ 'Username' | translate }}</span>
+                    : </strong>
+                <span *ngIf="profile">
+                    {{ profile.username }}
+                </span>
+            </p>
 
-                <p>
-                    <strong>
-                        <span>{{ 'Email' | translate }}</span>
-                        : </strong>
-                    <span *ngIf="profile">
-                        {{ profile.email }}
-                    </span>
-                </p>
-
-            </div>
-
-            <div class="col-xs-1"></div>
+            <p>
+                <strong>
+                    <span>{{ 'Email' | translate }}</span>
+                    : </strong>
+                <span *ngIf="profile">
+                    {{ profile.email }}
+                </span>
+            </p>
 
         </div>
 
-        <div class="row">
-            <div class="col-xs-2"></div>
-            <div class="col-xs-9">
-                <p></p>
-                <p>
-                    <a href="change-password">{{ 'Change password' | translate }}</a>
-                </p>
-                <p></p>
-                <p>
-                    <a href="account-delete">{{ 'Delete your account' | translate }}</a>
-                </p>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
+        <div class="col-xs-1"></div>
 
     </div>
+
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-9">
+            <p></p>
+            <p>
+                <a href="change-password">{{ 'Change password' | translate }}</a>
+            </p>
+            <p></p>
+            <p>
+                <a href="account-delete">{{ 'Delete your account' | translate }}</a>
+            </p>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
 </div>

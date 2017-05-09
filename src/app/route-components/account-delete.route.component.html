@@ -1,38 +1,36 @@
 <navigation></navigation>
 
-<div class="view need-authentication" id="change-password">
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
 
-            <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
 
-            <div class="col-xs-9">
+        <div class="col-xs-9">
 
-                <h3>{{ 'Delete your account' | translate}}</h3>
+            <h3>{{ 'Delete your account' | translate}}</h3>
 
-                <div class="alert alert-danger">
-                    {{ "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?" | translate }}
-                </div>
-
-                <button (click)="deleteAccount()" class="btn btn-danger">{{ 'Yes, delete my account' | translate}}</button>
-
+            <div class="alert alert-danger">
+                {{ "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?" | translate }}
             </div>
 
-            <div class="col-xs-1"></div>
+            <button (click)="deleteAccount()" class="btn btn-danger">{{ 'Yes, delete my account' | translate}}</button>
 
         </div>
 
-        <div class="row">
-            <div class="col-xs-2"></div>
-            <div class="col-xs-9">
-                <p></p>
-                <p>
-                    <a href="profile">{{ 'Back to your profile' | translate}}</a>
-                </p>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
-
+        <div class="col-xs-1"></div>
 
     </div>
+
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-9">
+            <p></p>
+            <p>
+                <a href="profile">{{ 'Back to your profile' | translate}}</a>
+            </p>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+
 </div>
