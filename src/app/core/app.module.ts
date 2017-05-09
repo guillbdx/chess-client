@@ -13,11 +13,15 @@ import {LoaderService}                      from "../services/loader.service";
 import {FlashMessagesService}               from "../services/flash-messages.service";
 import {SecurityService}                    from "../services/security.service";
 
+import {GameFactory}                        from "../entities/factories/game.factory";
+import {UserFactory}                        from "../entities/factories/user.factory";
+
 import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
 import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
 
 import { AppComponent }                     from './app.component';
 import {NavigationComponent}                from "./navigation.component";
+import {GameComponent}                      from "./game.component";
 
 import { LoginRouteComponent }              from '../route-components/login.route.component';
 import { RegisterRouteComponent }           from '../route-components/register.route.component';
@@ -36,8 +40,6 @@ import {GameCreateFormComponent}            from "../form-components/game-create
 
 import {TranslatePipe}                      from "../pipes/translate.pipe";
 import {FormatDatePipe}                     from "../pipes/format-date.pipe";
-
-import {GameComponent}                      from "./game.component";
 
 @NgModule({
     imports: [
@@ -68,7 +70,7 @@ import {GameComponent}                      from "./game.component";
         GameComponent,
 
         TranslatePipe,
-        FormatDatePipe
+        FormatDatePipe,
     ],
     providers: [
         Configuration,
@@ -80,7 +82,9 @@ import {GameComponent}                      from "./game.component";
         I18nService,
         LoaderService,
         FlashMessagesService,
-        SecurityService
+        SecurityService,
+        GameFactory,
+        UserFactory
     ],
     bootstrap: [
         AppComponent

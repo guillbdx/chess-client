@@ -1,5 +1,5 @@
 <div class="game-result">
-    {{ game.sentenceResult | translate }}
+    {{ game.getSentenceResult() | translate }}
 </div>
 
 <table class="chessboard-wrapper" id="chessboard-wrapper-by-white">
@@ -7,9 +7,9 @@
         <tr>
             <td class="player" colspan="9">
                 <span
-                        *ngIf="!game.isCurrentUserTurn"
+                        *ngIf="!game.isUserTurn(profile)"
                         class="turn glyphicon glyphicon-asterisk"></span>
-                <span class="name">{{ game.opponent.username }}</span>
+                <span class="name">{{ game.getOpponent(profile).username }}</span>
             </td>
         </tr>
     </thead>
@@ -172,7 +172,7 @@
         <tr>
             <td class="player" colspan="9">
                 <span
-                        *ngIf="game.isCurrentUserTurn"
+                        *ngIf="game.isUserTurn(profile)"
                         class="turn glyphicon glyphicon-asterisk"></span>
                 <span class="name">{{ profile.username }}</span>
             </td>

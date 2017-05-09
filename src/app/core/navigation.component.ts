@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../entities/user.entity";
+import {User} from "../entities/entities/user.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {SecurityService} from "../services/security.service";
 import {FlashMessagesService} from "../services/flash-messages.service";
+import {UserFactory} from "../entities/factories/user.factory";
 
 @Component({
     selector: 'navigation',
@@ -16,9 +17,9 @@ export class NavigationComponent implements OnInit {
     profile: User;
 
     constructor(
-        private chessApiClient: ChessApiClientService,
         private security: SecurityService,
-        private flashMessages: FlashMessagesService
+        private flashMessages: FlashMessagesService,
+        private userFactory: UserFactory
     ) {}
 
     toggleNavContent() {
@@ -32,17 +33,11 @@ export class NavigationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.chessApiClient.getProfile()
-            .then(response => {
-                switch(response.status) {
-                    case 200 :
-                        this.profile = response.json();
-                        break;
-                    case 401 :
-                        this.security.logout();
-                        break;
-                }
-            });
+
+        this.userFactory.getProfile().then(response => {
+            this.profile = response;
+        });
+
     }
 
 }

@@ -3,8 +3,8 @@ import {Http, Headers} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {Configuration} from "../Configuration";
 import {LanguageDetectorService} from "./language-detector.service";
-import {User} from "../entities/user.entity";
-import {Game} from "../entities/game.entity";
+import {User} from "../entities/entities/user.entity";
+import {Game} from "../entities/entities/game.entity";
 import {LoaderService} from "./loader.service";
 
 @Injectable()

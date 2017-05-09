@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Game} from "../entities/game.entity";
-import {User} from "../entities/user.entity";
+import {Game} from "../entities/entities/game.entity";
+import {User} from "../entities/entities/user.entity";
 
 @Component({
     selector: 'game',

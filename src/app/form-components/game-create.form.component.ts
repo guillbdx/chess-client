@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ChessApiClientService } from "../services/chess-api-client.service";
-import {User} from "../entities/user.entity";
+import {User} from "../entities/entities/user.entity";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "../services/flash-messages.service";
 import {SecurityService} from "../services/security.service";
+import {UserFactory} from "../entities/factories/user.factory";
 
 @Component({
     selector: 'form-game-create',
@@ -22,21 +23,14 @@ export class GameCreateFormComponent implements OnInit {
         private chessApiClient: ChessApiClientService,
         private router: Router,
         private flashMessages: FlashMessagesService,
-        private security: SecurityService
+        private security: SecurityService,
+        private userFactory: UserFactory
     ) {}
 
     ngOnInit() {
-        this.chessApiClient.getUsers(true, true)
-            .then(response => {
-                switch(response.status) {
-                    case 200 :
-                        this.possibleOpponents = response.json()._embedded.resources;
-                        break;
-                    case 401 :
-                        this.security.logout();
-                        break;
-                }
-            });
+        this.userFactory.getUsers(true, true).then(response => {
+            this.possibleOpponents = response;
+        });
     }
 
     onSubmit() {

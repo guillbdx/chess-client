@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ChessApiClientService} from "../services/chess-api-client.service";
-import {Game} from "../entities/game.entity";
-import {User} from "../entities/user.entity";
+import {Game} from "../entities/entities/game.entity";
+import {User} from "../entities/entities/user.entity";
 import {I18nService} from "../services/i18n.service";
 import {LoaderService} from "../services/loader.service";
 import {SecurityService} from "../services/security.service";
 import {FlashMessagesService} from "../services/flash-messages.service";
 import {Router} from "@angular/router";
+import {GameFactory} from "../entities/factories/game.factory";
+import {UserFactory} from "../entities/factories/user.factory";
 
 @Component({
     templateUrl: './games.route.component.html',
@@ -14,115 +16,54 @@ import {Router} from "@angular/router";
 })
 export class GamesRouteComponent implements OnInit {
 
-    games: Game[];
-
-    users: User[];
-
-    orderedGames = {
-        inProgress: [],
-        proposedByOthers: [],
-        proposedToOthers: [],
-        ended: []
-    };
-
     profile: User;
+
+    games: any;
+
+    loaded = false;
 
     constructor(
         private chessApiClient: ChessApiClientService,
         private security: SecurityService,
         private flashMessages: FlashMessagesService,
-        private router: Router
+        private router: Router,
+        private gameFactory: GameFactory,
+        private userFactory: UserFactory
     ) {}
 
     ngOnInit() {
+        this.userFactory.getProfile().then(profile => {
+            this.profile = profile;
+        });
+        this.retrieveGames();
+    }
 
-        this.chessApiClient.getProfile()
-            .then(response => {
-                switch(response.status) {
-                    case 200 :
-                        this.profile = response.json();
-                        this.retrieveGames();
-                        break;
-                    case 401 :
-                        this.security.logout();
-                        break;
+    retrieveGames() {
+        this.gameFactory.getGames().then(games => {
+            let unorderedGames = games;
+            this.games = {
+                inProgress: [],
+                proposedByOthers: [],
+                proposedToOthers: [],
+                ended: []
+            };
+            for(let unorderedGame of unorderedGames) {
+                if(unorderedGame.acceptedAt != null && unorderedGame.endedAt == null) {
+                    this.games.inProgress.push(unorderedGame);
+                    continue;
                 }
-            });
-
-    }
-
-    private retrieveGames() {
-
-        this.orderedGames = {
-            inProgress: [],
-            proposedByOthers: [],
-            proposedToOthers: [],
-            ended: []
-        };
-
-        this.chessApiClient.getGames()
-            .then(response => {
-                switch(response.status) {
-                    case 200 :
-                        this.games = response.json()._embedded.resources;
-                        this.retrieveUsers();
-                        break;
-                    case 401 :
-                        this.security.logout();
-                        break;
+                if(unorderedGame.acceptedAt != null && unorderedGame.endedAt != null) {
+                    this.games.ended.push(unorderedGame);
+                    continue;
                 }
-            });
-    }
-
-    private retrieveUsers() {
-        this.chessApiClient.getUsers(null, null)
-            .then(response => {
-                switch(response.status) {
-                    case 200 :
-                        this.users = response.json()._embedded.resources;
-                        this.linkUsersToGames();
-                        break;
-                    case 401 :
-                        this.security.logout();
-                        break;
+                if(unorderedGame.guest.id == this.profile.id) {
+                    this.games.proposedByOthers.push(unorderedGame);
+                    continue;
                 }
-            });
-    }
-
-    private linkUsersToGames() {
-        for(let game of this.games) {
-            game.creator = this.findUserById(game._links.creator.id);
-            game.guest = this.findUserById(game._links.guest.id);
-            game.opponent = Game.getOpponentOf(game, this.profile);
-        }
-        this.orderGames();
-    }
-
-    private orderGames() {
-        for(let game of this.games) {
-            if(game.acceptedAt != null && game.endedAt == null) {
-                this.orderedGames.inProgress.push(game);
-                continue;
+                this.games.proposedToOthers.push(unorderedGame);
             }
-            if(game.acceptedAt != null && game.endedAt != null) {
-                this.orderedGames.ended.push(game);
-                continue;
-            }
-            if(game.guest.id == this.profile.id) {
-                this.orderedGames.proposedByOthers.push(game);
-                continue;
-            }
-            this.orderedGames.proposedToOthers.push(game);
-        }
-    }
-
-    private findUserById(id: number): User {
-        for(let i = 0; i < this.users.length; i++) {
-            if(id == this.users[i].id) {
-                return this.users[i];
-            }
-        }
-        return null;
+            this.loaded = true;
+        });
     }
 
     refuse(game: Game) {
@@ -167,4 +108,5 @@ export class GamesRouteComponent implements OnInit {
             });
     }
 
-};
+
+}
