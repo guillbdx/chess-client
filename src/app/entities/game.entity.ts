@@ -15,8 +15,10 @@ export class Game {
         public playingColor: string,
         public possibleMoves: Object[],
         public result: string,
+        public sentenceResult: string,
         public currentUserColor: string,
         public isCurrentUserTurn: boolean,
+        public chessboard: string|void[],
 
         public creator: User,
         public guest: User,
@@ -58,6 +60,22 @@ export class Game {
     static isUserTurn(game: Game, user: User) {
         let userColor = Game.getUserColor(game, user);
         return userColor == game.playingColor;
+    }
+
+    static getSentenceResult(game: Game): string {
+        let sentence = '';
+        switch(game.result) {
+            case '0-1' :
+                sentence = 'Black won !';
+                break;
+            case '1-0' :
+                sentence = 'White won';
+                break;
+            case '1/2-1/2' :
+                sentence = 'Draw';
+                break;
+        }
+        return sentence;
     }
 
 }

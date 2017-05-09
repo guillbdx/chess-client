@@ -1,14 +1,15 @@
-<br>
-<br>
-<br>
-
+<div class="game-result">
+    {{ game.sentenceResult | translate }}
+</div>
 
 <table class="chessboard-wrapper" id="chessboard-wrapper-by-white">
     <thead>
         <tr>
             <td class="player" colspan="9">
-                <span class="turn glyphicon glyphicon-asterisk"></span>
-                Nom de votre adversaire
+                <span
+                        *ngIf="!game.isCurrentUserTurn"
+                        class="turn glyphicon glyphicon-asterisk"></span>
+                <span class="name">{{ game.opponent.username }}</span>
             </td>
         </tr>
     </thead>
@@ -20,84 +21,84 @@
             <td rowspan="8" colspan="8">
                 <table class="chessboard">
                     <tr>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
+                        <td class="light">{{ game.chessboard.a8 }}</td>
+                        <td class="dark"> {{ game.chessboard.b8 }}</td>
+                        <td class="light">{{ game.chessboard.c8 }}</td>
+                        <td class="dark"> {{ game.chessboard.d8 }}</td>
+                        <td class="light">{{ game.chessboard.e8 }}</td>
+                        <td class="dark"> {{ game.chessboard.f8 }}</td>
+                        <td class="light">{{ game.chessboard.g8 }}</td>
+                        <td class="dark"> {{ game.chessboard.h8 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
+                        <td class="dark"> {{ game.chessboard.a7 }}</td>
+                        <td class="light">{{ game.chessboard.b7 }}</td>
+                        <td class="dark"> {{ game.chessboard.c7 }}</td>
+                        <td class="light">{{ game.chessboard.d7 }}</td>
+                        <td class="dark"> {{ game.chessboard.e7 }}</td>
+                        <td class="light">{{ game.chessboard.f7 }}</td>
+                        <td class="dark"> {{ game.chessboard.g7 }}</td>
+                        <td class="light">{{ game.chessboard.h7 }}</td>
                     </tr>
                     <tr>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
+                        <td class="light">{{ game.chessboard.a6 }}</td>
+                        <td class="dark"> {{ game.chessboard.b6 }}</td>
+                        <td class="light">{{ game.chessboard.c6 }}</td>
+                        <td class="dark"> {{ game.chessboard.d6 }}</td>
+                        <td class="light">{{ game.chessboard.e6 }}</td>
+                        <td class="dark"> {{ game.chessboard.f6 }}</td>
+                        <td class="light">{{ game.chessboard.g6 }}</td>
+                        <td class="dark"> {{ game.chessboard.h6 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
+                        <td class="dark"> {{ game.chessboard.a5 }}</td>
+                        <td class="light">{{ game.chessboard.b5 }}</td>
+                        <td class="dark"> {{ game.chessboard.c5 }}</td>
+                        <td class="light">{{ game.chessboard.d5 }}</td>
+                        <td class="dark"> {{ game.chessboard.e5 }}</td>
+                        <td class="light">{{ game.chessboard.f5 }}</td>
+                        <td class="dark"> {{ game.chessboard.g5 }}</td>
+                        <td class="light">{{ game.chessboard.h5 }}</td>
                     </tr>
                     <tr>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
+                        <td class="light">{{ game.chessboard.a4 }}</td>
+                        <td class="dark"> {{ game.chessboard.b4 }}</td>
+                        <td class="light">{{ game.chessboard.c4 }}</td>
+                        <td class="dark"> {{ game.chessboard.d4 }}</td>
+                        <td class="light">{{ game.chessboard.e4 }}</td>
+                        <td class="dark"> {{ game.chessboard.f4 }}</td>
+                        <td class="light">{{ game.chessboard.g4 }}</td>
+                        <td class="dark"> {{ game.chessboard.h4 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
+                        <td class="dark"> {{ game.chessboard.a3 }}</td>
+                        <td class="light">{{ game.chessboard.b3 }}</td>
+                        <td class="dark"> {{ game.chessboard.c3 }}</td>
+                        <td class="light">{{ game.chessboard.d3 }}</td>
+                        <td class="dark"> {{ game.chessboard.e3 }}</td>
+                        <td class="light">{{ game.chessboard.f3 }}</td>
+                        <td class="dark"> {{ game.chessboard.g3 }}</td>
+                        <td class="light">{{ game.chessboard.h3 }}</td>
                     </tr>
                     <tr>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
+                        <td class="light">{{ game.chessboard.a2 }}</td>
+                        <td class="dark"> {{ game.chessboard.b2 }}</td>
+                        <td class="light">{{ game.chessboard.c2 }}</td>
+                        <td class="dark"> {{ game.chessboard.d2 }}</td>
+                        <td class="light">{{ game.chessboard.e2 }}</td>
+                        <td class="dark"> {{ game.chessboard.f2 }}</td>
+                        <td class="light">{{ game.chessboard.g2 }}</td>
+                        <td class="dark"> {{ game.chessboard.h2 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
-                        <td class="dark"></td>
-                        <td class="light"></td>
+                        <td class="dark"> {{ game.chessboard.a1 }}</td>
+                        <td class="light">{{ game.chessboard.b1 }}</td>
+                        <td class="dark"> {{ game.chessboard.c1 }}</td>
+                        <td class="light">{{ game.chessboard.d1 }}</td>
+                        <td class="dark"> {{ game.chessboard.e1 }}</td>
+                        <td class="light">{{ game.chessboard.f1 }}</td>
+                        <td class="dark"> {{ game.chessboard.g1 }}</td>
+                        <td class="light">{{ game.chessboard.h1 }}</td>
                     </tr>
                 </table>
             </td>
@@ -170,8 +171,10 @@
     <tfoot>
         <tr>
             <td class="player" colspan="9">
-                <span class="turn glyphicon glyphicon-asterisk"></span>
-                Votre nom
+                <span
+                        *ngIf="game.isCurrentUserTurn"
+                        class="turn glyphicon glyphicon-asterisk"></span>
+                <span class="name">{{ profile.username }}</span>
             </td>
         </tr>
     </tfoot>

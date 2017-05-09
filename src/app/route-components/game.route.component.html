@@ -3,20 +3,18 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <game *ngIf="loaded" [game]="game"></game>
+            <game *ngIf="loaded" [game]="game" [profile]="profile"></game>
         </div>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-9">
+        <div class="col-xs-12">
             <p></p>
             <p>
                 <a href="">{{ 'Back to your games' | translate }}</a>
             </p>
         </div>
-        <div class="col-xs-1"></div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Game} from "../entities/game.entity";
+import {User} from "../entities/user.entity";
 
 @Component({
     selector: 'game',
@@ -12,6 +13,9 @@ export class GameComponent implements OnInit {
     game: Game;
 
     unit: number;
+
+    @Input()
+    profile: User;
 
     ngOnInit() {
         console.log(this.game);

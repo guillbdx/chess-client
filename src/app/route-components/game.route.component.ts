@@ -113,6 +113,7 @@ export class GameRouteComponent implements OnInit {
         this.game.opponent = Game.getOpponentOf(this.game, this.profile);
         this.game.currentUserColor = Game.getUserColor(this.game, this.profile);
         this.game.isCurrentUserTurn = Game.isUserTurn(this.game, this.profile);
+        this.game.sentenceResult = Game.getSentenceResult(this.game);
         this.loaded = true;
     }
 

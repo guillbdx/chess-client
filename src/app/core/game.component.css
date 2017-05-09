@@ -1,3 +1,13 @@
+/* Game result */
+.game-result {
+    height: 55px;
+    font-size: x-large;
+    line-height: 55px;
+    padding-left: 65px;
+    color: #b62516;
+}
+/*-----------------------------------------*/
+
 /* Chessboard wrapper */
 .chessboard-wrapper {
     width: 100%;
@@ -6,8 +16,8 @@
     width: 11.11%;
     vertical-align: middle;
 }
-.chessboard-wrapper td.player {
-    font-size: larger;
+.chessboard-wrapper td.player span.name {
+    font-size: x-large;
 }
 .chessboard-wrapper td.player span.turn {
     float: right;
@@ -24,6 +34,8 @@
     width: 100%;
 }
 .chessboard td {
+    text-align: center;
+    font-size: xx-large;
 }
 .chessboard td.dark {
     background: #d18b47;
