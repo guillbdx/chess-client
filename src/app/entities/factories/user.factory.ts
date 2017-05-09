@@ -1,12 +1,14 @@
 import {ChessApiClientService} from "../../services/chess-api-client.service";
 import {User} from "../entities/user.entity";
 import {Injectable} from "@angular/core";
+import {SecurityService} from "../../services/security.service";
 
 @Injectable()
 export class UserFactory {
 
     constructor(
-        private chessApiClient: ChessApiClientService
+        private chessApiClient: ChessApiClientService,
+        private security: SecurityService
     ) {}
 
     getUsers(exclude_self: boolean, exclude_computer: boolean) {
@@ -30,6 +32,10 @@ export class UserFactory {
 
     getProfile() {
         return this.chessApiClient.getProfile().then(response => {
+            if(response.status != 200) {
+                this.security.logout();
+                return;
+            }
             return this.createUserFromData(response.json());
         });
     }
