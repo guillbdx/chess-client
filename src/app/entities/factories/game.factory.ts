@@ -75,7 +75,8 @@ export class GameFactory {
             data.acceptedAt,
             data.endedAt,
             data.wonBy,
-            data.winType
+            data.winType,
+            data.lastMove
         );
     }
 

@@ -83,9 +83,15 @@
 .chessboard td.light {
     background: #ffce9e;
 }
-.chessboard td.dark.from, .chessboard td.light.from {
+.chessboard td.dark.last-from,
+.chessboard td.light.last-from,
+.chessboard td.dark.current-from,
+.chessboard td.light.current-from {
     background: #f1ed2e;
 }
-.chessboard td.dark.to, .chessboard td.light.to {
+.chessboard td.dark.last-to,
+.chessboard td.light.last-to,
+.chessboard td.dark.current-to,
+.chessboard td.light.current-to {
     background: #dad745;
 }

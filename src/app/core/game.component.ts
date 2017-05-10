@@ -34,6 +34,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.resizeContainer();
+        this.pullOriginAndReset();
         this.loopPull();
     }
 
@@ -88,6 +89,11 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.possibleMoves = data.possibleMoves;
         this.game.fen = data.fen;
         this.game.pgn = data.pgn;
+        this.game.lastMove = data.lastMove;
+
+        this.colorCurrentFromToSquare();
+        this.colorLastFromToSquare();
+
     }
 
     pullOriginAndReset() {
@@ -102,6 +108,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.switchPlayingColor();
         this.refreshing = false;
         this.showPromotionPanel = false;
+        this.uncolorLastFromToSquare();
 
         this.chessApiClient.play(this.game, this.from, this.to, this.promotion).then(response => {
             if(response.status == 200) {
@@ -128,7 +135,6 @@ export class GameComponent implements OnInit, OnDestroy {
     onClickSquare(square: string, event?) {
 
         let target = event.target || event.srcElement || event.currentTarget;
-        this.removeFromToClasses();
 
         if(!this.game.isInProgress()) {
             return;
@@ -139,20 +145,20 @@ export class GameComponent implements OnInit, OnDestroy {
 
         if(this.from == null && this.game.isPossibleFrom(square)) {
             this.from = square;
-            target.classList.add("from");
+            this.colorCurrentFromToSquare();
             return;
         }
 
         if(this.game.isPossibleFromTo(this.from, square)) {
             this.to = square;
-            target.classList.add("to");
+            this.colorCurrentFromToSquare();
             this.promptPromotionIfNeededThenPlay();
             return;
         }
 
         if(this.game.isPossibleFrom(square)) {
             this.from = square;
-            target.classList.add("from");
+            this.colorCurrentFromToSquare();
             return;
         }
 
@@ -215,12 +221,54 @@ export class GameComponent implements OnInit, OnDestroy {
         }
     }
 
-    removeFromToClasses() {
-        let tdsFrom = document.querySelectorAll('td.from, td.to');
-        [].forEach.call(tdsFrom, tdFrom => {
-            tdFrom.classList.remove('from');
-            tdFrom.classList.remove('to');
+    uncolorLastFromToSquare() {
+        let tds = document.querySelectorAll('td');
+        [].forEach.call(tds, td => {
+            td.classList.remove('last-from');
+            td.classList.remove('last-to');
         });
     }
+
+    colorLastFromToSquare() {
+        this.uncolorLastFromToSquare();
+        if(this.game.lastMove == null) {
+            return;
+        }
+        let tdsLastFrom = document.querySelectorAll('td.' + this.game.lastMove['from']);
+        [].forEach.call(tdsLastFrom, tdLastFrom => {
+            tdLastFrom.classList.add('last-from');
+        });
+        let tdsLastTo = document.querySelectorAll('td.' + this.game.lastMove['to']);
+        [].forEach.call(tdsLastTo, tdLastTo => {
+            tdLastTo.classList.add('last-to');
+        });
+    }
+
+    uncolorCurrentFromToSquare() {
+        let tds = document.querySelectorAll('td');
+        [].forEach.call(tds, td => {
+            td.classList.remove('current-from');
+            td.classList.remove('current-to');
+        });
+    }
+
+    colorCurrentFromToSquare() {
+        this.uncolorCurrentFromToSquare();
+        if(this.from == null) {
+            return;
+        }
+        let tdsLastFrom = document.querySelectorAll('td.' + this.from);
+        [].forEach.call(tdsLastFrom, tdLastFrom => {
+            tdLastFrom.classList.add('current-from');
+        });
+        if(this.to == null) {
+            return;
+        }
+        let tdsLastTo = document.querySelectorAll('td.' + this.to);
+        [].forEach.call(tdsLastTo, tdLastTo => {
+            tdLastTo.classList.add('current-to');
+        });
+    }
+
 
 }
