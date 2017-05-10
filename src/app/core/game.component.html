@@ -23,84 +23,84 @@
         <td rowspan="8" colspan="8">
             <table class="chessboard">
                 <tr>
-                    <td class="light">{{ game.chessboard.h1 }}</td>
-                    <td class="dark"> {{ game.chessboard.g1 }}</td>
-                    <td class="light">{{ game.chessboard.f1 }}</td>
-                    <td class="dark"> {{ game.chessboard.e1 }}</td>
-                    <td class="light">{{ game.chessboard.d1 }}</td>
-                    <td class="dark"> {{ game.chessboard.c1 }}</td>
-                    <td class="light">{{ game.chessboard.b1 }}</td>
-                    <td class="dark"> {{ game.chessboard.a1 }}</td>
+                    <td class="light" (click)="onClickSquare('h1')">{{ game.chessboard.h1 }}</td>
+                    <td class="dark"  (click)="onClickSquare('g1')">{{ game.chessboard.g1 }}</td>
+                    <td class="light" (click)="onClickSquare('f1')">{{ game.chessboard.f1 }}</td>
+                    <td class="dark"  (click)="onClickSquare('e1')">{{ game.chessboard.e1 }}</td>
+                    <td class="light" (click)="onClickSquare('d1')">{{ game.chessboard.d1 }}</td>
+                    <td class="dark"  (click)="onClickSquare('c1')">{{ game.chessboard.c1 }}</td>
+                    <td class="light" (click)="onClickSquare('b1')">{{ game.chessboard.b1 }}</td>
+                    <td class="dark"  (click)="onClickSquare('a1')">{{ game.chessboard.a1 }}</td>
                 </tr>
                 <tr>
-                    <td class="dark"> {{ game.chessboard.h2 }}</td>
-                    <td class="light">{{ game.chessboard.g2 }}</td>
-                    <td class="dark"> {{ game.chessboard.f2 }}</td>
-                    <td class="light">{{ game.chessboard.e2 }}</td>
-                    <td class="dark"> {{ game.chessboard.d2 }}</td>
-                    <td class="light">{{ game.chessboard.c2 }}</td>
-                    <td class="dark"> {{ game.chessboard.b2 }}</td>
-                    <td class="light">{{ game.chessboard.a2 }}</td>
+                    <td class="dark"  (click)="onClickSquare('h2')">{{ game.chessboard.h2 }}</td>
+                    <td class="light" (click)="onClickSquare('g2')">{{ game.chessboard.g2 }}</td>
+                    <td class="dark"  (click)="onClickSquare('f2')">{{ game.chessboard.f2 }}</td>
+                    <td class="light" (click)="onClickSquare('e2')">{{ game.chessboard.e2 }}</td>
+                    <td class="dark"  (click)="onClickSquare('d2')">{{ game.chessboard.d2 }}</td>
+                    <td class="light" (click)="onClickSquare('c2')">{{ game.chessboard.c2 }}</td>
+                    <td class="dark"  (click)="onClickSquare('b2')">{{ game.chessboard.b2 }}</td>
+                    <td class="light" (click)="onClickSquare('a2')">{{ game.chessboard.a2 }}</td>
                 </tr>
                 <tr>
-                    <td class="light">{{ game.chessboard.h3 }}</td>
-                    <td class="dark"> {{ game.chessboard.g3 }}</td>
-                    <td class="light">{{ game.chessboard.f3 }}</td>
-                    <td class="dark"> {{ game.chessboard.e3 }}</td>
-                    <td class="light">{{ game.chessboard.d3 }}</td>
-                    <td class="dark"> {{ game.chessboard.c3 }}</td>
-                    <td class="light">{{ game.chessboard.b3 }}</td>
-                    <td class="dark"> {{ game.chessboard.a3 }}</td>
+                    <td class="light" (click)="onClickSquare('h3')">{{ game.chessboard.h3 }}</td>
+                    <td class="dark"  (click)="onClickSquare('g3')">{{ game.chessboard.g3 }}</td>
+                    <td class="light" (click)="onClickSquare('f3')">{{ game.chessboard.f3 }}</td>
+                    <td class="dark"  (click)="onClickSquare('e3')">{{ game.chessboard.e3 }}</td>
+                    <td class="light" (click)="onClickSquare('d3')">{{ game.chessboard.d3 }}</td>
+                    <td class="dark"  (click)="onClickSquare('c3')">{{ game.chessboard.c3 }}</td>
+                    <td class="light" (click)="onClickSquare('b3')">{{ game.chessboard.b3 }}</td>
+                    <td class="dark"  (click)="onClickSquare('a3')">{{ game.chessboard.a3 }}</td>
                 </tr>
                 <tr>
-                    <td class="dark"> {{ game.chessboard.h4 }}</td>
-                    <td class="light">{{ game.chessboard.g4 }}</td>
-                    <td class="dark"> {{ game.chessboard.f4 }}</td>
-                    <td class="light">{{ game.chessboard.e4 }}</td>
-                    <td class="dark"> {{ game.chessboard.d4 }}</td>
-                    <td class="light">{{ game.chessboard.c4 }}</td>
-                    <td class="dark"> {{ game.chessboard.b4 }}</td>
-                    <td class="light">{{ game.chessboard.a4 }}</td>
+                    <td class="dark"  (click)="onClickSquare('h4')">{{ game.chessboard.h4 }}</td>
+                    <td class="light" (click)="onClickSquare('g4')">{{ game.chessboard.g4 }}</td>
+                    <td class="dark"  (click)="onClickSquare('f4')">{{ game.chessboard.f4 }}</td>
+                    <td class="light" (click)="onClickSquare('e4')">{{ game.chessboard.e4 }}</td>
+                    <td class="dark"  (click)="onClickSquare('d4')">{{ game.chessboard.d4 }}</td>
+                    <td class="light" (click)="onClickSquare('c4')">{{ game.chessboard.c4 }}</td>
+                    <td class="dark"  (click)="onClickSquare('b4')">{{ game.chessboard.b4 }}</td>
+                    <td class="light" (click)="onClickSquare('a4')">{{ game.chessboard.a4 }}</td>
                 </tr>
                 <tr>
-                    <td class="light">{{ game.chessboard.h5 }}</td>
-                    <td class="dark"> {{ game.chessboard.g5 }}</td>
-                    <td class="light">{{ game.chessboard.f5 }}</td>
-                    <td class="dark"> {{ game.chessboard.e5 }}</td>
-                    <td class="light">{{ game.chessboard.d5 }}</td>
-                    <td class="dark"> {{ game.chessboard.c5 }}</td>
-                    <td class="light">{{ game.chessboard.b5 }}</td>
-                    <td class="dark"> {{ game.chessboard.a5 }}</td>
+                    <td class="light" (click)="onClickSquare('h5')">{{ game.chessboard.h5 }}</td>
+                    <td class="dark"  (click)="onClickSquare('g5')">{{ game.chessboard.g5 }}</td>
+                    <td class="light" (click)="onClickSquare('f5')">{{ game.chessboard.f5 }}</td>
+                    <td class="dark"  (click)="onClickSquare('e5')">{{ game.chessboard.e5 }}</td>
+                    <td class="light" (click)="onClickSquare('d5')">{{ game.chessboard.d5 }}</td>
+                    <td class="dark"  (click)="onClickSquare('c5')">{{ game.chessboard.c5 }}</td>
+                    <td class="light" (click)="onClickSquare('b5')">{{ game.chessboard.b5 }}</td>
+                    <td class="dark"  (click)="onClickSquare('a5')">{{ game.chessboard.a5 }}</td>
                 </tr>
                 <tr>
-                    <td class="dark"> {{ game.chessboard.h6 }}</td>
-                    <td class="light">{{ game.chessboard.g6 }}</td>
-                    <td class="dark"> {{ game.chessboard.f6 }}</td>
-                    <td class="light">{{ game.chessboard.e6 }}</td>
-                    <td class="dark"> {{ game.chessboard.d6 }}</td>
-                    <td class="light">{{ game.chessboard.c6 }}</td>
-                    <td class="dark"> {{ game.chessboard.b6 }}</td>
-                    <td class="light">{{ game.chessboard.a6 }}</td>
+                    <td class="dark"  (click)="onClickSquare('h6')">{{ game.chessboard.h6 }}</td>
+                    <td class="light" (click)="onClickSquare('g6')">{{ game.chessboard.g6 }}</td>
+                    <td class="dark"  (click)="onClickSquare('f6')">{{ game.chessboard.f6 }}</td>
+                    <td class="light" (click)="onClickSquare('e6')">{{ game.chessboard.e6 }}</td>
+                    <td class="dark"  (click)="onClickSquare('d6')">{{ game.chessboard.d6 }}</td>
+                    <td class="light" (click)="onClickSquare('c6')">{{ game.chessboard.c6 }}</td>
+                    <td class="dark"  (click)="onClickSquare('b6')">{{ game.chessboard.b6 }}</td>
+                    <td class="light" (click)="onClickSquare('a6')">{{ game.chessboard.a6 }}</td>
                 </tr>
                 <tr>
-                    <td class="light">{{ game.chessboard.h7 }}</td>
-                    <td class="dark"> {{ game.chessboard.g7 }}</td>
-                    <td class="light">{{ game.chessboard.f7 }}</td>
-                    <td class="dark"> {{ game.chessboard.e7 }}</td>
-                    <td class="light">{{ game.chessboard.d7 }}</td>
-                    <td class="dark"> {{ game.chessboard.c7 }}</td>
-                    <td class="light">{{ game.chessboard.b7 }}</td>
-                    <td class="dark"> {{ game.chessboard.a7 }}</td>
+                    <td class="light" (click)="onClickSquare('h7')">{{ game.chessboard.h7 }}</td>
+                    <td class="dark"  (click)="onClickSquare('g7')">{{ game.chessboard.g7 }}</td>
+                    <td class="light" (click)="onClickSquare('f7')">{{ game.chessboard.f7 }}</td>
+                    <td class="dark"  (click)="onClickSquare('e7')">{{ game.chessboard.e7 }}</td>
+                    <td class="light" (click)="onClickSquare('d7')">{{ game.chessboard.d7 }}</td>
+                    <td class="dark"  (click)="onClickSquare('c7')">{{ game.chessboard.c7 }}</td>
+                    <td class="light" (click)="onClickSquare('b7')">{{ game.chessboard.b7 }}</td>
+                    <td class="dark"  (click)="onClickSquare('a7')">{{ game.chessboard.a7 }}</td>
                 </tr>
                 <tr>
-                    <td class="dark"> {{ game.chessboard.h8 }}</td>
-                    <td class="light">{{ game.chessboard.g8 }}</td>
-                    <td class="dark"> {{ game.chessboard.f8 }}</td>
-                    <td class="light">{{ game.chessboard.e8 }}</td>
-                    <td class="dark"> {{ game.chessboard.d8 }}</td>
-                    <td class="light">{{ game.chessboard.c8 }}</td>
-                    <td class="dark"> {{ game.chessboard.b8 }}</td>
-                    <td class="light">{{ game.chessboard.a8 }}</td>
+                    <td class="dark"  (click)="onClickSquare('h8')">{{ game.chessboard.h8 }}</td>
+                    <td class="light" (click)="onClickSquare('g8')">{{ game.chessboard.g8 }}</td>
+                    <td class="dark"  (click)="onClickSquare('f8')">{{ game.chessboard.f8 }}</td>
+                    <td class="light" (click)="onClickSquare('e8')">{{ game.chessboard.e8 }}</td>
+                    <td class="dark"  (click)="onClickSquare('d8')">{{ game.chessboard.d8 }}</td>
+                    <td class="light" (click)="onClickSquare('c8')">{{ game.chessboard.c8 }}</td>
+                    <td class="dark"  (click)="onClickSquare('b8')">{{ game.chessboard.b8 }}</td>
+                    <td class="light" (click)="onClickSquare('a8')">{{ game.chessboard.a8 }}</td>
                 </tr>
             </table>
         </td>
@@ -203,84 +203,84 @@
             <td rowspan="8" colspan="8">
                 <table class="chessboard">
                     <tr>
-                        <td class="light">{{ game.chessboard.a8 }}</td>
-                        <td class="dark"> {{ game.chessboard.b8 }}</td>
-                        <td class="light">{{ game.chessboard.c8 }}</td>
-                        <td class="dark"> {{ game.chessboard.d8 }}</td>
-                        <td class="light">{{ game.chessboard.e8 }}</td>
-                        <td class="dark"> {{ game.chessboard.f8 }}</td>
-                        <td class="light">{{ game.chessboard.g8 }}</td>
-                        <td class="dark"> {{ game.chessboard.h8 }}</td>
+                        <td class="light" (click)="onClickSquare('a8')">{{ game.chessboard.a8 }}</td>
+                        <td class="dark"  (click)="onClickSquare('b8')">{{ game.chessboard.b8 }}</td>
+                        <td class="light" (click)="onClickSquare('c8')">{{ game.chessboard.c8 }}</td>
+                        <td class="dark"  (click)="onClickSquare('d8')">{{ game.chessboard.d8 }}</td>
+                        <td class="light" (click)="onClickSquare('e8')">{{ game.chessboard.e8 }}</td>
+                        <td class="dark"  (click)="onClickSquare('f8')">{{ game.chessboard.f8 }}</td>
+                        <td class="light" (click)="onClickSquare('g8')">{{ game.chessboard.g8 }}</td>
+                        <td class="dark"  (click)="onClickSquare('h8')">{{ game.chessboard.h8 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"> {{ game.chessboard.a7 }}</td>
-                        <td class="light">{{ game.chessboard.b7 }}</td>
-                        <td class="dark"> {{ game.chessboard.c7 }}</td>
-                        <td class="light">{{ game.chessboard.d7 }}</td>
-                        <td class="dark"> {{ game.chessboard.e7 }}</td>
-                        <td class="light">{{ game.chessboard.f7 }}</td>
-                        <td class="dark"> {{ game.chessboard.g7 }}</td>
-                        <td class="light">{{ game.chessboard.h7 }}</td>
+                        <td class="dark"  (click)="onClickSquare('a7')">{{ game.chessboard.a7 }}</td>
+                        <td class="light" (click)="onClickSquare('b7')">{{ game.chessboard.b7 }}</td>
+                        <td class="dark"  (click)="onClickSquare('c7')">{{ game.chessboard.c7 }}</td>
+                        <td class="light" (click)="onClickSquare('d7')">{{ game.chessboard.d7 }}</td>
+                        <td class="dark"  (click)="onClickSquare('e7')">{{ game.chessboard.e7 }}</td>
+                        <td class="light" (click)="onClickSquare('f7')">{{ game.chessboard.f7 }}</td>
+                        <td class="dark"  (click)="onClickSquare('g7')">{{ game.chessboard.g7 }}</td>
+                        <td class="light" (click)="onClickSquare('h7')">{{ game.chessboard.h7 }}</td>
                     </tr>
                     <tr>
-                        <td class="light">{{ game.chessboard.a6 }}</td>
-                        <td class="dark"> {{ game.chessboard.b6 }}</td>
-                        <td class="light">{{ game.chessboard.c6 }}</td>
-                        <td class="dark"> {{ game.chessboard.d6 }}</td>
-                        <td class="light">{{ game.chessboard.e6 }}</td>
-                        <td class="dark"> {{ game.chessboard.f6 }}</td>
-                        <td class="light">{{ game.chessboard.g6 }}</td>
-                        <td class="dark"> {{ game.chessboard.h6 }}</td>
+                        <td class="light" (click)="onClickSquare('a6')">{{ game.chessboard.a6 }}</td>
+                        <td class="dark"  (click)="onClickSquare('b6')">{{ game.chessboard.b6 }}</td>
+                        <td class="light" (click)="onClickSquare('c6')">{{ game.chessboard.c6 }}</td>
+                        <td class="dark"  (click)="onClickSquare('d6')">{{ game.chessboard.d6 }}</td>
+                        <td class="light" (click)="onClickSquare('e6')">{{ game.chessboard.e6 }}</td>
+                        <td class="dark"  (click)="onClickSquare('f6')">{{ game.chessboard.f6 }}</td>
+                        <td class="light" (click)="onClickSquare('g6')">{{ game.chessboard.g6 }}</td>
+                        <td class="dark"  (click)="onClickSquare('h6')">{{ game.chessboard.h6 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"> {{ game.chessboard.a5 }}</td>
-                        <td class="light">{{ game.chessboard.b5 }}</td>
-                        <td class="dark"> {{ game.chessboard.c5 }}</td>
-                        <td class="light">{{ game.chessboard.d5 }}</td>
-                        <td class="dark"> {{ game.chessboard.e5 }}</td>
-                        <td class="light">{{ game.chessboard.f5 }}</td>
-                        <td class="dark"> {{ game.chessboard.g5 }}</td>
-                        <td class="light">{{ game.chessboard.h5 }}</td>
+                        <td class="dark"  (click)="onClickSquare('a5')">{{ game.chessboard.a5 }}</td>
+                        <td class="light" (click)="onClickSquare('b5')">{{ game.chessboard.b5 }}</td>
+                        <td class="dark"  (click)="onClickSquare('c5')">{{ game.chessboard.c5 }}</td>
+                        <td class="light" (click)="onClickSquare('d5')">{{ game.chessboard.d5 }}</td>
+                        <td class="dark"  (click)="onClickSquare('e5')">{{ game.chessboard.e5 }}</td>
+                        <td class="light" (click)="onClickSquare('f5')">{{ game.chessboard.f5 }}</td>
+                        <td class="dark"  (click)="onClickSquare('g5')">{{ game.chessboard.g5 }}</td>
+                        <td class="light" (click)="onClickSquare('h5')">{{ game.chessboard.h5 }}</td>
                     </tr>
                     <tr>
-                        <td class="light">{{ game.chessboard.a4 }}</td>
-                        <td class="dark"> {{ game.chessboard.b4 }}</td>
-                        <td class="light">{{ game.chessboard.c4 }}</td>
-                        <td class="dark"> {{ game.chessboard.d4 }}</td>
-                        <td class="light">{{ game.chessboard.e4 }}</td>
-                        <td class="dark"> {{ game.chessboard.f4 }}</td>
-                        <td class="light">{{ game.chessboard.g4 }}</td>
-                        <td class="dark"> {{ game.chessboard.h4 }}</td>
+                        <td class="light" (click)="onClickSquare('a4')">{{ game.chessboard.a4 }}</td>
+                        <td class="dark"  (click)="onClickSquare('b4')">{{ game.chessboard.b4 }}</td>
+                        <td class="light" (click)="onClickSquare('c4')">{{ game.chessboard.c4 }}</td>
+                        <td class="dark"  (click)="onClickSquare('d4')">{{ game.chessboard.d4 }}</td>
+                        <td class="light" (click)="onClickSquare('e4')">{{ game.chessboard.e4 }}</td>
+                        <td class="dark"  (click)="onClickSquare('f4')">{{ game.chessboard.f4 }}</td>
+                        <td class="light" (click)="onClickSquare('g4')">{{ game.chessboard.g4 }}</td>
+                        <td class="dark"  (click)="onClickSquare('h4')">{{ game.chessboard.h4 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"> {{ game.chessboard.a3 }}</td>
-                        <td class="light">{{ game.chessboard.b3 }}</td>
-                        <td class="dark"> {{ game.chessboard.c3 }}</td>
-                        <td class="light">{{ game.chessboard.d3 }}</td>
-                        <td class="dark"> {{ game.chessboard.e3 }}</td>
-                        <td class="light">{{ game.chessboard.f3 }}</td>
-                        <td class="dark"> {{ game.chessboard.g3 }}</td>
-                        <td class="light">{{ game.chessboard.h3 }}</td>
+                        <td class="dark"  (click)="onClickSquare('a3')">{{ game.chessboard.a3 }}</td>
+                        <td class="light" (click)="onClickSquare('b3')">{{ game.chessboard.b3 }}</td>
+                        <td class="dark"  (click)="onClickSquare('c3')">{{ game.chessboard.c3 }}</td>
+                        <td class="light" (click)="onClickSquare('d3')">{{ game.chessboard.d3 }}</td>
+                        <td class="dark"  (click)="onClickSquare('e3')">{{ game.chessboard.e3 }}</td>
+                        <td class="light" (click)="onClickSquare('f3')">{{ game.chessboard.f3 }}</td>
+                        <td class="dark"  (click)="onClickSquare('g3')">{{ game.chessboard.g3 }}</td>
+                        <td class="light" (click)="onClickSquare('h3')">{{ game.chessboard.h3 }}</td>
                     </tr>
                     <tr>
-                        <td class="light">{{ game.chessboard.a2 }}</td>
-                        <td class="dark"> {{ game.chessboard.b2 }}</td>
-                        <td class="light">{{ game.chessboard.c2 }}</td>
-                        <td class="dark"> {{ game.chessboard.d2 }}</td>
-                        <td class="light">{{ game.chessboard.e2 }}</td>
-                        <td class="dark"> {{ game.chessboard.f2 }}</td>
-                        <td class="light">{{ game.chessboard.g2 }}</td>
-                        <td class="dark"> {{ game.chessboard.h2 }}</td>
+                        <td class="light" (click)="onClickSquare('a2')">{{ game.chessboard.a2 }}</td>
+                        <td class="dark"  (click)="onClickSquare('b2')">{{ game.chessboard.b2 }}</td>
+                        <td class="light" (click)="onClickSquare('c2')">{{ game.chessboard.c2 }}</td>
+                        <td class="dark"  (click)="onClickSquare('d2')">{{ game.chessboard.d2 }}</td>
+                        <td class="light" (click)="onClickSquare('e2')">{{ game.chessboard.e2 }}</td>
+                        <td class="dark"  (click)="onClickSquare('f2')">{{ game.chessboard.f2 }}</td>
+                        <td class="light" (click)="onClickSquare('g2')">{{ game.chessboard.g2 }}</td>
+                        <td class="dark"  (click)="onClickSquare('h2')">{{ game.chessboard.h2 }}</td>
                     </tr>
                     <tr>
-                        <td class="dark"> {{ game.chessboard.a1 }}</td>
-                        <td class="light">{{ game.chessboard.b1 }}</td>
-                        <td class="dark"> {{ game.chessboard.c1 }}</td>
-                        <td class="light">{{ game.chessboard.d1 }}</td>
-                        <td class="dark"> {{ game.chessboard.e1 }}</td>
-                        <td class="light">{{ game.chessboard.f1 }}</td>
-                        <td class="dark"> {{ game.chessboard.g1 }}</td>
-                        <td class="light">{{ game.chessboard.h1 }}</td>
+                        <td class="dark"  (click)="onClickSquare('a1')">{{ game.chessboard.a1 }}</td>
+                        <td class="light" (click)="onClickSquare('b1')">{{ game.chessboard.b1 }}</td>
+                        <td class="dark"  (click)="onClickSquare('c1')">{{ game.chessboard.c1 }}</td>
+                        <td class="light" (click)="onClickSquare('d1')">{{ game.chessboard.d1 }}</td>
+                        <td class="dark"  (click)="onClickSquare('e1')">{{ game.chessboard.e1 }}</td>
+                        <td class="light" (click)="onClickSquare('f1')">{{ game.chessboard.f1 }}</td>
+                        <td class="dark"  (click)="onClickSquare('g1')">{{ game.chessboard.g1 }}</td>
+                        <td class="light" (click)="onClickSquare('h1')">{{ game.chessboard.h1 }}</td>
                     </tr>
                 </table>
             </td>

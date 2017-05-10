@@ -20,10 +20,13 @@ export class Game {
         public chessboard?         : string[],
         public acceptedAt?         : string,
         public endedAt?            : string,
-    ) {
+    ) {}
 
-    }
-
+    /**
+     *
+     * @param user
+     * @returns {User}
+     */
     getOpponent(user: User): User {
         if(this.creator.id == user.id) {
             return this.guest;
@@ -31,6 +34,10 @@ export class Game {
         return this.creator;
     }
 
+    /**
+     *
+     * @returns {string}
+     */
     getSentenceResult(): string {
         let sentence = '';
         switch(this.result) {
@@ -47,6 +54,11 @@ export class Game {
         return sentence;
     }
 
+    /**
+     *
+     * @param user
+     * @returns {string}
+     */
     getColorByUser(user: User): string {
         if(this.creator.id == user.id) {
             if(this.creatorIsWhite) {
@@ -63,6 +75,11 @@ export class Game {
         }
     }
 
+    /**
+     *
+     * @param color
+     * @returns {User}
+     */
     getUserByColor(color: string): User {
 
         if(this.creatorIsWhite) {
@@ -83,6 +100,14 @@ export class Game {
 
     }
 
-
+    /**
+     *
+     * @param user
+     * @returns {boolean}
+     */
+    isUserTurn(user: User): boolean {
+        let userColor = this.getColorByUser(user);
+        return userColor == this.playingColor;
+    }
 
 }

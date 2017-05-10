@@ -12,39 +12,33 @@ export class GameComponent implements OnInit {
     @Input()
     game: Game;
 
-    unit: number;
-
     @Input()
     profile: User;
 
-
     ngOnInit() {
         console.log(this.game);
-        this.setUnit();
         this.resizeContainer();
     }
 
-    setUnit() {
+    resizeContainer() {
         let containerWidth = document.getElementById('game-result').offsetWidth;
-        this.unit = containerWidth / 9;
+        let unit = containerWidth / 9;
         if(window.innerWidth > window.innerHeight) { // Landscape mode
             let containerHeight = window.innerHeight - 100;
-            this.unit = containerHeight / 11;
+            unit = containerHeight / 11;
         }
-    }
 
-    resizeContainer() {
         let chessboards = document.querySelectorAll('.chessboard-wrapper');
         [].forEach.call(chessboards, chessboard => {
             // do whatever
-            chessboard.style.width = (9 * this.unit) + 'px';
-            chessboard.style.height = (11 * this.unit) + 'px';
+            chessboard.style.width = (9 * unit) + 'px';
+            chessboard.style.height = (11 * unit) + 'px';
         });
 
         setTimeout(() => {
             let tds = document.querySelectorAll('td');
             for(let h = 0; h < tds.length; h++) {
-                tds[h].style.height = this.unit + 'px';
+                tds[h].style.height = unit + 'px';
             }
             this.hideOtherColorContainer();
         }, 100);
@@ -57,6 +51,10 @@ export class GameComponent implements OnInit {
         } else {
             document.getElementById('chessboard-wrapper-by-white').style.display = 'none';
         }
+    }
+
+    onClickSquare(square: string) {
+        console.log(square);
     }
 
 }

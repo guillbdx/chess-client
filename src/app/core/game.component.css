@@ -36,6 +36,7 @@
 .chessboard td {
     text-align: center;
     font-size: xx-large;
+    cursor: default;
 }
 .chessboard td.dark {
     background: #d18b47;
