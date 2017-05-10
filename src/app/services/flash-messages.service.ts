@@ -35,6 +35,7 @@ export class FlashMessagesService {
 
             localStorage.removeItem('success');
         }
+        this.planRemoveMessages();
     }
 
     addSuccess(message: string, displayOnTheSpot = false): void {
@@ -45,6 +46,12 @@ export class FlashMessagesService {
     addError(message: string, displayOnTheSpot = false): void {
         localStorage.error = this.i18n.translate(message);
         this.displayMessages();
+    }
+
+    planRemoveMessages() {
+        setTimeout(() => {
+            this.alert.innerHTML = '';
+        }, 10000);
     }
 
 }
