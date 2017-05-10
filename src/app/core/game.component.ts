@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {Game} from "../entities/entities/game.entity";
 import {User} from "../entities/entities/user.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
@@ -8,7 +8,7 @@ import {ChessApiClientService} from "../services/chess-api-client.service";
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, OnDestroy {
 
     // #f1ed2e
     // #dad745
@@ -24,6 +24,7 @@ export class GameComponent implements OnInit {
     promotion:  string|null = null;
 
     refreshing = true;
+    refreshingInterval: any;
 
     showPromotionPanel = false;
 
@@ -34,6 +35,10 @@ export class GameComponent implements OnInit {
     ngOnInit() {
         this.resizeContainer();
         this.loopPull();
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.refreshingInterval);
     }
 
     resizeContainer() {
@@ -147,7 +152,7 @@ export class GameComponent implements OnInit {
     }
 
     loopPull() {
-        setInterval(() => {
+        this.refreshingInterval = setInterval(() => {
             this.pullOriginAndReset();
         }, 3000);
     }

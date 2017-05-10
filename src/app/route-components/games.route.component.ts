@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Game} from "../entities/entities/game.entity";
 import {User} from "../entities/entities/user.entity";
@@ -12,7 +12,7 @@ import {UserFactory} from "../entities/factories/user.factory";
     templateUrl: './games.route.component.html',
     styleUrls: ['./games.route.component.css']
 })
-export class GamesRouteComponent implements OnInit {
+export class GamesRouteComponent implements OnInit, OnDestroy {
 
     profile: User;
 
@@ -24,6 +24,8 @@ export class GamesRouteComponent implements OnInit {
     };
 
     loaded = false;
+
+    refreshingInterval: any;
 
     constructor(
         private chessApiClient: ChessApiClientService,
@@ -38,9 +40,13 @@ export class GamesRouteComponent implements OnInit {
         this.userFactory.getProfile().then(profile => {
             this.profile = profile;
             this.retrieveGames();
-            //this.loopRetrieveGames();
+            this.loopRetrieveGames();
         });
 
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.refreshingInterval);
     }
 
     retrieveGames() {
@@ -114,7 +120,7 @@ export class GamesRouteComponent implements OnInit {
     }
 
     loopRetrieveGames() {
-        setInterval(() => {
+        this.refreshingInterval = setInterval(() => {
             this.retrieveGames();
         }, 15000);
     }
