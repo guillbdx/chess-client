@@ -38,6 +38,7 @@ export class GamesRouteComponent implements OnInit {
         this.userFactory.getProfile().then(profile => {
             this.profile = profile;
             this.retrieveGames();
+            this.loopRetrieveGames();
         });
 
     }
@@ -110,6 +111,12 @@ export class GamesRouteComponent implements OnInit {
                         break;
                 }
             });
+    }
+
+    loopRetrieveGames() {
+        setInterval(() => {
+            this.retrieveGames();
+        }, 15000);
     }
 
 
