@@ -355,4 +355,24 @@ export class ChessApiClientService {
 
     }
 
+    resign(game: Game) {
+
+        this.loader.show();
+        this.resetHeadersWithBearer();
+
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/games/' + game.id + '/resign',
+            null,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => {
+                this.loader.hide();
+                return response;
+            }, error => {
+                this.loader.hide();
+                return error;
+            });
+
+    }
+
 }

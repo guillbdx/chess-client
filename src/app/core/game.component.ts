@@ -182,6 +182,12 @@ export class GameComponent implements OnInit, OnDestroy {
         this.play();
     }
 
+    resign() {
+        this.chessApiClient.resign(this.game).then(response => {
+            this.pullOriginAndReset();
+        });
+    }
+
     previewMove() {
 
         this.game.chessboard[this.to] = this.game.chessboard[this.from];
