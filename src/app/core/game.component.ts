@@ -165,14 +165,39 @@ export class GameComponent implements OnInit {
     }
 
     previewMove() {
+
         this.game.chessboard[this.to] = this.game.chessboard[this.from];
         this.game.chessboard[this.from] = '';
+
         if(this.promotion != null) {
             this.game.chessboard[this.to] = Game.getUtf8PieceByColorAndType(
                 this.game.getColorByUser(this.profile),
                 this.promotion
             );
+            return;
         }
+
+        let castlingType = this.game.getCastlingType(this.from, this.to);
+        console.log(castlingType);
+        switch(castlingType) {
+            case 'Q' :
+                this.game.chessboard['a1'] = '';
+                this.game.chessboard['d1'] = '♖';
+                break;
+            case 'K' :
+                this.game.chessboard['h1'] = '';
+                this.game.chessboard['f1'] = '♖';
+                break;
+            case 'q' :
+                this.game.chessboard['a8'] = '';
+                this.game.chessboard['d8'] = '♜';
+                break;
+            case 'k' :
+                this.game.chessboard['h8'] = '';
+                this.game.chessboard['f8'] = '♜';
+                break;
+        }
+
     }
 
 }

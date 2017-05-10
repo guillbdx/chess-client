@@ -176,7 +176,13 @@ export class Game {
         this.playingColor = Game.COLOR_WHITE;
     }
 
-    isPromotionNeeded(from: string, to: string) {
+    /**
+     *
+     * @param from
+     * @param to
+     * @returns {boolean}
+     */
+    isPromotionNeeded(from: string, to: string): boolean {
         for(let possibleMove of this.possibleMoves) {
             if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['promotion'] == 'q') {
                 return true;
@@ -185,6 +191,12 @@ export class Game {
         return false;
     }
 
+    /**
+     *
+     * @param color
+     * @param type
+     * @returns {any}
+     */
     static getUtf8PieceByColorAndType(color: string, type: string) {
         if(color == Game.COLOR_WHITE) {
             switch(type) {
@@ -219,5 +231,19 @@ export class Game {
             }
         }
     }
+
+    getCastlingType(from: string, to: string): string|null {
+        for(let possibleMove of this.possibleMoves) {
+            if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['flags'] == 'q') {
+                return possibleMove['color']==Game.COLOR_WHITE ? 'Q' : 'q';
+            }
+            if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['flags'] == 'k') {
+                return possibleMove['color']==Game.COLOR_WHITE ? 'K' : 'k';
+            }
+        }
+        return null;
+    }
+
+
 
 }
