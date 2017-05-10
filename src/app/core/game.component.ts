@@ -23,13 +23,17 @@ export class GameComponent implements OnInit {
     to:         string|null = null;
     promotion:  string|null = null;
 
+    refreshing = true;
+
+    showPromotionPanel = false;
+
     constructor(
         private chessApiClient: ChessApiClientService
     ) {}
 
     ngOnInit() {
         this.resizeContainer();
-        //this.loopPull();
+        this.loopPull();
     }
 
     resizeContainer() {
@@ -46,6 +50,7 @@ export class GameComponent implements OnInit {
             chessboard.style.height = (11 * unit) + 'px';
         });
         document.getElementById('game-result').style.width = (9 * unit) + 'px';
+        document.getElementById('promotion-panel').style.width = (9 * unit) + 'px';
 
         setTimeout(() => {
             let tds = document.querySelectorAll('td');
@@ -87,16 +92,35 @@ export class GameComponent implements OnInit {
     play() {
         this.game.chessboard[this.to] = this.game.chessboard[this.from];
         this.game.chessboard[this.from] = '';
+        this.game.switchPlayingColor();
+        this.refreshing = false;
+        this.showPromotionPanel = false;
 
-        this.chessApiClient.play(this.game, this.from, this.to, null);
+        this.chessApiClient.play(this.game, this.from, this.to, this.promotion).then(response => {
+            if(response.status == 200) {
+                this.reset(response.json());
+            }
+            this.refreshing = true;
+        });
 
         this.from = null;
         this.to = null;
-        this.game.switchPlayingColor();
+        this.promotion = null;
+
+    }
+
+    promptPromotionIfNeededThenPlay() {
+
+        let needPromotion = true;
+
+        if(!needPromotion) {
+            this.play();
+            return;
+        }
+        this.showPromotionPanel = true;
     }
 
     onClickSquare(square: string) {
-
         if(!this.game.isInProgress()) {
             return;
         }
@@ -111,7 +135,7 @@ export class GameComponent implements OnInit {
 
         if(this.game.isPossibleFromTo(this.from, square)) {
             this.to = square;
-            this.play();
+            this.promptPromotionIfNeededThenPlay();
             return;
         }
 
@@ -124,8 +148,22 @@ export class GameComponent implements OnInit {
 
     loopPull() {
         setInterval(() => {
-            this.pullOriginAndReset();
+            if(this.refreshing) {
+                this.pullOriginAndReset();
+            }
         }, 3000);
+    }
+
+    onClosePromotionPanel() {
+        this.showPromotionPanel = false;
+        this.from = null;
+        this.to = null;
+        this.promotion = null;
+    }
+
+    onSelectPromotion(promotion: string) {
+        this.promotion = promotion;
+        this.play();
     }
 
 }

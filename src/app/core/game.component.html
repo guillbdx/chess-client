@@ -1,7 +1,31 @@
 <div id="width-reference"></div>
 
-<div class="game-result" id="game-result">
+<div class="game-result" id="game-result" [hidden]="game.getSentenceResult()==''">
     {{ game.getSentenceResult() | translate }}
+</div>
+
+<div id="promotion-panel" [hidden]="!showPromotionPanel">
+    <div id="promotion-banner">
+
+        <a class="promotion-close glyphicon glyphicon-remove" (click)="onClosePromotionPanel()"></a>
+
+        <div [hidden]="game.getColorByUser(profile)=='w'">
+            <a (click)="onSelectPromotion('q')">♛</a>
+            <a (click)="onSelectPromotion('r')">♜</a>
+            <a (click)="onSelectPromotion('n')">♞</a>
+            <a (click)="onSelectPromotion('b')">♝</a>
+        </div>
+
+        <div [hidden]="game.getColorByUser(profile)=='b'">
+            <a (click)="onSelectPromotion('q')">♕</a>
+            <a (click)="onSelectPromotion('r')">♖</a>
+            <a (click)="onSelectPromotion('n')">♘</a>
+            <a (click)="onSelectPromotion('b')">♗</a>
+        </div>
+
+
+
+    </div>
 </div>
 
 <table
