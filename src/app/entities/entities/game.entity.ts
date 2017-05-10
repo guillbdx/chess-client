@@ -41,26 +41,29 @@ export class Game {
      * @returns {string}
      */
     getSentenceResult(): string {
-        let sentence = '';
+
+        if(this.wonBy == 'n') {
+            return 'Draw';
+        }
 
         if(this.winType == 'regular') {
             if(this.wonBy == 'w') {
-                sentence = 'White won by checkmate';
+                return 'White won by checkmate';
             }
             if(this.wonBy == 'b') {
-                sentence = 'Black won by checkmate';
+                return 'Black won by checkmate';
             }
         }
         if(this.winType == 'resign') {
             if(this.wonBy == 'w') {
-                sentence = 'White won (Black resign)';
+                return 'White won (Black resign)';
             }
             if(this.wonBy == 'b') {
-                sentence = 'Black won (White resign)';
+                return 'Black won (White resign)';
             }
         }
 
-        return sentence;
+        return '';
     }
 
     /**
@@ -165,6 +168,7 @@ export class Game {
     switchPlayingColor() {
         if(this.playingColor == Game.COLOR_WHITE) {
             this.playingColor = Game.COLOR_BLACK;
+            return;
         }
         this.playingColor = Game.COLOR_WHITE;
     }

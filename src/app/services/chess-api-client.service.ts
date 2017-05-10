@@ -290,8 +290,6 @@ export class ChessApiClientService {
 
     getGame(id: number, displayLoader = true) {
 
-        console.log(displayLoader);
-
         if(displayLoader == true) {
             this.loader.show();
         }

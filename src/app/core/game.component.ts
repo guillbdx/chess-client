@@ -28,9 +28,8 @@ export class GameComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log(this.game);
         this.resizeContainer();
-        this.loopPull();
+        //this.loopPull();
     }
 
     resizeContainer() {
@@ -88,16 +87,12 @@ export class GameComponent implements OnInit {
         this.game.chessboard[this.to] = this.game.chessboard[this.from];
         this.game.chessboard[this.from] = '';
 
-        this.chessApiClient.play(this.game, this.from, this.to, null).then(response => {
-            if(response.status != 200) {
-                this.pullOriginAndReset();
-            }
-            this.reset(response.json());
-        });
+        this.chessApiClient.play(this.game, this.from, this.to, null);
 
         this.from = null;
         this.to = null;
         this.game.switchPlayingColor();
+        console.log(this.game);
     }
 
     onClickSquare(square: string) {
@@ -130,7 +125,7 @@ export class GameComponent implements OnInit {
     loopPull() {
         setInterval(() => {
             this.pullOriginAndReset();
-        }, 1000);
+        }, 3000);
     }
 
 }
