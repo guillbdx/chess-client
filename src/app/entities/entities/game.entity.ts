@@ -244,6 +244,25 @@ export class Game {
         return null;
     }
 
+    getInPassingCapturedSquare(from: string, to: string): string|null {
+        for(let possibleMove of this.possibleMoves) {
+            if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['flags'] == 'e') {
+                return this.getBehindSquare(possibleMove['to'], possibleMove['color']);
+            }
+        }
+        return null;
+    }
 
+    getBehindSquare(square: string, color: string): string {
+        let splitedSquare = square.split('');
+        let letter = splitedSquare[0];
+        let number = +splitedSquare[1];
+        if(color == Game.COLOR_WHITE) {
+            return letter + (number - 1);
+        }
+        if(color == Game.COLOR_BLACK) {
+            return letter + (number + 1);
+        }
+    }
 
 }

@@ -178,7 +178,6 @@ export class GameComponent implements OnInit {
         }
 
         let castlingType = this.game.getCastlingType(this.from, this.to);
-        console.log(castlingType);
         switch(castlingType) {
             case 'Q' :
                 this.game.chessboard['a1'] = '';
@@ -198,6 +197,10 @@ export class GameComponent implements OnInit {
                 break;
         }
 
+        let inPassingCapturedSquare = this.game.getInPassingCapturedSquare(this.from, this.to);
+        if(inPassingCapturedSquare != null) {
+            this.game.chessboard[inPassingCapturedSquare] = '';
+        }
     }
 
 }
