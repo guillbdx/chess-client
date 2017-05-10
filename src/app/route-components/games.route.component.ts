@@ -38,7 +38,7 @@ export class GamesRouteComponent implements OnInit {
         this.userFactory.getProfile().then(profile => {
             this.profile = profile;
             this.retrieveGames();
-            this.loopRetrieveGames();
+            //this.loopRetrieveGames();
         });
 
     }

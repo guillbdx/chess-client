@@ -13,7 +13,7 @@
                 {{ "You don't have any game. You should create one !" | translate}}
             </p>
 
-            <a href="game-create" class="btn btn-info translate">{{ 'Create a game' | translate }}</a>
+            <a routerLink="/game-create" class="btn btn-info translate">{{ 'Create a game' | translate }}</a>
 
 
 
@@ -27,7 +27,7 @@
             <ul class="games" id="games-in-progress">
                 <li *ngFor="let game of games.inProgress">
                     <a
-                            href="game/{{game.id}}"
+                            [routerLink]="['/game', game.id]"
                             class="go-to-game pull-right btn btn-primary btn-sm">
                         {{ 'Play' | translate }}
                     </a>
@@ -102,7 +102,7 @@
             <ul class="games" id="games-ended">
                 <li *ngFor="let game of games.ended">
                     <a
-                            href="game/{{game.id}}"
+                            [routerLink]="['/game', game.id]"
                             class="go-to-game pull-right btn btn-primary btn-sm">
                         {{ 'See' | translate}}
                     </a>
