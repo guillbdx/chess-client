@@ -43,23 +43,23 @@ export class Game {
     getSentenceResult(): string {
 
         if(this.wonBy == 'n') {
-            return 'Draw';
+            return 'Draw !';
         }
 
         if(this.winType == 'regular') {
             if(this.wonBy == 'w') {
-                return 'White won by checkmate';
+                return 'White won by checkmate !';
             }
             if(this.wonBy == 'b') {
-                return 'Black won by checkmate';
+                return 'Black won<br>by checkmate !';
             }
         }
         if(this.winType == 'resign') {
             if(this.wonBy == 'w') {
-                return 'White won (Black resign)';
+                return 'White won ! (Black resign)';
             }
             if(this.wonBy == 'b') {
-                return 'Black won (White resign)';
+                return 'Black won ! (White resign)';
             }
         }
 

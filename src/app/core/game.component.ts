@@ -33,7 +33,7 @@ export class GameComponent implements OnInit {
     }
 
     resizeContainer() {
-        let containerWidth = document.getElementById('game-result').offsetWidth;
+        let containerWidth = document.getElementById('width-reference').offsetWidth;
         let unit = containerWidth / 9;
         if(window.innerWidth > window.innerHeight) { // Landscape mode
             let containerHeight = window.innerHeight - 100;
@@ -45,6 +45,7 @@ export class GameComponent implements OnInit {
             chessboard.style.width = (9 * unit) + 'px';
             chessboard.style.height = (11 * unit) + 'px';
         });
+        document.getElementById('game-result').style.width = (9 * unit) + 'px';
 
         setTimeout(() => {
             let tds = document.querySelectorAll('td');
@@ -92,7 +93,6 @@ export class GameComponent implements OnInit {
         this.from = null;
         this.to = null;
         this.game.switchPlayingColor();
-        console.log(this.game);
     }
 
     onClickSquare(square: string) {

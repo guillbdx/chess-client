@@ -1,11 +1,21 @@
+#width-reference {
+    height: 55px;
+}
+
 /* Game result */
 .game-result {
     height: 55px;
-    font-size: x-large;
+    font-size: xx-large;
     line-height: 55px;
     padding-left: 65px;
-    color: #b62516;
+    color: white;
+    text-shadow: 2px 2px black;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 40%;
 }
+
 /*-----------------------------------------*/
 
 /* Chessboard wrapper */
