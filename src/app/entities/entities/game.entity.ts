@@ -20,6 +20,8 @@ export class Game {
         public chessboard?         : string[],
         public acceptedAt?         : string,
         public endedAt?            : string,
+        public wonBy?              : string,
+        public winType?            : string
     ) {}
 
     /**
@@ -40,17 +42,24 @@ export class Game {
      */
     getSentenceResult(): string {
         let sentence = '';
-        switch(this.result) {
-            case '0-1' :
-                sentence = 'Black won !';
-                break;
-            case '1-0' :
-                sentence = 'White won';
-                break;
-            case '1/2-1/2' :
-                sentence = 'Draw';
-                break;
+
+        if(this.winType == 'regular') {
+            if(this.wonBy == 'w') {
+                sentence = 'White won by checkmate';
+            }
+            if(this.wonBy == 'b') {
+                sentence = 'Black won by checkmate';
+            }
         }
+        if(this.winType == 'resign') {
+            if(this.wonBy == 'w') {
+                sentence = 'White won (Black resign)';
+            }
+            if(this.wonBy == 'b') {
+                sentence = 'Black won (White resign)';
+            }
+        }
+
         return sentence;
     }
 
@@ -102,12 +111,62 @@ export class Game {
 
     /**
      *
+     * @returns {boolean}
+     */
+    isInProgress(): boolean {
+        if(this.acceptedAt == null) {
+            return false;
+        }
+        if(this.endedAt != null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
      * @param user
      * @returns {boolean}
      */
     isUserTurn(user: User): boolean {
         let userColor = this.getColorByUser(user);
         return userColor == this.playingColor;
+    }
+
+    /**
+     *
+     * @param square
+     * @returns {boolean}
+     */
+    isPossibleFrom(square: string): boolean {
+        for(let possibleMove of this.possibleMoves) {
+            if(possibleMove['from'] == square) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param from
+     * @param to
+     * @returns {boolean}
+     */
+    isPossibleFromTo(from: string, to: string): boolean {
+        for(let possibleMove of this.possibleMoves) {
+            if(possibleMove['from'] == from && possibleMove['to'] == to) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    switchPlayingColor() {
+        if(this.playingColor == Game.COLOR_WHITE) {
+            this.playingColor = Game.COLOR_BLACK;
+        }
+        this.playingColor = Game.COLOR_WHITE;
     }
 
 }

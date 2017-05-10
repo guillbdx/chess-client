@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Game} from "../entities/entities/game.entity";
 import {User} from "../entities/entities/user.entity";
+import {ChessApiClientService} from "../services/chess-api-client.service";
 
 @Component({
     selector: 'game',
@@ -9,15 +10,27 @@ import {User} from "../entities/entities/user.entity";
 })
 export class GameComponent implements OnInit {
 
+    // #f1ed2e
+    // #dad745
+
     @Input()
     game: Game;
 
     @Input()
     profile: User;
 
+    from:       string|null = null;
+    to:         string|null = null;
+    promotion:  string|null = null;
+
+    constructor(
+        private chessApiClient: ChessApiClientService
+    ) {}
+
     ngOnInit() {
         console.log(this.game);
         this.resizeContainer();
+        this.loopPull();
     }
 
     resizeContainer() {
@@ -30,7 +43,6 @@ export class GameComponent implements OnInit {
 
         let chessboards = document.querySelectorAll('.chessboard-wrapper');
         [].forEach.call(chessboards, chessboard => {
-            // do whatever
             chessboard.style.width = (9 * unit) + 'px';
             chessboard.style.height = (11 * unit) + 'px';
         });
@@ -53,8 +65,72 @@ export class GameComponent implements OnInit {
         }
     }
 
+    reset(data) {
+        this.game.wonBy = data.wonBy;
+        this.game.winType = data.winType;
+        this.game.endedAt = data.endedAt;
+        this.game.result = data.result;
+        this.game.chessboard = data.chessboard;
+        this.game.playingColor = data.playingColor;
+        this.game.possibleMoves = data.possibleMoves;
+        this.game.fen = data.fen;
+        this.game.pgn = data.pgn;
+    }
+
+    pullOriginAndReset() {
+        this.chessApiClient.getGame(this.game.id, false).then(response => {
+            if(response.status != 200) {}
+            this.reset(response.json());
+        });
+    }
+
+    play() {
+        this.game.chessboard[this.to] = this.game.chessboard[this.from];
+        this.game.chessboard[this.from] = '';
+
+        this.chessApiClient.play(this.game, this.from, this.to, null).then(response => {
+            if(response.status != 200) {
+                this.pullOriginAndReset();
+            }
+            this.reset(response.json());
+        });
+
+        this.from = null;
+        this.to = null;
+        this.game.switchPlayingColor();
+    }
+
     onClickSquare(square: string) {
-        console.log(square);
+
+        if(!this.game.isInProgress()) {
+            return;
+        }
+        if(!this.game.isUserTurn(this.profile)) {
+            return;
+        }
+
+        if(this.from == null && this.game.isPossibleFrom(square)) {
+            this.from = square;
+            return;
+        }
+
+        if(this.game.isPossibleFromTo(this.from, square)) {
+            this.to = square;
+            this.play();
+            return;
+        }
+
+        if(this.game.isPossibleFrom(square)) {
+            this.from = square;
+            return;
+        }
+
+    }
+
+    loopPull() {
+        setInterval(() => {
+            this.pullOriginAndReset();
+        }, 1000);
     }
 
 }

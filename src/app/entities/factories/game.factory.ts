@@ -73,7 +73,9 @@ export class GameFactory {
             data.result,
             data.chessboard,
             data.acceptedAt,
-            data.endedAt
+            data.endedAt,
+            data.wonBy,
+            data.winType
         );
     }
 

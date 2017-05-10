@@ -288,9 +288,13 @@ export class ChessApiClientService {
             });
     }
 
-    getGame(id: number) {
+    getGame(id: number, displayLoader = true) {
 
-        this.loader.show();
+        console.log(displayLoader);
+
+        if(displayLoader == true) {
+            this.loader.show();
+        }
         this.resetHeadersWithBearer();
 
         return this.http.get(
@@ -298,10 +302,14 @@ export class ChessApiClientService {
             {headers: this.headersWithBearer})
             .toPromise()
             .then(response => {
-                this.loader.hide();
+                if(displayLoader == true) {
+                    this.loader.hide();
+                }
                 return response;
             }, error => {
-                this.loader.hide();
+                if(displayLoader == true) {
+                    this.loader.hide();
+                }
                 return error;
             });
     }
@@ -321,6 +329,29 @@ export class ChessApiClientService {
                 return response;
             }, error => {
                 this.loader.hide();
+                return error;
+            });
+
+    }
+
+    play(game: Game, from: string, to: string, promotion: string|null) {
+
+        this.resetHeadersWithBearer();
+
+        let body = {
+            from: from,
+            to: to,
+            promotion: promotion
+        };
+
+        return this.http.post(
+            this.configuration.apiBaseUrl + '/games/' + game.id + '/play',
+            body,
+            {headers: this.headersWithBearer})
+            .toPromise()
+            .then(response => {
+                return response;
+            }, error => {
                 return error;
             });
 
