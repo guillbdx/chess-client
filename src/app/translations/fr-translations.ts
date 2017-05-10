@@ -63,5 +63,10 @@ export let frTranslations = {
     "A problem has occurred. We cannot comply with your request.": "Un problème est survenu. Nous ne pouvons donner suite à votre demande.",
     "Delete your account": "Supprimer votre compte",
     "Yes, delete my account": "Oui, supprimer mon compte",
-    "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?": "Attention ! Vous êtes sur le point de supprimer votre compte. Toutes vos parties seront supprimées. Êtes-vous sûr(e) de vouloir continuer ?"
+    "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?": "Attention ! Vous êtes sur le point de supprimer votre compte. Toutes vos parties seront supprimées. Êtes-vous sûr(e) de vouloir continuer ?",
+    "Draw !": "Pat !",
+    "White won by checkmate !": "Victoire des Blancs !",
+    "Black won by checkmate !": "Victoire des Noirs !",
+    "White won ! (Black resign)": "Victoire des Blancs ! (Abandon des Noirs)",
+    "Black won ! (White resign)": "Victoire des Noirs ! (Abandon des Blancs)",
 };

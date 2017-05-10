@@ -51,7 +51,7 @@ export class Game {
                 return 'White won by checkmate !';
             }
             if(this.wonBy == 'b') {
-                return 'Black won<br>by checkmate !';
+                return 'Black won by checkmate !';
             }
         }
         if(this.winType == 'resign') {

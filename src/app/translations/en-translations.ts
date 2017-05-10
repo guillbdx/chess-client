@@ -63,5 +63,10 @@ export let enTranslations = {
     "A problem has occurred. We cannot comply with your request.": "A problem has occurred. We cannot comply with your request.",
     "Delete your account": "Delete your account",
     "Yes, delete my account": "Yes, delete my account",
-    "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?": "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?"
+    "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?": "Be careful ! You're about to delete your account. All your games and informations will be removed. Are you sure you want to proceed the deletion ?",
+    "Draw !": "Draw !",
+    "White won by checkmate !": "White won by checkmate !",
+    "Black won by checkmate !": "Black won by checkmate !",
+    "White won ! (Black resign)": "White won ! (Black resign)",
+    "Black won ! (White resign)": "Black won ! (White resign)",
 };
