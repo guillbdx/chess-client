@@ -125,7 +125,11 @@ export class GameComponent implements OnInit, OnDestroy {
         this.showPromotionPanel = true;
     }
 
-    onClickSquare(square: string) {
+    onClickSquare(square: string, event?) {
+
+        let target = event.target || event.srcElement || event.currentTarget;
+        this.removeFromToClasses();
+
         if(!this.game.isInProgress()) {
             return;
         }
@@ -135,17 +139,20 @@ export class GameComponent implements OnInit, OnDestroy {
 
         if(this.from == null && this.game.isPossibleFrom(square)) {
             this.from = square;
+            target.classList.add("from");
             return;
         }
 
         if(this.game.isPossibleFromTo(this.from, square)) {
             this.to = square;
+            target.classList.add("to");
             this.promptPromotionIfNeededThenPlay();
             return;
         }
 
         if(this.game.isPossibleFrom(square)) {
             this.from = square;
+            target.classList.add("from");
             return;
         }
 
@@ -206,6 +213,14 @@ export class GameComponent implements OnInit, OnDestroy {
         if(inPassingCapturedSquare != null) {
             this.game.chessboard[inPassingCapturedSquare] = '';
         }
+    }
+
+    removeFromToClasses() {
+        let tdsFrom = document.querySelectorAll('td.from, td.to');
+        [].forEach.call(tdsFrom, tdFrom => {
+            tdFrom.classList.remove('from');
+            tdFrom.classList.remove('to');
+        });
     }
 
 }

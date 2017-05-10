@@ -83,3 +83,9 @@
 .chessboard td.light {
     background: #ffce9e;
 }
+.chessboard td.dark.from, .chessboard td.light.from {
+    background: #f1ed2e;
+}
+.chessboard td.dark.to, .chessboard td.light.to {
+    background: #dad745;
+}
