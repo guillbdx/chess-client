@@ -185,4 +185,39 @@ export class Game {
         return false;
     }
 
+    static getUtf8PieceByColorAndType(color: string, type: string) {
+        if(color == Game.COLOR_WHITE) {
+            switch(type) {
+                case 'r' :
+                    return '♖';
+                case 'n' :
+                    return '♘';
+                case 'b' :
+                    return '♗';
+                case 'q' :
+                    return '♕';
+                case 'k' :
+                    return '♔';
+                case 'p' :
+                    return '♙';
+            }
+        }
+        if(color == Game.COLOR_BLACK) {
+            switch(type) {
+                case 'r' :
+                    return '♜';
+                case 'n' :
+                    return '♞';
+                case 'b' :
+                    return '♝';
+                case 'q' :
+                    return '♛';
+                case 'k' :
+                    return '♚';
+                case 'p' :
+                    return '♟';
+            }
+        }
+    }
+
 }

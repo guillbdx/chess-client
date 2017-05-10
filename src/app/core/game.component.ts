@@ -71,6 +71,9 @@ export class GameComponent implements OnInit {
     }
 
     reset(data) {
+        if(!this.refreshing) {
+            return;
+        }
         this.game.wonBy = data.wonBy;
         this.game.winType = data.winType;
         this.game.endedAt = data.endedAt;
@@ -90,8 +93,7 @@ export class GameComponent implements OnInit {
     }
 
     play() {
-        this.game.chessboard[this.to] = this.game.chessboard[this.from];
-        this.game.chessboard[this.from] = '';
+        this.previewMove();
         this.game.switchPlayingColor();
         this.refreshing = false;
         this.showPromotionPanel = false;
@@ -110,9 +112,7 @@ export class GameComponent implements OnInit {
     }
 
     promptPromotionIfNeededThenPlay() {
-
         let needPromotion = this.game.isPromotionNeeded(this.from, this.to);
-
         if(!needPromotion) {
             this.play();
             return;
@@ -148,9 +148,7 @@ export class GameComponent implements OnInit {
 
     loopPull() {
         setInterval(() => {
-            if(this.refreshing) {
-                this.pullOriginAndReset();
-            }
+            this.pullOriginAndReset();
         }, 3000);
     }
 
@@ -164,6 +162,17 @@ export class GameComponent implements OnInit {
     onSelectPromotion(promotion: string) {
         this.promotion = promotion;
         this.play();
+    }
+
+    previewMove() {
+        this.game.chessboard[this.to] = this.game.chessboard[this.from];
+        this.game.chessboard[this.from] = '';
+        if(this.promotion != null) {
+            this.game.chessboard[this.to] = Game.getUtf8PieceByColorAndType(
+                this.game.getColorByUser(this.profile),
+                this.promotion
+            );
+        }
     }
 
 }
