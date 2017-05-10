@@ -165,12 +165,24 @@ export class Game {
         return false;
     }
 
+    /**
+     *
+     */
     switchPlayingColor() {
         if(this.playingColor == Game.COLOR_WHITE) {
             this.playingColor = Game.COLOR_BLACK;
             return;
         }
         this.playingColor = Game.COLOR_WHITE;
+    }
+
+    isPromotionNeeded(from: string, to: string) {
+        for(let possibleMove of this.possibleMoves) {
+            if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['promotion'] == 'q') {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

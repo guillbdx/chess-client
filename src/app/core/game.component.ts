@@ -111,7 +111,7 @@ export class GameComponent implements OnInit {
 
     promptPromotionIfNeededThenPlay() {
 
-        let needPromotion = true;
+        let needPromotion = this.game.isPromotionNeeded(this.from, this.to);
 
         if(!needPromotion) {
             this.play();
