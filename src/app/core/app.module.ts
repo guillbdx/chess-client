@@ -4,7 +4,6 @@ import { FormsModule }                      from '@angular/forms';
 import { HttpModule }                       from '@angular/http';
 import { AppRoutingModule }                 from './app-routing.module';
 
-import {Configuration}                      from "../Configuration";
 import {LanguageDetectorService}            from "../services/language-detector.service";
 import {ChessApiClientService}              from "../services/chess-api-client.service";
 import {ErrorsExtractorService}             from "../services/errors-extractor.service";
@@ -73,7 +72,6 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         FormatDatePipe,
     ],
     providers: [
-        Configuration,
         CanAccessPrivateAreaGuard,
         CanAccessOpenAreaGuard,
         LanguageDetectorService,

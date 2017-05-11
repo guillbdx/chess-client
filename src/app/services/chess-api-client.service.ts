@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
-import {Configuration} from "../Configuration";
 import {LanguageDetectorService} from "./language-detector.service";
 import {User} from "../entities/entities/user.entity";
 import {Game} from "../entities/entities/game.entity";
 import {LoaderService} from "./loader.service";
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ChessApiClientService {
@@ -16,10 +16,10 @@ export class ChessApiClientService {
 
     constructor(
         private http: Http,
-        private configuration: Configuration,
         private languageDetector: LanguageDetectorService,
         private loader: LoaderService
     ) {
+
         this.headers = new Headers({
             'Content-Type': 'application/json',
             'Accept-Language' : this.languageDetector.getLanguage()
@@ -58,7 +58,7 @@ export class ChessApiClientService {
             password: password
         };
         return this.http.post(
-            this.configuration.apiBaseUrl + '/security/login',
+            environment.apiBaseUrl + '/security/login',
             body,
             {headers: this.headers})
             .toPromise()
@@ -82,7 +82,7 @@ export class ChessApiClientService {
             plainPassword: password
         };
         return this.http.post(
-            this.configuration.apiBaseUrl + '/security/register',
+            environment.apiBaseUrl + '/security/register',
             body,
             {headers: this.headers})
             .toPromise()
@@ -104,7 +104,7 @@ export class ChessApiClientService {
             plainPassword: password
         };
         return this.http.post(
-            this.configuration.apiBaseUrl + '/account/change-password',
+            environment.apiBaseUrl + '/account/change-password',
             body,
             {headers: this.headersWithBearer})
             .toPromise()
@@ -132,7 +132,7 @@ export class ChessApiClientService {
         });
 
         return this.http.get(
-            this.configuration.apiBaseUrl + '/users?' + query,
+            environment.apiBaseUrl + '/users?' + query,
             {headers: this.headersWithBearer})
             .toPromise()
             .then(response => {
@@ -150,7 +150,7 @@ export class ChessApiClientService {
         this.resetHeadersWithBearer();
 
         return this.http.get(
-            this.configuration.apiBaseUrl + '/users/' + id,
+            environment.apiBaseUrl + '/users/' + id,
             {headers: this.headersWithBearer})
             .toPromise()
             .then(response => {
@@ -173,7 +173,7 @@ export class ChessApiClientService {
             creatorIsWhite: creatorIsWhite
         };
         return this.http.post(
-            this.configuration.apiBaseUrl + '/games',
+            environment.apiBaseUrl + '/games',
             body,
             {headers: this.headersWithBearer})
             .toPromise()
@@ -195,7 +195,7 @@ export class ChessApiClientService {
             creatorIsWhite: creatorIsWhite
         };
         return this.http.post(
-            this.configuration.apiBaseUrl + '/computer-games',
+            environment.apiBaseUrl + '/computer-games',
             body,
             {headers: this.headersWithBearer})
             .toPromise()
@@ -214,7 +214,7 @@ export class ChessApiClientService {
         this.resetHeadersWithBearer();
 
         return this.http.get(
-            this.configuration.apiBaseUrl + '/account/profile',
+            environment.apiBaseUrl + '/account/profile',
             {headers: this.headersWithBearer})
             .toPromise()
             .then(response => {
@@ -237,7 +237,7 @@ export class ChessApiClientService {
         });
 
         return this.http.get(
-            this.configuration.apiBaseUrl + '/games?' + query,
+            environment.apiBaseUrl + '/games?' + query,
             {headers: this.headersWithBearer})
             .toPromise()
             .then(response => {
@@ -256,7 +256,7 @@ export class ChessApiClientService {
         this.resetHeadersWithBearer();
 
         return this.http.post(
-            this.configuration.apiBaseUrl + '/games/' + game.id + '/refuse',
+            environment.apiBaseUrl + '/games/' + game.id + '/refuse',
             null,
             {headers: this.headersWithBearer})
             .toPromise()
@@ -275,7 +275,7 @@ export class ChessApiClientService {
         this.resetHeadersWithBearer();
 
         return this.http.post(
-            this.configuration.apiBaseUrl + '/games/' + game.id + '/accept',
+            environment.apiBaseUrl + '/games/' + game.id + '/accept',
             null,
             {headers: this.headersWithBearer})
             .toPromise()
@@ -296,7 +296,7 @@ export class ChessApiClientService {
         this.resetHeadersWithBearer();
 
         return this.http.get(
-            this.configuration.apiBaseUrl + '/games/' + id,
+            environment.apiBaseUrl + '/games/' + id,
             {headers: this.headersWithBearer})
             .toPromise()
             .then(response => {
@@ -318,7 +318,7 @@ export class ChessApiClientService {
         this.resetHeadersWithBearer();
 
         return this.http.post(
-            this.configuration.apiBaseUrl + '/account/remove',
+            environment.apiBaseUrl + '/account/remove',
             null,
             {headers: this.headersWithBearer})
             .toPromise()
@@ -343,7 +343,7 @@ export class ChessApiClientService {
         };
 
         return this.http.post(
-            this.configuration.apiBaseUrl + '/games/' + game.id + '/play',
+            environment.apiBaseUrl + '/games/' + game.id + '/play',
             body,
             {headers: this.headersWithBearer})
             .toPromise()
@@ -361,7 +361,7 @@ export class ChessApiClientService {
         this.resetHeadersWithBearer();
 
         return this.http.post(
-            this.configuration.apiBaseUrl + '/games/' + game.id + '/resign',
+            environment.apiBaseUrl + '/games/' + game.id + '/resign',
             null,
             {headers: this.headersWithBearer})
             .toPromise()
