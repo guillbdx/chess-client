@@ -17,6 +17,7 @@ export class ErrorsExtractorService {
                 messages.push(content.errors.errors[i]);
             }
         }
+        
 
         // Errors on fields
         let fields = content.children;
