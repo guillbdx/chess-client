@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
     envName: 'dev',
-    apiBaseUrl: 'http://chess-api.local'
+    apiBaseUrl: 'http://chess-api.local/api'
 };
