@@ -32,16 +32,29 @@ export class GameComponent implements OnInit, OnDestroy {
         private chessApiClient: ChessApiClientService
     ) {}
 
+    //---------------------------------------------------------------------
+    // GLOBAL ACTIONS LAUNCHED ONLY ONCE
+    //---------------------------------------------------------------------
+
+    /**
+     * Resizes, pulls and reset data, and launches the refreshing interval.
+     */
     ngOnInit() {
         this.resizeContainer();
         this.pullOriginAndReset();
         this.loopPull();
     }
 
+    /**
+     * Clears the refreshing interval
+     */
     ngOnDestroy() {
         clearInterval(this.refreshingInterval);
     }
 
+    /**
+     * Resizes the container
+     */
     resizeContainer() {
         let containerWidth = document.getElementById('width-reference').offsetWidth;
         let unit = containerWidth / 9;
@@ -68,6 +81,9 @@ export class GameComponent implements OnInit, OnDestroy {
 
     }
 
+    /**
+     * Hides the opposite color view
+     */
     hideOtherColorContainer() {
         if(this.game.getColorByUser(this.profile) == Game.COLOR_WHITE ) {
             document.getElementById('chessboard-wrapper-by-black').style.display = 'none';
@@ -76,6 +92,25 @@ export class GameComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * Launches the refreshing interval.
+     *
+     * This interval is disabled when a play is sent to origin, and re-enabled on origin response.
+     */
+    loopPull() {
+        this.refreshingInterval = setInterval(() => {
+            this.pullOriginAndReset();
+        }, 3000);
+    }
+
+    //---------------------------------------------------------------------
+    // GAME
+    //---------------------------------------------------------------------
+
+    /**
+     * Ressets some data (chessboard, playingColor...)
+     * @param data
+     */
     reset(data) {
         if(!this.refreshing) {
             return;
@@ -96,6 +131,9 @@ export class GameComponent implements OnInit, OnDestroy {
 
     }
 
+    /**
+     * Pulls data and launches reset function
+     */
     pullOriginAndReset() {
         this.chessApiClient.getGame(this.game.id, false).then(response => {
             if(response.status != 200) {}
@@ -103,26 +141,9 @@ export class GameComponent implements OnInit, OnDestroy {
         });
     }
 
-    play() {
-        this.previewMove();
-        this.game.switchPlayingColor();
-        this.refreshing = false;
-        this.showPromotionPanel = false;
-        this.uncolorLastFromToSquare();
-
-        this.chessApiClient.play(this.game, this.from, this.to, this.promotion).then(response => {
-            if(response.status == 200) {
-                this.reset(response.json());
-            }
-            this.refreshing = true;
-        });
-
-        this.from = null;
-        this.to = null;
-        this.promotion = null;
-
-    }
-
+    /**
+     * Checks if a promotion is needed. If so, opens the panel. If not, launches play function.
+     */
     promptPromotionIfNeededThenPlay() {
         let needPromotion = this.game.isPromotionNeeded(this.from, this.to);
         if(!needPromotion) {
@@ -132,62 +153,9 @@ export class GameComponent implements OnInit, OnDestroy {
         this.showPromotionPanel = true;
     }
 
-    onClickSquare(square: string, event?) {
-
-        let target = event.target || event.srcElement || event.currentTarget;
-
-        if(!this.game.isInProgress()) {
-            return;
-        }
-        if(!this.game.isUserTurn(this.profile)) {
-            return;
-        }
-
-        if(this.from == null && this.game.isPossibleFrom(square)) {
-            this.from = square;
-            this.colorCurrentFromToSquare();
-            return;
-        }
-
-        if(this.game.isPossibleFromTo(this.from, square)) {
-            this.to = square;
-            this.colorCurrentFromToSquare();
-            this.promptPromotionIfNeededThenPlay();
-            return;
-        }
-
-        if(this.game.isPossibleFrom(square)) {
-            this.from = square;
-            this.colorCurrentFromToSquare();
-            return;
-        }
-
-    }
-
-    loopPull() {
-        this.refreshingInterval = setInterval(() => {
-            this.pullOriginAndReset();
-        }, 3000);
-    }
-
-    onClosePromotionPanel() {
-        this.showPromotionPanel = false;
-        this.from = null;
-        this.to = null;
-        this.promotion = null;
-    }
-
-    onSelectPromotion(promotion: string) {
-        this.promotion = promotion;
-        this.play();
-    }
-
-    resign() {
-        this.chessApiClient.resign(this.game).then(response => {
-            this.pullOriginAndReset();
-        });
-    }
-
+    /**
+     * Plays a move on the view. (nothing is sent to origin)
+     */
     previewMove() {
 
         this.game.chessboard[this.to] = this.game.chessboard[this.from];
@@ -227,6 +195,108 @@ export class GameComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * Launches preview function, switch player color, hides promotions panel, colors and reset from to squares.
+     * Sends the move to origin.
+     */
+    play() {
+        this.previewMove();
+        this.game.switchPlayingColor();
+        this.refreshing = false;
+        this.showPromotionPanel = false;
+        this.uncolorLastFromToSquare();
+
+        this.chessApiClient.play(this.game, this.from, this.to, this.promotion).then(response => {
+            if(response.status == 200) {
+                this.reset(response.json());
+            }
+            this.refreshing = true;
+        });
+
+        this.from = null;
+        this.to = null;
+        this.promotion = null;
+
+    }
+
+    //---------------------------------------------------------------------
+    // VIEW EVENTS
+    //---------------------------------------------------------------------
+
+    /**
+     * Triggered when the user click on a square.
+     *
+     * @param square
+     * @param event
+     */
+    onClickSquare(square: string, event?) {
+
+        let target = event.target || event.srcElement || event.currentTarget;
+
+        if(!this.game.isInProgress()) {
+            return;
+        }
+        if(!this.game.isUserTurn(this.profile)) {
+            return;
+        }
+
+        if(this.from == null && this.game.isPossibleFrom(square)) {
+            this.from = square;
+            this.colorCurrentFromToSquare();
+            return;
+        }
+
+        if(this.game.isPossibleFromTo(this.from, square)) {
+            this.to = square;
+            this.colorCurrentFromToSquare();
+            this.promptPromotionIfNeededThenPlay();
+            return;
+        }
+
+        if(this.game.isPossibleFrom(square)) {
+            this.from = square;
+            this.colorCurrentFromToSquare();
+            return;
+        }
+
+    }
+
+    /**
+     * Triggered when the user closes the promotion panel
+     */
+    onClosePromotionPanel() {
+        this.showPromotionPanel = false;
+        this.from = null;
+        this.to = null;
+        this.promotion = null;
+    }
+
+    /**
+     * Triggered when the user selects a promotion in the promotin panel
+     *
+     * @param promotion
+     */
+    onSelectPromotion(promotion: string) {
+        this.promotion = promotion;
+        this.play();
+    }
+
+    /**
+     * Triggered when the user clicks on Resign button
+     */
+    onResign() {
+        this.chessApiClient.resign(this.game).then(response => {
+            this.pullOriginAndReset();
+        });
+    }
+
+    //---------------------------------------------------------------------
+    // FROM - TO SQUARES COLORS
+    //---------------------------------------------------------------------
+
+    /**
+     * Removes styles last-from and last-to on each square
+     */
     uncolorLastFromToSquare() {
         let tds = document.querySelectorAll('td');
         [].forEach.call(tds, td => {
@@ -235,6 +305,9 @@ export class GameComponent implements OnInit, OnDestroy {
         });
     }
 
+    /**
+     * Applies style last-from and last-to on from and to squares
+     */
     colorLastFromToSquare() {
         this.uncolorLastFromToSquare();
         if(this.game.lastMove == null) {
@@ -250,6 +323,9 @@ export class GameComponent implements OnInit, OnDestroy {
         });
     }
 
+    /**
+     * Removes styles current-from and current-to on each square
+     */
     uncolorCurrentFromToSquare() {
         let tds = document.querySelectorAll('td');
         [].forEach.call(tds, td => {
@@ -258,6 +334,9 @@ export class GameComponent implements OnInit, OnDestroy {
         });
     }
 
+    /**
+     * Applies style current-from and current-to on from and to squares
+     */
     colorCurrentFromToSquare() {
         this.uncolorCurrentFromToSquare();
         if(this.from == null) {
