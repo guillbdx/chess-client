@@ -173,19 +173,19 @@ export class GameComponent implements OnInit, OnDestroy {
         switch(castlingType) {
             case 'Q' :
                 this.game.chessboard['a1'] = '';
-                this.game.chessboard['d1'] = '♖';
+                this.game.chessboard['d1'] = 'w-r';
                 break;
             case 'K' :
                 this.game.chessboard['h1'] = '';
-                this.game.chessboard['f1'] = '♖';
+                this.game.chessboard['f1'] = 'w-r';
                 break;
             case 'q' :
                 this.game.chessboard['a8'] = '';
-                this.game.chessboard['d8'] = '♜';
+                this.game.chessboard['d8'] = 'b-r';
                 break;
             case 'k' :
                 this.game.chessboard['h8'] = '';
-                this.game.chessboard['f8'] = '♜';
+                this.game.chessboard['f8'] = 'b-r';
                 break;
         }
 

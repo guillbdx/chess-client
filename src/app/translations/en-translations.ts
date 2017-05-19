@@ -69,4 +69,5 @@ export let enTranslations = {
     "Black won by checkmate !": "Black won by checkmate !",
     "White won ! (Black resign)": "White won ! (Black resign)",
     "Black won ! (White resign)": "Black won ! (White resign)",
+    "Resign": "Resign"
 };
