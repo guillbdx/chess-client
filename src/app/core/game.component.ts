@@ -248,7 +248,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
         if(this.game.isPossibleFromTo(this.from, square)) {
             this.to = square;
-            this.colorCurrentFromToSquare();
+            this.colorCurrentFromToSquare(true);
             this.promptPromotionIfNeededThenPlay();
             return;
         }
@@ -337,15 +337,18 @@ export class GameComponent implements OnInit, OnDestroy {
     /**
      * Applies style current-from and current-to on from and to squares
      */
-    colorCurrentFromToSquare() {
+    colorCurrentFromToSquare(log = false) {
         this.uncolorCurrentFromToSquare();
         if(this.from == null) {
             return;
         }
         let tdsLastFrom = document.querySelectorAll('td.' + this.from);
+
+
         [].forEach.call(tdsLastFrom, tdLastFrom => {
             tdLastFrom.classList.add('current-from');
         });
+
         if(this.to == null) {
             return;
         }
@@ -353,6 +356,7 @@ export class GameComponent implements OnInit, OnDestroy {
         [].forEach.call(tdsLastTo, tdLastTo => {
             tdLastTo.classList.add('current-to');
         });
+
     }
 
 

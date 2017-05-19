@@ -78,6 +78,11 @@
     cursor: default;
     background-size: cover;
 }
+.chessboard td img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 .chessboard td.dark {
     background-color: #d18b47;
 }
@@ -95,41 +100,4 @@
 .chessboard td.dark.current-to,
 .chessboard td.light.current-to {
     background-color: #dad745;
-}
-
-.square-P {
-    background-image: url('../../assets/pieces/w-p.svg');
-}
-.square-R {
-    background-image: url('../../assets/pieces/w-r.svg');
-}
-.square-N {
-    background-image: url('../../assets/pieces/w-n.svg');
-}
-.square-B {
-    background-image: url('../../assets/pieces/w-b.svg');
-}
-.square-Q {
-    background-image: url('../../assets/pieces/w-q.svg');
-}
-.square-K {
-    background-image: url('../../assets/pieces/w-k.svg');
-}
-.square-p {
-    background-image: url('../../assets/pieces/b-p.svg');
-}
-.square-r {
-    background-image: url('../../assets/pieces/b-r.svg');
-}
-.square-n {
-    background-image: url('../../assets/pieces/b-n.svg');
-}
-.square-b {
-    background-image: url('../../assets/pieces/b-b.svg');
-}
-.square-q {
-    background-image: url('../../assets/pieces/b-q.svg');
-}
-.square-k {
-    background-image: url('../../assets/pieces/b-k.svg');
 }
