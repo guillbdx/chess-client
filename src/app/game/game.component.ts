@@ -67,6 +67,8 @@ export class GameComponent implements OnInit, OnDestroy {
         });
         document.getElementById('game-result').style.width = (9 * unit) + 'px';
         document.getElementById('promotion-panel').style.width = (9 * unit) + 'px';
+        document.getElementById('header-opponent').style.width = (9 * unit) + 'px';
+        document.getElementById('footer-you').style.width = (9 * unit) + 'px';
 
         setTimeout(() => {
             let tds = document.querySelectorAll('td');

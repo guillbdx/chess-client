@@ -1,6 +1,15 @@
-#width-reference {
+/* Btns container */
+#btns-container {
     height: 55px;
+    max-width: 1200px;
+    text-align: right;
 }
+#btns-container button {
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+/*-------------------------------------------*/
 
 /* Game result */
 .game-result {
@@ -12,6 +21,12 @@
     position: absolute;
     left: 0;
     top: 40%;
+}
+/*-----------------------------------------*/
+
+/* Header opponent and Footer you */
+#header-opponent, #footer-you {
+    margin: auto;
 }
 /*-----------------------------------------*/
 
@@ -59,6 +74,7 @@
 /* Chessboard wrapper */
 .chessboard-wrapper {
     width: 100%;
+    margin: auto;
 }
 .chessboard-wrapper td {
     width: 11.11%;
