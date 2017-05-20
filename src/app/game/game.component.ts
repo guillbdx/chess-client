@@ -5,6 +5,7 @@ import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Chessboard3d} from "./chessboard3d";
 import Scene = BABYLON.Scene;
 import Engine = BABYLON.Engine;
+import * as jQuery from 'jquery';
 
 @Component({
     selector: 'game',
@@ -47,7 +48,7 @@ export class GameComponent implements OnInit, OnDestroy {
         let engine = new Engine(canvas, true);
         BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
             scene.executeWhenReady(() => {
-                this.initChessboard(canvas, scene, engine);
+                this.initChessboard3d(canvas, scene, engine);
                 this.displayViewType('2d');
                 this.pullOriginAndReset();
                 this.loopPull();
@@ -67,30 +68,16 @@ export class GameComponent implements OnInit, OnDestroy {
      * Resizes the container
      */
     resizeContainer() {
-        let containerWidth = document.getElementById('width-reference').offsetWidth;
+        let containerWidth = jQuery('width-reference').offsetWidth;
         let unit = containerWidth / 9;
         if(window.innerWidth > window.innerHeight) { // Landscape mode
             let containerHeight = window.innerHeight - 100;
             unit = containerHeight / 9;
         }
-
-        let chessboards = document.querySelectorAll('.chessboard-wrapper');
-        [].forEach.call(chessboards, chessboard => {
-            chessboard.style.width = (9 * unit) + 'px';
-            chessboard.style.height = (9 * unit) + 'px';
-        });
-        document.getElementById('game-result').style.width = (9 * unit) + 'px';
-        document.getElementById('promotion-panel').style.width = (9 * unit) + 'px';
-        document.getElementById('header-opponent').style.width = (9 * unit) + 'px';
-        document.getElementById('footer-you').style.width = (9 * unit) + 'px';
-        document.getElementById('body-game-3d').style.height = (9 * unit) + 'px';
-
+        jQuery('.fix-width').css('width', (9 * unit) + 'px');
+        jQuery('.fix-height').css('height', (9 * unit) + 'px');
         setTimeout(() => {
-            let tds = document.querySelectorAll('td');
-            for(let h = 0; h < tds.length; h++) {
-                tds[h].style.height = unit + 'px';
-            }
-
+            jQuery('td').css('height', unit + 'px');
         }, 100);
 
     }
@@ -99,14 +86,11 @@ export class GameComponent implements OnInit, OnDestroy {
      * Hides the opposite color view
      */
     hideOtherColorContainer() {
-        let elementsToHide = document.querySelectorAll('.view-by-black');
         if(this.game.getColorByUser(this.profile) == Game.COLOR_BLACK ) {
-            elementsToHide = document.querySelectorAll('.view-by-white');
+            jQuery('.view-by-white').hide();
+        } else {
+            jQuery('.view-by-black').hide();
         }
-        [].forEach.call(elementsToHide, elementToHide => {
-            elementToHide.style.display = 'none';
-        });
-
         // Active black camera
         if(this.game.getColorByUser(this.profile) == Game.COLOR_BLACK ) {
             this.chessboard3d.activeCamera('b');
@@ -124,7 +108,7 @@ export class GameComponent implements OnInit, OnDestroy {
         }, 3000);
     }
 
-    initChessboard(canvas: HTMLCanvasElement, scene: Scene, engine: Engine) {
+    initChessboard3d(canvas: HTMLCanvasElement, scene: Scene, engine: Engine) {
         this.chessboard3d = new Chessboard3d(canvas, scene, this);
         this.chessboard3d.initSceneEnvironment();
         this.chessboard3d.recreatePieces(this.game.chessboard);
@@ -283,8 +267,6 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     onClickSquare(square: string) {
 
-        console.log('clic');
-
         if(!this.game.isInProgress()) {
             return;
         }
@@ -351,11 +333,8 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     uncolorLastFromToSquare() {
         this.chessboard3d.uncolorLastFromToSquare();
-        let tds = document.querySelectorAll('td');
-        [].forEach.call(tds, td => {
-            td.classList.remove('last-from');
-            td.classList.remove('last-to');
-        });
+        jQuery('td').removeClass('last-from');
+        jQuery('td').removeClass('last-to');
     }
 
     /**
@@ -367,17 +346,8 @@ export class GameComponent implements OnInit, OnDestroy {
         }
         this.uncolorLastFromToSquare();
         this.chessboard3d.colorLastFromToSquare(this.game.lastMove['from'], this.game.lastMove['to']);
-        if(this.game.lastMove == null) {
-            return;
-        }
-        let tdsLastFrom = document.querySelectorAll('td.' + this.game.lastMove['from']);
-        [].forEach.call(tdsLastFrom, tdLastFrom => {
-            tdLastFrom.classList.add('last-from');
-        });
-        let tdsLastTo = document.querySelectorAll('td.' + this.game.lastMove['to']);
-        [].forEach.call(tdsLastTo, tdLastTo => {
-            tdLastTo.classList.add('last-to');
-        });
+        jQuery('td.' + this.game.lastMove['from']).addClass('last-from');
+        jQuery('td.' + this.game.lastMove['to']).addClass('last-to');
     }
 
     /**
@@ -385,11 +355,8 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     uncolorCurrentFromToSquare() {
         this.chessboard3d.uncolorCurrentFromToSquare();
-        let tds = document.querySelectorAll('td');
-        [].forEach.call(tds, td => {
-            td.classList.remove('current-from');
-            td.classList.remove('current-to');
-        });
+        jQuery('td').removeClass('current-from');
+        jQuery('td').removeClass('current-to');
     }
 
     /**
@@ -401,21 +368,11 @@ export class GameComponent implements OnInit, OnDestroy {
         if(this.from == null) {
             return;
         }
-        let tdsLastFrom = document.querySelectorAll('td.' + this.from);
-
-
-        [].forEach.call(tdsLastFrom, tdLastFrom => {
-            tdLastFrom.classList.add('current-from');
-        });
-
+        jQuery('td.' + this.from).addClass('current-from');
         if(this.to == null) {
             return;
         }
-        let tdsLastTo = document.querySelectorAll('td.' + this.to);
-        [].forEach.call(tdsLastTo, tdLastTo => {
-            tdLastTo.classList.add('current-to');
-        });
-
+        jQuery('td.' + this.to).addClass('current-to');
     }
 
 

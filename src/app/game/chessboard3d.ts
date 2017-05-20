@@ -480,7 +480,6 @@ export class Chessboard3d {
      * @param to
      */
     colorLastFromToSquare(from: string, to: string): void {
-        console.log('bah');
         if(from != null) {
             let fromPosition = this.getPositionBySquare(from);
             fromPosition.y += 0.06;

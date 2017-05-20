@@ -8,11 +8,11 @@
 
 </div>
 
-<div id="game-result" class="game-result" [hidden]="game.getSentenceResult()==''">
+<div id="game-result" class="fix-width game-result" [hidden]="game.getSentenceResult()==''">
     {{ game.getSentenceResult() | translate }}
 </div>
 
-<div id="promotion-panel" [hidden]="!showPromotionPanel">
+<div id="promotion-panel" class="fix-width" [hidden]="!showPromotionPanel">
     <div id="promotion-banner">
         <a class="promotion-close glyphicon glyphicon-remove" (click)="onClosePromotionPanel()"></a>
         <div [hidden]="game.getColorByUser(profile)=='w'">
@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<div id="header-opponent">
+<div id="header-opponent" class="fix-width">
     <div class="player view-by-black">
         <span *ngIf="game.playingColor == 'w'" class="turn glyphicon glyphicon-asterisk"></span>
         <span class="name">{{ game.getUserByColor('w').username }}</span>
@@ -44,7 +44,7 @@
 
 <div id="body-game-2d">
     <table
-            class="chessboard-wrapper view-by-black">
+            class="chessboard-wrapper view-by-black fix-width fix-height">
         <tr>
             <td class="square-name">
                 1
@@ -202,7 +202,7 @@
 
 
     <table
-            class="chessboard-wrapper view-by-white">
+            class="chessboard-wrapper view-by-white fix-width fix-height">
         <tr>
             <td class="square-name">
                 8
@@ -359,11 +359,11 @@
     </table>
 </div>
 
-<div id="body-game-3d">
+<div id="body-game-3d" class="fix-height">
     <canvas id="canvas"></canvas>
 </div>
 
-<div id="footer-you">
+<div id="footer-you" class="fix-width">
     <div class="player view-by-black">
         <span *ngIf="game.playingColor == 'b'" class="turn glyphicon glyphicon-asterisk"></span>
         <span class="name">{{ game.getUserByColor('b').username }}</span>
