@@ -122,14 +122,14 @@
 /*-----------------------------------------*/
 
 /* Body game 3d */
-
-
 #body-game-3d {
-    background: brown;
+
 }
 #body-game-3d #canvas {
     touch-action: none;
     border: solid 1px brown;
+    width: 100%;
+    height: 100%;
 }
 
 /*-----------------------------------------*/

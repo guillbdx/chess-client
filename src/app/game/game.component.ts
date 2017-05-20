@@ -46,9 +46,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.pullOriginAndReset();
         this.loopPull();
 
-        setTimeout(() => {
-            let chessboard3d = new Chessboard3d('mycanvas', 'assets/scene/chessboard-03.babylon', this);
-        }, 2000);
+        let chessboard3d = new Chessboard3d('canvas', 'assets/scene/chessboard-03.babylon', this);
 
     }
 
