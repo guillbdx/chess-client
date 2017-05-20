@@ -21,14 +21,12 @@ import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area
 import { AppComponent }                     from './app.component';
 import {NavigationComponent}                from "./navigation.component";
 import {GameComponent}                      from "../game/game.component";
-import { Game3dComponent }                  from "../game/game3d.component";
 
 import { LoginRouteComponent }              from '../route-components/login.route.component';
 import { RegisterRouteComponent }           from '../route-components/register.route.component';
 import { ProfileRouteComponent }            from '../route-components/profile.route.component';
 import { GamesRouteComponent }              from '../route-components/games.route.component';
 import { GameRouteComponent }               from '../route-components/game.route.component';
-import { Game3dRouteComponent}              from "../route-components/game3d.route.component";
 import { GameCreateRouteComponent }         from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent }     from '../route-components/change-password.route.component';
 import { AccountDeleteRouteComponent}       from "../route-components/account-delete.route.component";
@@ -58,7 +56,6 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         ProfileRouteComponent,
         GamesRouteComponent,
         GameRouteComponent,
-        Game3dRouteComponent,
         GameCreateRouteComponent,
         ChangePasswordRouteComponent,
         AccountDeleteRouteComponent,
@@ -70,7 +67,6 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         GameCreateFormComponent,
 
         GameComponent,
-        Game3dComponent,
 
         TranslatePipe,
         FormatDatePipe,

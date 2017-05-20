@@ -1,4 +1,4 @@
-import {Game3dComponent} from "./game3d.component";
+import {GameComponent} from "./game.component";
 import Scene = BABYLON.Scene;
 import ArcRotateCamera = BABYLON.ArcRotateCamera;
 import Mesh = BABYLON.Mesh;
@@ -10,7 +10,7 @@ import AbstractMesh = BABYLON.AbstractMesh;
 
 export class Chessboard3d {
 
-    private gameComponent: Game3dComponent;
+    private gameComponent: GameComponent;
 
     private canvas: HTMLCanvasElement;
 
@@ -43,7 +43,7 @@ export class Chessboard3d {
     constructor(
         idCanvas: string,
         pathBabylonFile: string,
-        gameComponent: Game3dComponent
+        gameComponent: GameComponent
     ) {
 
         this.gameComponent = gameComponent;

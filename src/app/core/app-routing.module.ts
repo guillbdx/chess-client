@@ -9,7 +9,6 @@ import { RegisterRouteComponent }       from '../route-components/register.route
 import { ProfileRouteComponent }        from '../route-components/profile.route.component';
 import { GamesRouteComponent }          from '../route-components/games.route.component';
 import { GameRouteComponent }           from '../route-components/game.route.component';
-import { Game3dRouteComponent }         from '../route-components/game3d.route.component';
 import { GameCreateRouteComponent }     from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent } from '../route-components/change-password.route.component';
 import { AccountDeleteRouteComponent }  from '../route-components/account-delete.route.component';
@@ -46,13 +45,6 @@ const routes: Routes = [
     {
         path: 'game/:id',
         component: GameRouteComponent,
-        canActivate: [
-            CanAccessPrivateAreaGuard
-        ]
-    },
-    {
-        path: 'game-3d/:id',
-        component: Game3dRouteComponent,
         canActivate: [
             CanAccessPrivateAreaGuard
         ]
