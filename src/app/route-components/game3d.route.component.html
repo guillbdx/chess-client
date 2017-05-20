@@ -1,0 +1,20 @@
+<navigation></navigation>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <game *ngIf="loaded" [game]="game" [profile]="profile"></game>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <p></p>
+            <p>
+                <a routerLink="/">{{ 'Back to your games' | translate }}</a>
+            </p>
+        </div>
+    </div>
+</div>

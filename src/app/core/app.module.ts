@@ -27,9 +27,10 @@ import { RegisterRouteComponent }           from '../route-components/register.r
 import { ProfileRouteComponent }            from '../route-components/profile.route.component';
 import { GamesRouteComponent }              from '../route-components/games.route.component';
 import { GameRouteComponent }               from '../route-components/game.route.component';
+import { Game3dRouteComponent}              from "../route-components/game3d.route.component";
 import { GameCreateRouteComponent }         from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent }     from '../route-components/change-password.route.component';
-import {AccountDeleteRouteComponent}        from "../route-components/account-delete.route.component";
+import { AccountDeleteRouteComponent}       from "../route-components/account-delete.route.component";
 
 import {ChangePasswordFormComponent}        from "../form-components/change-password.form.component";
 import {LoginFormComponent}                 from "../form-components/login.form.component";
@@ -56,6 +57,7 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         ProfileRouteComponent,
         GamesRouteComponent,
         GameRouteComponent,
+        Game3dRouteComponent,
         GameCreateRouteComponent,
         ChangePasswordRouteComponent,
         AccountDeleteRouteComponent,
