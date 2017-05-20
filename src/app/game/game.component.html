@@ -1,9 +1,11 @@
 <div id="width-reference"></div>
 
 <div id="btns-container">
+    <button id="btn-display-3d-view" (click)="toggleViewType()" class="btn btn-info">{{ '3d View' | translate }}</button>
+    <button id="btn-display-2d-view" (click)="toggleViewType()" class="btn btn-info">{{ '2d View' | translate }}</button>
     <button class="btn btn-danger" (click)="onResign()">{{ 'Resign' | translate }}</button>
     <button routerLink="/" class="btn btn-warning">{{ 'Back to your games' | translate }}</button>
-    <button class="btn btn-info">Vue 3d</button>
+
 </div>
 
 <div id="game-result" class="game-result" [hidden]="game.getSentenceResult()==''">

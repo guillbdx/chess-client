@@ -116,15 +116,31 @@ export class GameComponent implements OnInit, OnDestroy {
     /**
      * Displays / hides 2d or 3d view
      */
-    displayViewType() {
+    displayViewType():void {
         if(this.viewType == '2d') {
             document.getElementById('body-game-2d').style.display = 'block';
             document.getElementById('body-game-3d').style.display = 'none';
+            document.getElementById('btn-display-3d-view').style.display = 'block';
+            document.getElementById('btn-display-2d-view').style.display = 'none';
         }
         if(this.viewType == '3d') {
             document.getElementById('body-game-2d').style.display = 'none';
             document.getElementById('body-game-3d').style.display = 'block';
+            document.getElementById('btn-display-3d-view').style.display = 'none';
+            document.getElementById('btn-display-2d-view').style.display = 'block';
         }
+    }
+
+    /**
+     *
+     */
+    toggleViewType():void {
+        if(this.viewType == '2d') {
+            this.viewType = '3d';
+        } else {
+            this.viewType = '2d';
+        }
+        this.displayViewType();
     }
 
     //---------------------------------------------------------------------

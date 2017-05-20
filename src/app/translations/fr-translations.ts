@@ -69,5 +69,7 @@ export let frTranslations = {
     "Black won by checkmate !": "Victoire des Noirs !",
     "White won ! (Black resign)": "Victoire des Blancs ! (Abandon des Noirs)",
     "Black won ! (White resign)": "Victoire des Noirs ! (Abandon des Blancs)",
-    "Resign": "Abandonner"
+    "Resign": "Abandonner",
+    "3d View": "Vue 3d",
+    "2d View": "Vue 2d"
 };
