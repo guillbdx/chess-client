@@ -41,36 +41,20 @@ export class Chessboard3d {
     private lastToMarker: Mesh;
 
     constructor(
-        idCanvas: string,
-        pathBabylonFile: string,
+        canvas: HTMLCanvasElement,
+        scene: Scene,
         gameComponent: GameComponent
     ) {
 
         this.gameComponent = gameComponent;
-        this.canvas = <HTMLCanvasElement>document.getElementById(idCanvas);
-        let engine = new BABYLON.Engine(this.canvas, true);
+        this.canvas = canvas;
+        this.scene = scene;
 
 
 
-        BABYLON.SceneLoader.Load("", pathBabylonFile, engine, (scene) => {
-            scene.executeWhenReady(() => {
 
-                this.scene = scene;
-                this.initSceneEnvironment();
 
-                let piecesPosition0 = {"a1":"w-r","b1":"w-n","c1":"w-b","d1":"w-q","e1":"w-k","f1":"w-b","g1":"w-n","h1":"w-r","a2":"w-p","b2":"w-p","c2":"w-p","d2":"w-p","e2":"w-p","f2":"w-p","g2":"w-p","h2":"w-p","a3":"","b3":"","c3":"","d3":"","e3":"","f3":"","g3":"","h3":"","a4":"","b4":"","c4":"","d4":"","e4":"","f4":"","g4":"","h4":"","a5":"","b5":"","c5":"","d5":"","e5":"","f5":"","g5":"","h5":"","a6":"","b6":"","c6":"","d6":"","e6":"","f6":"","g6":"","h6":"","a7":"b-p","b7":"b-p","c7":"b-p","d7":"b-p","e7":"b-p","f7":"b-p","g7":"b-p","h7":"b-p","a8":"b-r","b8":"b-n","c8":"b-b","d8":"b-q","e8":"b-k","f8":"b-b","g8":"b-n","h8":"b-r"};
-                this.recreatePieces(piecesPosition0);
 
-                this.activeClickListener();
-
-                engine.runRenderLoop(() => {
-                    scene.render();
-                });
-
-            });
-        }, (progress) => {
-
-        });
 
     }
 
@@ -81,7 +65,7 @@ export class Chessboard3d {
     /**
      * Init
      */
-    private initSceneEnvironment(): void {
+    public initSceneEnvironment(): void {
 
         // Init Ambiance
         this.scene.clearColor = BABYLON.Color3.FromHexString('#cce7e0');
@@ -281,7 +265,7 @@ export class Chessboard3d {
      *
      * @param piecesPosition
      */
-    private recreatePieces(piecesPosition: Object) {
+    public recreatePieces(piecesPosition: Object) {
         for(let square in piecesPosition) {
             let currentPiece = this.getPieceOnSquare(square);
             if(piecesPosition[square] != '') {
@@ -521,8 +505,8 @@ export class Chessboard3d {
     // EVENTS
     //--------------------------------------------------------
 
-    private activeClickListener() {
-        window.addEventListener("click", (event) => {
+    public activeClickListener() {
+        this.canvas.addEventListener("click", (event) => {
             if(!this.hasCameraMoved()) {
                 let picking = this.scene.pick(this.scene.pointerX, this.scene.pointerY);
                 let square = this.getClickedSquare(picking);

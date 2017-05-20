@@ -3,6 +3,8 @@ import {Game} from "../entities/entities/game.entity";
 import {User} from "../entities/entities/user.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
 import {Chessboard3d} from "./chessboard3d";
+import Scene = BABYLON.Scene;
+import Engine = BABYLON.Engine;
 
 @Component({
     selector: 'game',
@@ -26,6 +28,8 @@ export class GameComponent implements OnInit, OnDestroy {
 
     showPromotionPanel = false;
 
+    chessboard3d: Chessboard3d;
+
     constructor(
         private chessApiClient: ChessApiClientService
     ) {}
@@ -39,13 +43,16 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     ngOnInit() {
         this.resizeContainer();
-        this.displayViewType('2d');
-
-        this.pullOriginAndReset();
-        this.loopPull();
-
-        let chessboard3d = new Chessboard3d('canvas', 'assets/scene/chessboard-03.babylon', this);
-
+        let canvas = <HTMLCanvasElement>document.getElementById('canvas');
+        let engine = new Engine(canvas, true);
+        BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
+            scene.executeWhenReady(() => {
+                this.initChessboard(canvas, scene, engine);
+                this.displayViewType('2d');
+                this.pullOriginAndReset();
+                this.loopPull();
+            });
+        });
     }
 
     /**
@@ -109,6 +116,16 @@ export class GameComponent implements OnInit, OnDestroy {
         this.refreshingInterval = setInterval(() => {
             this.pullOriginAndReset();
         }, 3000);
+    }
+
+    initChessboard(canvas: HTMLCanvasElement, scene: Scene, engine: Engine) {
+        this.chessboard3d = new Chessboard3d(canvas, scene, this);
+        this.chessboard3d.initSceneEnvironment();
+        this.chessboard3d.recreatePieces(this.game.chessboard);
+        this.chessboard3d.activeClickListener();
+        engine.runRenderLoop(() => {
+            scene.render();
+        });
     }
 
     /**
