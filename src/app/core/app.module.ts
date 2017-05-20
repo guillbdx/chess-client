@@ -21,6 +21,7 @@ import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area
 import { AppComponent }                     from './app.component';
 import {NavigationComponent}                from "./navigation.component";
 import {GameComponent}                      from "../game/game.component";
+import { Game3dComponent }                  from "../game/game3d.component";
 
 import { LoginRouteComponent }              from '../route-components/login.route.component';
 import { RegisterRouteComponent }           from '../route-components/register.route.component';
@@ -69,6 +70,7 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         GameCreateFormComponent,
 
         GameComponent,
+        Game3dComponent,
 
         TranslatePipe,
         FormatDatePipe,
