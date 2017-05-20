@@ -2,6 +2,7 @@ import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {Game} from "../entities/entities/game.entity";
 import {User} from "../entities/entities/user.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
+import {Chessboard3d} from "./chessboard3d";
 
 @Component({
     selector: 'game',
@@ -25,12 +26,14 @@ export class GameComponent implements OnInit, OnDestroy {
 
     showPromotionPanel = false;
 
+    viewType = '3d';
+
     constructor(
         private chessApiClient: ChessApiClientService
     ) {}
 
     //---------------------------------------------------------------------
-    // GLOBAL ACTIONS LAUNCHED ONLY ONCE
+    // GLOBAL ACTIONS
     //---------------------------------------------------------------------
 
     /**
@@ -38,8 +41,15 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     ngOnInit() {
         this.resizeContainer();
+        this.displayViewType();
+
         this.pullOriginAndReset();
         this.loopPull();
+
+        setTimeout(() => {
+            let chessboard3d = new Chessboard3d('mycanvas', 'assets/scene/chessboard-03.babylon', this);
+        }, 2000);
+
     }
 
     /**
@@ -69,6 +79,7 @@ export class GameComponent implements OnInit, OnDestroy {
         document.getElementById('promotion-panel').style.width = (9 * unit) + 'px';
         document.getElementById('header-opponent').style.width = (9 * unit) + 'px';
         document.getElementById('footer-you').style.width = (9 * unit) + 'px';
+        document.getElementById('body-game-3d').style.height = (9 * unit) + 'px';
 
         setTimeout(() => {
             let tds = document.querySelectorAll('td');
@@ -102,6 +113,20 @@ export class GameComponent implements OnInit, OnDestroy {
         this.refreshingInterval = setInterval(() => {
             this.pullOriginAndReset();
         }, 3000);
+    }
+
+    /**
+     * Displays / hides 2d or 3d view
+     */
+    displayViewType() {
+        if(this.viewType == '2d') {
+            document.getElementById('body-game-2d').style.display = 'block';
+            document.getElementById('body-game-3d').style.display = 'none';
+        }
+        if(this.viewType == '3d') {
+            document.getElementById('body-game-2d').style.display = 'none';
+            document.getElementById('body-game-3d').style.display = 'block';
+        }
     }
 
     //---------------------------------------------------------------------

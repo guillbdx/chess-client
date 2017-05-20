@@ -119,3 +119,17 @@
 .chessboard td.light.current-to {
     background-color: #dad745;
 }
+/*-----------------------------------------*/
+
+/* Body game 3d */
+
+
+#body-game-3d {
+    background: brown;
+}
+#body-game-3d #canvas {
+    touch-action: none;
+    border: solid 1px brown;
+}
+
+/*-----------------------------------------*/
