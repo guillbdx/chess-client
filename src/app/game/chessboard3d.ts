@@ -454,13 +454,16 @@ export class Chessboard3d {
      * @param to
      */
     colorCurrentFromToSquare(from: string, to: string): void {
-        this.uncolorCurrentFromToSquare();
-        let fromPosition = this.getPositionBySquare(from);
-        let toPosition = this.getPositionBySquare(to);
-        fromPosition.y += 0.06;
-        toPosition.y += 0.06;
-        this.currentFromMarker.position = fromPosition;
-        this.currentToMarker.position = toPosition;
+        if(from != null) {
+            let fromPosition = this.getPositionBySquare(from);
+            fromPosition.y += 0.06;
+            this.currentFromMarker.position = fromPosition;
+        }
+        if(to != null) {
+            let toPosition = this.getPositionBySquare(to);
+            toPosition.y += 0.06;
+            this.currentToMarker.position = toPosition;
+        }
     }
 
     /**
@@ -477,21 +480,18 @@ export class Chessboard3d {
      * @param to
      */
     colorLastFromToSquare(from: string, to: string): void {
-        this.uncolorLastFromToSquare();
-        let fromPosition = this.getPositionBySquare(from);
-        let toPosition = this.getPositionBySquare(to);
-        fromPosition.y += 0.06;
-        toPosition.y += 0.06;
-        this.lastFromMarker.position = fromPosition;
-        this.lastToMarker.position = toPosition;
+        console.log('bah');
+        if(from != null) {
+            let fromPosition = this.getPositionBySquare(from);
+            fromPosition.y += 0.06;
+            this.lastFromMarker.position = fromPosition;
+        }
+        if(to != null) {
+            let toPosition = this.getPositionBySquare(to);
+            toPosition.y += 0.06;
+            this.lastToMarker.position = toPosition;
+        }
     }
-
-
-
-
-
-
-
 
     //--------------------------------------------------------
     // EVENTS
@@ -502,9 +502,8 @@ export class Chessboard3d {
             if(!this.hasCameraMoved()) {
                 let picking = this.scene.pick(this.scene.pointerX, this.scene.pointerY);
                 let square = this.getClickedSquare(picking);
-                console.log(square);
                 if(square != null) {
-                    console.log(this.getPieceOnSquare(square));
+                    this.gameComponent.onClickSquare(square);
                 }
             }
             this.storeActiveCameraPosition(true);

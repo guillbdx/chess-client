@@ -178,6 +178,8 @@ export class GameComponent implements OnInit, OnDestroy {
         this.colorCurrentFromToSquare();
         this.colorLastFromToSquare();
 
+        this.chessboard3d.recreatePieces(data.chessboard);
+
     }
 
     /**
@@ -206,6 +208,8 @@ export class GameComponent implements OnInit, OnDestroy {
      * Plays a move on the view. (nothing is sent to origin)
      */
     previewMove() {
+
+        this.chessboard3d.previewMove(this.from, this.to, this.promotion);
 
         this.game.chessboard[this.to] = this.game.chessboard[this.from];
         this.game.chessboard[this.from] = '';
@@ -276,11 +280,10 @@ export class GameComponent implements OnInit, OnDestroy {
      * Triggered when the user click on a square.
      *
      * @param square
-     * @param event
      */
-    onClickSquare(square: string, event?) {
+    onClickSquare(square: string) {
 
-        let target = event.target || event.srcElement || event.currentTarget;
+        console.log('clic');
 
         if(!this.game.isInProgress()) {
             return;
@@ -297,7 +300,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
         if(this.game.isPossibleFromTo(this.from, square)) {
             this.to = square;
-            this.colorCurrentFromToSquare(true);
+            this.colorCurrentFromToSquare();
             this.promptPromotionIfNeededThenPlay();
             return;
         }
@@ -347,6 +350,7 @@ export class GameComponent implements OnInit, OnDestroy {
      * Removes styles last-from and last-to on each square
      */
     uncolorLastFromToSquare() {
+        this.chessboard3d.uncolorLastFromToSquare();
         let tds = document.querySelectorAll('td');
         [].forEach.call(tds, td => {
             td.classList.remove('last-from');
@@ -358,7 +362,11 @@ export class GameComponent implements OnInit, OnDestroy {
      * Applies style last-from and last-to on from and to squares
      */
     colorLastFromToSquare() {
+        if(this.game.lastMove == undefined) {
+            return;
+        }
         this.uncolorLastFromToSquare();
+        this.chessboard3d.colorLastFromToSquare(this.game.lastMove['from'], this.game.lastMove['to']);
         if(this.game.lastMove == null) {
             return;
         }
@@ -376,6 +384,7 @@ export class GameComponent implements OnInit, OnDestroy {
      * Removes styles current-from and current-to on each square
      */
     uncolorCurrentFromToSquare() {
+        this.chessboard3d.uncolorCurrentFromToSquare();
         let tds = document.querySelectorAll('td');
         [].forEach.call(tds, td => {
             td.classList.remove('current-from');
@@ -386,8 +395,9 @@ export class GameComponent implements OnInit, OnDestroy {
     /**
      * Applies style current-from and current-to on from and to squares
      */
-    colorCurrentFromToSquare(log = false) {
+    colorCurrentFromToSquare() {
         this.uncolorCurrentFromToSquare();
+        this.chessboard3d.colorCurrentFromToSquare(this.from, this.to);
         if(this.from == null) {
             return;
         }
