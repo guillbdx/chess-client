@@ -20,7 +20,7 @@ import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area
 
 import { AppComponent }                     from './app.component';
 import {NavigationComponent}                from "./navigation.component";
-import {GameComponent}                      from "./game.component";
+import {GameComponent}                      from "../game/game.component";
 
 import { LoginRouteComponent }              from '../route-components/login.route.component';
 import { RegisterRouteComponent }           from '../route-components/register.route.component';
