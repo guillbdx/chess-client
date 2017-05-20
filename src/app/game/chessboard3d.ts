@@ -45,17 +45,9 @@ export class Chessboard3d {
         scene: Scene,
         gameComponent: GameComponent
     ) {
-
         this.gameComponent = gameComponent;
         this.canvas = canvas;
         this.scene = scene;
-
-
-
-
-
-
-
     }
 
     //--------------------------------------------------------

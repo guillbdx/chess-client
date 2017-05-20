@@ -51,6 +51,7 @@ export class GameComponent implements OnInit, OnDestroy {
                 this.displayViewType('2d');
                 this.pullOriginAndReset();
                 this.loopPull();
+                this.hideOtherColorContainer();
             });
         });
     }
@@ -89,7 +90,7 @@ export class GameComponent implements OnInit, OnDestroy {
             for(let h = 0; h < tds.length; h++) {
                 tds[h].style.height = unit + 'px';
             }
-            this.hideOtherColorContainer();
+
         }, 100);
 
     }
@@ -105,6 +106,11 @@ export class GameComponent implements OnInit, OnDestroy {
         [].forEach.call(elementsToHide, elementToHide => {
             elementToHide.style.display = 'none';
         });
+
+        // Active black camera
+        if(this.game.getColorByUser(this.profile) == Game.COLOR_BLACK ) {
+            this.chessboard3d.activeCamera('b');
+        }
     }
 
     /**
