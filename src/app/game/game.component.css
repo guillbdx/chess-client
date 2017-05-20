@@ -44,8 +44,17 @@
     right: 5px;
     font-size: medium;
 }
-
 /*-----------------------------------------*/
+
+/* Players headers */
+.player span.name {
+    font-size: x-large;
+}
+.player span.turn {
+    float: right;
+    color: #b62516;
+}
+/*------------------------------------------*/
 
 /* Chessboard wrapper */
 .chessboard-wrapper {
@@ -54,13 +63,6 @@
 .chessboard-wrapper td {
     width: 11.11%;
     vertical-align: middle;
-}
-.chessboard-wrapper td.player span.name {
-    font-size: x-large;
-}
-.chessboard-wrapper td.player span.turn {
-    float: right;
-    color: #b62516;
 }
 .chessboard-wrapper td.square-name {
     text-align: center;

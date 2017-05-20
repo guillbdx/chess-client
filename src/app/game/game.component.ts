@@ -10,9 +10,6 @@ import {ChessApiClientService} from "../services/chess-api-client.service";
 })
 export class GameComponent implements OnInit, OnDestroy {
 
-    // #f1ed2e
-    // #dad745
-
     @Input()
     game: Game;
 
@@ -60,13 +57,13 @@ export class GameComponent implements OnInit, OnDestroy {
         let unit = containerWidth / 9;
         if(window.innerWidth > window.innerHeight) { // Landscape mode
             let containerHeight = window.innerHeight - 100;
-            unit = containerHeight / 11;
+            unit = containerHeight / 9;
         }
 
         let chessboards = document.querySelectorAll('.chessboard-wrapper');
         [].forEach.call(chessboards, chessboard => {
             chessboard.style.width = (9 * unit) + 'px';
-            chessboard.style.height = (11 * unit) + 'px';
+            chessboard.style.height = (9 * unit) + 'px';
         });
         document.getElementById('game-result').style.width = (9 * unit) + 'px';
         document.getElementById('promotion-panel').style.width = (9 * unit) + 'px';
@@ -85,11 +82,13 @@ export class GameComponent implements OnInit, OnDestroy {
      * Hides the opposite color view
      */
     hideOtherColorContainer() {
-        if(this.game.getColorByUser(this.profile) == Game.COLOR_WHITE ) {
-            document.getElementById('chessboard-wrapper-by-black').style.display = 'none';
-        } else {
-            document.getElementById('chessboard-wrapper-by-white').style.display = 'none';
+        let elementsToHide = document.querySelectorAll('.view-by-black');
+        if(this.game.getColorByUser(this.profile) == Game.COLOR_BLACK ) {
+            elementsToHide = document.querySelectorAll('.view-by-white');
         }
+        [].forEach.call(elementsToHide, elementToHide => {
+            elementToHide.style.display = 'none';
+        });
     }
 
     /**
