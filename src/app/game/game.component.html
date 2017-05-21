@@ -8,11 +8,13 @@
 
 </div>
 
-<div id="game-result" class="fix-width game-result" [hidden]="game.getSentenceResult()==''">
-    {{ game.getSentenceResult() | translate }}
+<div id="game-result" class="game-result" [hidden]="game.getSentenceResult()==''">
+    <div class="game-result-sentence fix-width">
+        {{ game.getSentenceResult() | translate }}
+    </div>
 </div>
 
-<div id="promotion-panel" class="fix-width" [hidden]="!showPromotionPanel">
+<div id="promotion-panel" [hidden]="!showPromotionPanel">
     <div id="promotion-banner">
         <a class="promotion-close glyphicon glyphicon-remove" (click)="onClosePromotionPanel()"></a>
         <div [hidden]="game.getColorByUser(profile)=='w'">
