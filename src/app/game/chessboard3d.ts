@@ -397,7 +397,7 @@ export class Chessboard3d {
      * @param castlingType
      * @param inPassingCapturedSquare
      */
-    public previewMove(
+    public showMove(
         from: string,
         to: string,
         promotion?: string,
