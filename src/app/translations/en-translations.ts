@@ -70,6 +70,9 @@ export let enTranslations = {
     "White won ! (Black resign)": "White won ! (Black resign)",
     "Black won ! (White resign)": "Black won ! (White resign)",
     "Resign": "Resign",
-    "3d View": "3d View",
-    "2d View": "2d View"
+    "3d": "3d",
+    "2d": "2d",
+    "Your games": "Your games",
+    "Share": "Share",
+    "For sharing this game, please copy/pase this code:": "For sharing this game, please copy/pase this code:"
 };

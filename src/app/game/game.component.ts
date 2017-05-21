@@ -29,6 +29,8 @@ export class GameComponent implements OnInit, OnDestroy {
 
     showPromotionPanel = false;
 
+    showSharePanel = false;
+
     chessboard3d: Chessboard3d;
 
     constructor(

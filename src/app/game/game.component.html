@@ -1,11 +1,11 @@
 <div id="width-reference"></div>
 
 <div id="btns-container">
-    <button id="btn-display-3d-view" (click)="displayViewType('3d')" class="btn btn-info">{{ '3d View' | translate }}</button>
-    <button id="btn-display-2d-view" (click)="displayViewType('2d')" class="btn btn-info">{{ '2d View' | translate }}</button>
+    <button id="btn-display-3d-view" (click)="displayViewType('3d')" class="btn btn-info">{{ '3d' | translate }}</button>
+    <button id="btn-display-2d-view" (click)="displayViewType('2d')" class="btn btn-info">{{ '2d' | translate }}</button>
     <button class="btn btn-danger" (click)="onResign()">{{ 'Resign' | translate }}</button>
-    <button routerLink="/" class="btn btn-warning">{{ 'Back to your games' | translate }}</button>
-
+    <button routerLink="/" class="btn btn-warning">{{ 'Your games' | translate }}</button>
+    <button class="btn btn-success" (click)="showSharePanel=true">{{ 'Share' | translate }}</button>
 </div>
 
 <div id="game-result" class="game-result" [hidden]="game.getSentenceResult()==''">
@@ -33,6 +33,14 @@
     </div>
 </div>
 
+<div id="share-panel" [hidden]="!showSharePanel">
+    <div id="share-panel-inside">
+        <a class="share-close glyphicon glyphicon-remove" (click)="showSharePanel=false"></a>
+        <p>{{ "For sharing this game, please copy/pase this code:" | translate }}</p>
+        <textarea>&lt;iframe src=&quot;http://chess-client.local/shared-game/239&quot; width=&quot;480&quot; height=&quot;500&quot;&gt;&lt;/iframe&gt;</textarea>
+    </div>
+</div>
+
 <div id="header-opponent" class="fix-width">
     <div class="player view-by-black">
         <span *ngIf="game.playingColor == 'w'" class="turn glyphicon glyphicon-asterisk"></span>
@@ -45,6 +53,7 @@
 </div>
 
 <div id="body-game-2d">
+
     <table
             class="chessboard-wrapper view-by-black fix-width fix-height">
         <tr>
@@ -202,7 +211,6 @@
         </tr>
     </table>
 
-
     <table
             class="chessboard-wrapper view-by-white fix-width fix-height">
         <tr>
@@ -359,6 +367,7 @@
             </td>
         </tr>
     </table>
+
 </div>
 
 <div id="body-game-3d" class="fix-height">

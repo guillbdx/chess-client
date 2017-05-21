@@ -70,6 +70,9 @@ export let frTranslations = {
     "White won ! (Black resign)": "Victoire des Blancs ! (Abandon des Noirs)",
     "Black won ! (White resign)": "Victoire des Noirs ! (Abandon des Blancs)",
     "Resign": "Abandonner",
-    "3d View": "Vue 3d",
-    "2d View": "Vue 2d"
+    "3d": "3d",
+    "2d": "2d",
+    "Your games": "Vos parties",
+    "Share": "Partager",
+    "For sharing this game, please copy/pase this code:": "Pour partager cette partie, copiez/collez ce code :"
 };
