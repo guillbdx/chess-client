@@ -77,9 +77,11 @@ export class GameComponent implements OnInit, OnDestroy {
         jQuery('.fix-width').css('width', (9 * unit) + 'px');
         jQuery('.fix-height').css('height', (9 * unit) + 'px');
         setTimeout(() => {
-            jQuery('td').css('height', unit + 'px');
+            let tds = document.querySelectorAll('td');
+            for(let h = 0; h < tds.length; h++) {
+                tds[h].style.height = unit + 'px';
+            }
         }, 100);
-
     }
 
     /**
