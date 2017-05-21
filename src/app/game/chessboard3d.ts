@@ -264,7 +264,7 @@ export class Chessboard3d {
                 this.createPiece(piecesPosition[square].charAt(2), piecesPosition[square].charAt(0), square);
             }
             if(currentPiece != null) {
-                this.remove(square);
+                this.disposePiece(square);
             }
         }
     }
@@ -345,7 +345,7 @@ export class Chessboard3d {
      * @param from
      * @param to
      */
-    public move(from: string, to: string): void {
+    public slidePiece(from: string, to: string): void {
         let piece = this.getPieceOnSquare(from);
         if(piece == null) {
             return;
@@ -366,7 +366,7 @@ export class Chessboard3d {
      *
      * @param square
      */
-    public remove(square: string): void {
+    public disposePiece(square: string): void {
         let piece = this.getPieceOnSquare(square);
         if(piece == null) {
             return;
@@ -376,17 +376,17 @@ export class Chessboard3d {
 
     /**
      *
-     * @param square
-     * @param newType
+     * @param from
+     * @param to
      */
-    public promote(square: string, newType: string): void {
-        let piece = this.getPieceOnSquare(square);
-        let color = 'w';
-        if(piece.material.name == 'blackMaterial') {
-            color = 'b';
+    showNormalMove(from: string, to: string) {
+        let capturedPiece = this.getPieceOnSquare(to);
+        this.slidePiece(from, to);
+        if(capturedPiece != null) {
+            setTimeout(() => {
+                this.disposePiece(to);
+            }, 950);
         }
-        this.remove(square);
-        this.createPiece(newType, color, square);
     }
 
     /**
@@ -394,53 +394,52 @@ export class Chessboard3d {
      * @param from
      * @param to
      * @param promotion
+     */
+    showPromotionMoveAddOn(from: string, to: string, promotion: string) {
+        setTimeout(() => {
+            let piece = this.getPieceOnSquare(to);
+            let color = 'w';
+            if(piece.material.name == 'blackMaterial') {
+                color = 'b';
+            }
+            this.disposePiece(to);
+            this.createPiece(promotion, color, to);
+        }, 1100);
+    }
+
+    /**
+     *
+     * @param from
+     * @param to
      * @param castlingType
+     */
+    showCastlingMoveAddOn(from: string, to: string, castlingType: string) {
+        switch(castlingType) {
+            case 'Q' :
+                this.slidePiece('a1', 'd1');
+                break;
+            case 'K' :
+                this.slidePiece('h1', 'f1');
+                break;
+            case 'q' :
+                this.slidePiece('a8', 'd8');
+                break;
+            case 'k' :
+                this.slidePiece('h8', 'f8');
+                break;
+        }
+    }
+
+    /**
+     *
+     * @param from
+     * @param to
      * @param inPassingCapturedSquare
      */
-    public showMove(
-        from: string,
-        to: string,
-        promotion?: string,
-        castlingType?: string,
-        inPassingCapturedSquare?: string): void {
-
-        let capturedPiece = this.getPieceOnSquare(to);
-        this.move(from, to);
-        if(capturedPiece != null) {
-            setTimeout(() => {
-                this.remove(to);
-            }, 950);
-        }
-
-        if(promotion != null) {
-            setTimeout(() => {
-                this.promote(to, promotion);
-            }, 1100);
-        }
-
-        if(castlingType != null) {
-            switch(castlingType) {
-                case 'Q' :
-                    this.move('a1', 'd1');
-                    break;
-                case 'K' :
-                    this.move('h1', 'f1');
-                    break;
-                case 'q' :
-                    this.move('a8', 'd8');
-                    break;
-                case 'k' :
-                    this.move('h8', 'f8');
-                    break;
-            }
-        }
-
-        if(inPassingCapturedSquare != null) {
-            setTimeout(() => {
-                this.remove(inPassingCapturedSquare);
-            }, 950);
-        }
-
+    showInPassingMoveAddOn(from: string, to: string, inPassingCapturedSquare: string) {
+        setTimeout(() => {
+            this.disposePiece(inPassingCapturedSquare);
+        }, 950);
     }
 
     //--------------------------------------------------------

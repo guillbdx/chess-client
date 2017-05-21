@@ -70,9 +70,7 @@ export class GameComponent implements OnInit, OnDestroy {
     resizeContainer() {
         let containerWidth = document.getElementById('width-reference').offsetWidth;
         let unit = containerWidth / 9;
-        console.log(unit);
         if(window.innerWidth > window.innerHeight) { // Landscape mode
-            console.log('landscape mode');
             let containerHeight = window.innerHeight - 100;
             unit = containerHeight / 9;
         }
@@ -197,7 +195,7 @@ export class GameComponent implements OnInit, OnDestroy {
      * Sends the move to origin.
      */
     play() {
-        this.showMove();
+        this.showMove(this.from, this.to, this.promotion);
         this.game.switchPlayingColor();
         this.refreshing = false;
         this.showPromotionPanel = false;
@@ -223,46 +221,45 @@ export class GameComponent implements OnInit, OnDestroy {
     /**
      * Plays a move on the view. (nothing is sent to origin)
      */
-    showMove() {
+    showMove(from: string, to: string, promotion: string) {
+
+        this.showNormalMove(from, to);
+        this.chessboard3d.showNormalMove(from, to);
 
         // Promotion
         if(this.promotion != null) {
-            this.showPromotionMove();
-            this.chessboard3d.showMove(this.from, this.to, this.promotion);
+            this.showPromotionMoveAddOn(from, to, promotion);
+            this.chessboard3d.showPromotionMoveAddOn(from, to, promotion);
             return;
         }
 
         // Castling
-        let castlingType = this.game.getCastlingType(this.from, this.to);
+        let castlingType = this.game.getCastlingType(from, to);
         if(castlingType != null) {
-            this.showCastlingMove(castlingType);
-            this.chessboard3d.showMove(this.from, this.to, this.promotion, castlingType);
+            this.showCastlingMoveAddOn(from, to, castlingType);
+            this.chessboard3d.showCastlingMoveAddOn(from, to, castlingType);
             return;
         }
 
         // In passing
-        let inPassingCapturedSquare = this.game.getInPassingCapturedSquare(this.from, this.to);
+        let inPassingCapturedSquare = this.game.getInPassingCapturedSquare(from, to);
         if(inPassingCapturedSquare != null) {
-            this.showInPassingMove(inPassingCapturedSquare);
-            this.chessboard3d.showMove(this.from, this.to, this.promotion, null, inPassingCapturedSquare);
+            this.showInPassingMoveAddOn(from, to, inPassingCapturedSquare);
+            this.chessboard3d.showInPassingMoveAddOn(from, to, inPassingCapturedSquare);
             return;
         }
-
-        // Normal move
-        this.showNormalMove();
-        this.chessboard3d.showMove(this.from, this.to, this.promotion);
-
     }
 
-    showPromotionMove() {
-        this.game.chessboard[this.to] = this.game.chessboard[this.from];
-        this.game.chessboard[this.from] = '';
-        this.game.chessboard[this.to] = this.game.getColorByUser(this.profile) + '-' + this.promotion;
+    showNormalMove(from: string, to: string) {
+        this.game.chessboard[to] = this.game.chessboard[from];
+        this.game.chessboard[from] = '';
     }
 
-    showCastlingMove(castlingType: string) {
-        this.game.chessboard[this.to] = this.game.chessboard[this.from];
-        this.game.chessboard[this.from] = '';
+    showPromotionMoveAddOn(from: string, to: string, promotion: string) {
+        this.game.chessboard[to] = this.game.getColorByUser(this.profile) + '-' + promotion;
+    }
+
+    showCastlingMoveAddOn(from: string, to: string, castlingType: string) {
         switch(castlingType) {
             case 'Q' :
                 this.game.chessboard['a1'] = '';
@@ -283,15 +280,8 @@ export class GameComponent implements OnInit, OnDestroy {
         }
     }
 
-    showInPassingMove(inPassingCapturedSquare: string) {
-        this.game.chessboard[this.to] = this.game.chessboard[this.from];
-        this.game.chessboard[this.from] = '';
+    showInPassingMoveAddOn(from: string, to: string, inPassingCapturedSquare: string) {
         this.game.chessboard[inPassingCapturedSquare] = '';
-    }
-
-    showNormalMove() {
-        this.game.chessboard[this.to] = this.game.chessboard[this.from];
-        this.game.chessboard[this.from] = '';
     }
 
 
