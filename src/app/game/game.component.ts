@@ -195,43 +195,57 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     previewMove() {
 
-        this.chessboard3d.previewMove(this.from, this.to, this.promotion);
-
-        this.game.chessboard[this.to] = this.game.chessboard[this.from];
-        this.game.chessboard[this.from] = '';
-
+        // Promotion
         if(this.promotion != null) {
-            this.game.chessboard[this.to] = Game.getUtf8PieceByColorAndType(
-                this.game.getColorByUser(this.profile),
-                this.promotion
-            );
+            this.game.chessboard[this.to] = this.game.chessboard[this.from];
+            this.game.chessboard[this.from] = '';
+            this.game.chessboard[this.to] = this.game.getColorByUser(this.profile) + '-' + this.promotion;
+            this.chessboard3d.previewMove(this.from, this.to, this.promotion);
             return;
         }
 
+        // Castling
         let castlingType = this.game.getCastlingType(this.from, this.to);
-        switch(castlingType) {
-            case 'Q' :
-                this.game.chessboard['a1'] = '';
-                this.game.chessboard['d1'] = 'w-r';
-                break;
-            case 'K' :
-                this.game.chessboard['h1'] = '';
-                this.game.chessboard['f1'] = 'w-r';
-                break;
-            case 'q' :
-                this.game.chessboard['a8'] = '';
-                this.game.chessboard['d8'] = 'b-r';
-                break;
-            case 'k' :
-                this.game.chessboard['h8'] = '';
-                this.game.chessboard['f8'] = 'b-r';
-                break;
+        if(castlingType != null) {
+            this.game.chessboard[this.to] = this.game.chessboard[this.from];
+            this.game.chessboard[this.from] = '';
+            switch(castlingType) {
+                case 'Q' :
+                    this.game.chessboard['a1'] = '';
+                    this.game.chessboard['d1'] = 'w-r';
+                    break;
+                case 'K' :
+                    this.game.chessboard['h1'] = '';
+                    this.game.chessboard['f1'] = 'w-r';
+                    break;
+                case 'q' :
+                    this.game.chessboard['a8'] = '';
+                    this.game.chessboard['d8'] = 'b-r';
+                    break;
+                case 'k' :
+                    this.game.chessboard['h8'] = '';
+                    this.game.chessboard['f8'] = 'b-r';
+                    break;
+            }
+            this.chessboard3d.previewMove(this.from, this.to, this.promotion, castlingType);
+            return;
         }
 
+        // In passing
         let inPassingCapturedSquare = this.game.getInPassingCapturedSquare(this.from, this.to);
         if(inPassingCapturedSquare != null) {
+            this.game.chessboard[this.to] = this.game.chessboard[this.from];
+            this.game.chessboard[this.from] = '';
             this.game.chessboard[inPassingCapturedSquare] = '';
+            this.chessboard3d.previewMove(this.from, this.to, this.promotion, null, inPassingCapturedSquare);
+            return;
         }
+
+        // Normal move
+        this.game.chessboard[this.to] = this.game.chessboard[this.from];
+        this.game.chessboard[this.from] = '';
+        this.chessboard3d.previewMove(this.from, this.to, this.promotion);
+
     }
 
     /**

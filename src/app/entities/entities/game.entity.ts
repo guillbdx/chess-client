@@ -192,47 +192,6 @@ export class Game {
         return false;
     }
 
-    /**
-     *
-     * @param color
-     * @param type
-     * @returns {any}
-     */
-    static getUtf8PieceByColorAndType(color: string, type: string) {
-        if(color == Game.COLOR_WHITE) {
-            switch(type) {
-                case 'r' :
-                    return '♖';
-                case 'n' :
-                    return '♘';
-                case 'b' :
-                    return '♗';
-                case 'q' :
-                    return '♕';
-                case 'k' :
-                    return '♔';
-                case 'p' :
-                    return '♙';
-            }
-        }
-        if(color == Game.COLOR_BLACK) {
-            switch(type) {
-                case 'r' :
-                    return '♜';
-                case 'n' :
-                    return '♞';
-                case 'b' :
-                    return '♝';
-                case 'q' :
-                    return '♛';
-                case 'k' :
-                    return '♚';
-                case 'p' :
-                    return '♟';
-            }
-        }
-    }
-
     getCastlingType(from: string, to: string): string|null {
         for(let possibleMove of this.possibleMoves) {
             if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['flags'] == 'q') {

@@ -394,8 +394,15 @@ export class Chessboard3d {
      * @param from
      * @param to
      * @param promotion
+     * @param castlingType
+     * @param inPassingCapturedSquare
      */
-    public previewMove(from: string, to: string, promotion?: string): void {
+    public previewMove(
+        from: string,
+        to: string,
+        promotion?: string,
+        castlingType?: string,
+        inPassingCapturedSquare?: string): void {
 
         let capturedPiece = this.getPieceOnSquare(to);
         this.move(from, to);
@@ -411,23 +418,23 @@ export class Chessboard3d {
             }, 1100);
         }
 
-        let castlingType = null;
-        switch(castlingType) {
-            case 'Q' :
-                this.move('a1', 'd1');
-                break;
-            case 'K' :
-                this.move('h1', 'f1');
-                break;
-            case 'q' :
-                this.move('a8', 'd8');
-                break;
-            case 'k' :
-                this.move('h8', 'f8');
-                break;
+        if(castlingType != null) {
+            switch(castlingType) {
+                case 'Q' :
+                    this.move('a1', 'd1');
+                    break;
+                case 'K' :
+                    this.move('h1', 'f1');
+                    break;
+                case 'q' :
+                    this.move('a8', 'd8');
+                    break;
+                case 'k' :
+                    this.move('h8', 'f8');
+                    break;
+            }
         }
 
-        let inPassingCapturedSquare = null;
         if(inPassingCapturedSquare != null) {
             setTimeout(() => {
                 this.remove(inPassingCapturedSquare);
