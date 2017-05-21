@@ -110,6 +110,12 @@ export class GameComponent implements OnInit, OnDestroy {
         }, 3000);
     }
 
+    /**
+     *
+     * @param canvas
+     * @param scene
+     * @param engine
+     */
     initChessboard3d(canvas: HTMLCanvasElement, scene: Scene, engine: Engine) {
         this.chessboard3d = new Chessboard3d(canvas, scene, this);
         this.chessboard3d.initSceneEnvironment();
@@ -221,7 +227,7 @@ export class GameComponent implements OnInit, OnDestroy {
     /**
      * Plays a move on the view. (nothing is sent to origin)
      */
-    showMove(from: string, to: string, promotion: string) {
+    showMove(from: string, to: string, promotion?: string) {
 
         this.showNormalMove(from, to);
         this.chessboard3d.showNormalMove(from, to);
@@ -250,15 +256,32 @@ export class GameComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     */
     showNormalMove(from: string, to: string) {
         this.game.chessboard[to] = this.game.chessboard[from];
         this.game.chessboard[from] = '';
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param promotion
+     */
     showPromotionMoveAddOn(from: string, to: string, promotion: string) {
         this.game.chessboard[to] = this.game.getColorByUser(this.profile) + '-' + promotion;
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param castlingType
+     */
     showCastlingMoveAddOn(from: string, to: string, castlingType: string) {
         switch(castlingType) {
             case 'Q' :
@@ -280,6 +303,12 @@ export class GameComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param inPassingCapturedSquare
+     */
     showInPassingMoveAddOn(from: string, to: string, inPassingCapturedSquare: string) {
         this.game.chessboard[inPassingCapturedSquare] = '';
     }

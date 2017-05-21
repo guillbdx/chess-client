@@ -40,6 +40,8 @@ export class Chessboard3d {
 
     private lastToMarker: Mesh;
 
+    private moveInProgress = false;
+
     constructor(
         canvas: HTMLCanvasElement,
         scene: Scene,
@@ -258,6 +260,9 @@ export class Chessboard3d {
      * @param piecesPosition
      */
     public recreatePieces(piecesPosition: Object) {
+        if(this.moveInProgress) {
+            return;
+        }
         for(let square in piecesPosition) {
             let currentPiece = this.getPieceOnSquare(square);
             if(piecesPosition[square] != '') {
@@ -380,6 +385,12 @@ export class Chessboard3d {
      * @param to
      */
     showNormalMove(from: string, to: string) {
+
+        this.moveInProgress = true;
+        setTimeout(() => {
+            this.moveInProgress = false;
+        }, 1000);
+
         let capturedPiece = this.getPieceOnSquare(to);
         this.slidePiece(from, to);
         if(capturedPiece != null) {
