@@ -68,9 +68,11 @@ export class GameComponent implements OnInit, OnDestroy {
      * Resizes the container
      */
     resizeContainer() {
-        let containerWidth = jQuery('width-reference').offsetWidth;
+        let containerWidth = document.getElementById('width-reference').offsetWidth;
         let unit = containerWidth / 9;
+        console.log(unit);
         if(window.innerWidth > window.innerHeight) { // Landscape mode
+            console.log('landscape mode');
             let containerHeight = window.innerHeight - 100;
             unit = containerHeight / 9;
         }
