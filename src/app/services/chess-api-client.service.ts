@@ -147,11 +147,10 @@ export class ChessApiClientService {
     getUser(id: number) {
 
         this.loader.show();
-        this.resetHeadersWithBearer();
 
         return this.http.get(
             environment.apiBaseUrl + '/users/' + id,
-            {headers: this.headersWithBearer})
+            {headers: this.headers})
             .toPromise()
             .then(response => {
                 this.loader.hide();
@@ -293,11 +292,10 @@ export class ChessApiClientService {
         if(displayLoader == true) {
             this.loader.show();
         }
-        this.resetHeadersWithBearer();
 
         return this.http.get(
             environment.apiBaseUrl + '/games/' + id,
-            {headers: this.headersWithBearer})
+            {headers: this.headers})
             .toPromise()
             .then(response => {
                 if(displayLoader == true) {
