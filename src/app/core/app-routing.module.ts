@@ -9,6 +9,7 @@ import { RegisterRouteComponent }       from '../route-components/register.route
 import { ProfileRouteComponent }        from '../route-components/profile.route.component';
 import { GamesRouteComponent }          from '../route-components/games.route.component';
 import { GameRouteComponent }           from '../route-components/game.route.component';
+import { SharedGameRouteComponent }     from "../route-components/shared-game.route.component";
 import { GameCreateRouteComponent }     from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent } from '../route-components/change-password.route.component';
 import { AccountDeleteRouteComponent }  from '../route-components/account-delete.route.component';
@@ -48,6 +49,10 @@ const routes: Routes = [
         canActivate: [
             CanAccessPrivateAreaGuard
         ]
+    },
+    {
+        path: 'shared-game/:id',
+        component: SharedGameRouteComponent,
     },
     {
         path: 'game-create',

@@ -19,14 +19,16 @@ import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-a
 import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
 
 import { AppComponent }                     from './app.component';
-import {NavigationComponent}                from "./navigation.component";
-import {GameComponent}                      from "../game/game.component";
+import { NavigationComponent }              from "./navigation.component";
+import { GameComponent }                    from "../game/game.component";
+import { SharedGameComponent }              from "../game/shared-game.component";
 
 import { LoginRouteComponent }              from '../route-components/login.route.component';
 import { RegisterRouteComponent }           from '../route-components/register.route.component';
 import { ProfileRouteComponent }            from '../route-components/profile.route.component';
 import { GamesRouteComponent }              from '../route-components/games.route.component';
 import { GameRouteComponent }               from '../route-components/game.route.component';
+import { SharedGameRouteComponent }         from "../route-components/shared-game.route.component";
 import { GameCreateRouteComponent }         from '../route-components/game-create.route.component';
 import { ChangePasswordRouteComponent }     from '../route-components/change-password.route.component';
 import { AccountDeleteRouteComponent}       from "../route-components/account-delete.route.component";
@@ -56,6 +58,7 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         ProfileRouteComponent,
         GamesRouteComponent,
         GameRouteComponent,
+        SharedGameRouteComponent,
         GameCreateRouteComponent,
         ChangePasswordRouteComponent,
         AccountDeleteRouteComponent,
@@ -67,6 +70,7 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         GameCreateFormComponent,
 
         GameComponent,
+        SharedGameComponent,
 
         TranslatePipe,
         FormatDatePipe,

@@ -7,10 +7,11 @@ import StandardMaterial = BABYLON.StandardMaterial;
 import Vector3 = BABYLON.Vector3;
 import CircleEase = BABYLON.CircleEase;
 import AbstractMesh = BABYLON.AbstractMesh;
+import {SharedGameComponent} from "./shared-game.component";
 
 export class Chessboard3d {
 
-    private gameComponent: GameComponent;
+    private gameComponent: GameComponent|SharedGameComponent;
 
     private canvas: HTMLCanvasElement;
 
@@ -45,7 +46,7 @@ export class Chessboard3d {
     constructor(
         canvas: HTMLCanvasElement,
         scene: Scene,
-        gameComponent: GameComponent
+        gameComponent: GameComponent|SharedGameComponent
     ) {
         this.gameComponent = gameComponent;
         this.canvas = canvas;
