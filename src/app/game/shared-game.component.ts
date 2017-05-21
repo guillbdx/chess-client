@@ -46,7 +46,7 @@ export class SharedGameComponent implements OnInit, OnDestroy {
         BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
             scene.executeWhenReady(() => {
                 this.initChessboard3d(canvas, scene, engine);
-                this.displayViewType('2d');
+                this.displayViewType('3d');
                 this.pullOriginAndReset();
                 this.loopPull();
             });
