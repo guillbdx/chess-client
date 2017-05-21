@@ -1,10 +1,6 @@
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {Game} from "../entities/entities/game.entity";
-import {User} from "../entities/entities/user.entity";
 import {ChessApiClientService} from "../services/chess-api-client.service";
-import {Chessboard3d} from "./chessboard3d";
-import Scene = BABYLON.Scene;
-import Engine = BABYLON.Engine;
 import * as jQuery from 'jquery';
 
 @Component({
@@ -24,10 +20,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
     refreshing = true;
     refreshingInterval: any;
 
-    showPromotionPanel = false;
-
-    chessboard3d: Chessboard3d;
-
     constructor(
         private chessApiClient: ChessApiClientService
     ) {}
@@ -41,16 +33,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
      */
     ngOnInit() {
         this.resizeContainer();
-        let canvas = <HTMLCanvasElement>document.getElementById('canvas');
-        let engine = new Engine(canvas, true);
-        BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
-            scene.executeWhenReady(() => {
-                this.initChessboard3d(canvas, scene, engine);
-                this.displayViewType('3d');
-                this.pullOriginAndReset();
-                this.loopPull();
-            });
-        });
     }
 
     /**
@@ -89,42 +71,9 @@ export class SharedGameComponent implements OnInit, OnDestroy {
     loopPull() {
         this.refreshingInterval = setInterval(() => {
             this.pullOriginAndReset();
-        }, 3000);
+        }, 10000);
     }
 
-    /**
-     *
-     * @param canvas
-     * @param scene
-     * @param engine
-     */
-    initChessboard3d(canvas: HTMLCanvasElement, scene: Scene, engine: Engine) {
-        this.chessboard3d = new Chessboard3d(canvas, scene, this);
-        this.chessboard3d.initSceneEnvironment();
-        this.chessboard3d.recreatePieces(this.game.chessboard);
-        this.chessboard3d.activeClickListener();
-        engine.runRenderLoop(() => {
-            scene.render();
-        });
-    }
-
-    /**
-     * Displays / hides 2d or 3d view
-     */
-    displayViewType(viewType: string): void {
-        if(viewType == '2d') {
-            document.getElementById('body-game-2d').style.display = 'block';
-            document.getElementById('body-game-3d').style.display = 'none';
-            document.getElementById('btn-display-3d-view').style.display = 'block';
-            document.getElementById('btn-display-2d-view').style.display = 'none';
-        }
-        if(viewType == '3d') {
-            document.getElementById('body-game-2d').style.display = 'none';
-            document.getElementById('body-game-3d').style.display = 'block';
-            document.getElementById('btn-display-3d-view').style.display = 'none';
-            document.getElementById('btn-display-2d-view').style.display = 'block';
-        }
-    }
 
     //---------------------------------------------------------------------
     // GAME
@@ -151,9 +100,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
 
         this.colorCurrentFromToSquare();
         this.colorLastFromToSquare();
-
-        this.chessboard3d.recreatePieces(data.chessboard);
-
     }
 
     /**
@@ -277,7 +223,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
      * Removes styles last-from and last-to on each square
      */
     uncolorLastFromToSquare() {
-        this.chessboard3d.uncolorLastFromToSquare();
         jQuery('td').removeClass('last-from');
         jQuery('td').removeClass('last-to');
     }
@@ -290,7 +235,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
             return;
         }
         this.uncolorLastFromToSquare();
-        this.chessboard3d.colorLastFromToSquare(this.game.lastMove['from'], this.game.lastMove['to']);
         jQuery('td.' + this.game.lastMove['from']).addClass('last-from');
         jQuery('td.' + this.game.lastMove['to']).addClass('last-to');
     }
@@ -299,7 +243,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
      * Removes styles current-from and current-to on each square
      */
     uncolorCurrentFromToSquare() {
-        this.chessboard3d.uncolorCurrentFromToSquare();
         jQuery('td').removeClass('current-from');
         jQuery('td').removeClass('current-to');
     }
@@ -309,7 +252,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
      */
     colorCurrentFromToSquare() {
         this.uncolorCurrentFromToSquare();
-        this.chessboard3d.colorCurrentFromToSquare(this.from, this.to);
         if(this.from == null) {
             return;
         }
