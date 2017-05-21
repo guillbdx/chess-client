@@ -31,11 +31,11 @@
 /*-----------------------------------------*/
 
 #promotion-panel {
-    padding-left: 65px;
     text-align: center;
+    margin: auto;
+    margin-top: 20%;
     position: absolute;
-    left: 0;
-    top: 35%;
+    width: 100%;
 }
 #promotion-panel #promotion-banner {
     background: white;
@@ -46,6 +46,7 @@
     border-radius: 5px;
     font-size: xx-large;
     position: relative;
+    margin: auto;
 }
 #promotion-panel #promotion-banner a {
     color: black;
