@@ -33,9 +33,12 @@ export class GameComponent implements OnInit, OnDestroy {
 
     chessboard3d: Chessboard3d;
 
+    sharingUrl: string;
+
     constructor(
         private chessApiClient: ChessApiClientService
-    ) {}
+    ) {
+    }
 
     //---------------------------------------------------------------------
     // GLOBAL ACTIONS
@@ -46,6 +49,7 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     ngOnInit() {
         this.resizeContainer();
+        this.sharingUrl = location.protocol + '//' + window.location.host + '/shared-game/' + this.game.id;
         let canvas = <HTMLCanvasElement>document.getElementById('canvas');
         let engine = new Engine(canvas, true);
         BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
