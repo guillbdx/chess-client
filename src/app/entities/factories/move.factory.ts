@@ -5,7 +5,7 @@ import {Game} from "../entities/game.entity";
 @Injectable()
 export class MoveFactory {
 
-    createMove(data: any): Move {
+    static createMoveFromData(data: any): Move {
 
         if(data == null) {
             return null;

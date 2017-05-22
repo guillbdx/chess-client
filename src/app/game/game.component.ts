@@ -37,8 +37,7 @@ export class GameComponent implements OnInit, OnDestroy {
     sharingUrl: string;
 
     constructor(
-        private chessApiClient: ChessApiClientService,
-        private moveFactory: MoveFactory
+        private chessApiClient: ChessApiClientService
     ) {
     }
 
@@ -173,13 +172,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.possibleMoves = data.possibleMoves;
         this.game.fen = data.fen;
         this.game.pgn = data.pgn;
-        this.game.lastMove = data.lastMove;
-
-
-        console.log(data.lastMove);
-        console.log(this.moveFactory.createMove(data.lastMove));
-        console.log('---');
-
+        this.game.lastMove = MoveFactory.createMoveFromData(data.lastMove);
 
         this.colorCurrentFromToSquare();
         this.colorLastFromToSquare();

@@ -23,7 +23,7 @@ export class Game {
         public endedAt?            : string,
         public wonBy?              : string,
         public winType?            : string,
-        public lastMove?           : Object|null
+        public lastMove?           : Move|null
     ) {}
 
     /**

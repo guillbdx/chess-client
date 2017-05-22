@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import {UserFactory} from "./user.factory";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "../../services/flash-messages.service";
+import {MoveFactory} from "./move.factory";
 
 @Injectable()
 export class GameFactory {
@@ -76,7 +77,7 @@ export class GameFactory {
             data.endedAt,
             data.wonBy,
             data.winType,
-            data.lastMove
+            MoveFactory.createMoveFromData(data.lastMove)
         );
     }
 
