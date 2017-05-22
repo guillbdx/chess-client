@@ -33,6 +33,7 @@ export class SharedGameComponent implements OnInit, OnDestroy {
      */
     ngOnInit() {
         this.resizeContainer();
+        this.loopPull();
     }
 
     /**
