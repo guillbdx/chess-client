@@ -266,11 +266,11 @@ export class Chessboard3d {
         }
         for(let square in piecesPosition) {
             let currentPiece = this.getPieceOnSquare(square);
-            if(piecesPosition[square] != '') {
-                this.createPiece(piecesPosition[square].charAt(2), piecesPosition[square].charAt(0), square);
+            if(piecesPosition[square]['piece'] != '') {
+                //this.createPiece(piecesPosition[square]['piece'].charAt(2), piecesPosition[square]['piece'].charAt(0), square);
             }
             if(currentPiece != null) {
-                this.disposePiece(square);
+                //this.disposePiece(square);
             }
         }
     }

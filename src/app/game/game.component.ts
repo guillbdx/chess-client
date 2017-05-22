@@ -7,6 +7,7 @@ import Scene = BABYLON.Scene;
 import Engine = BABYLON.Engine;
 import * as jQuery from 'jquery';
 import {MoveFactory} from "../entities/factories/move.factory";
+import {GameFactory} from "../entities/factories/game.factory";
 
 @Component({
     selector: 'game',
@@ -51,17 +52,22 @@ export class GameComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.resizeContainer();
         this.sharingUrl = location.protocol + '//' + window.location.host + '/shared-game/' + this.game.id;
-        let canvas = <HTMLCanvasElement>document.getElementById('canvas');
-        let engine = new Engine(canvas, true);
-        BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
-            scene.executeWhenReady(() => {
-                this.initChessboard3d(canvas, scene, engine);
-                this.displayViewType('2d');
-                this.pullOriginAndReset();
-                this.loopPull();
-                this.hideOtherColorContainer();
-            });
-        });
+        // let canvas = <HTMLCanvasElement>document.getElementById('canvas');
+        // let engine = new Engine(canvas, true);
+        // BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
+        //     scene.executeWhenReady(() => {
+        //         this.initChessboard3d(canvas, scene, engine);
+        //         this.displayViewType('2d');
+        //         this.pullOriginAndReset();
+        //         this.loopPull();
+        //         this.hideOtherColorContainer();
+        //     });
+        // });
+
+        this.displayViewType('2d');
+        this.pullOriginAndReset();
+        this.loopPull();
+        this.hideOtherColorContainer();
     }
 
     /**
@@ -102,7 +108,7 @@ export class GameComponent implements OnInit, OnDestroy {
         }
         // Active black camera
         if(this.game.getColorByUser(this.profile) == Game.COLOR_BLACK ) {
-            this.chessboard3d.activeCamera('b');
+            //this.chessboard3d.activeCamera('b');
         }
     }
 
@@ -165,7 +171,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.winType = data.winType;
         this.game.endedAt = data.endedAt;
         this.game.result = data.result;
-        this.game.chessboard = data.chessboard;
+        this.game.chessboard = GameFactory.createChessboardFromData(data.chessboard);
         this.game.playingColor = data.playingColor;
         this.game.possibleMoves = data.possibleMoves;
         this.game.fen = data.fen;
@@ -175,7 +181,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.colorCurrentFromToSquare();
         this.colorLastFromToSquare();
 
-        this.chessboard3d.recreatePieces(data.chessboard);
+        //this.chessboard3d.recreatePieces(data.chessboard);
 
     }
 
@@ -184,19 +190,15 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     pullOriginAndReset() {
         this.chessApiClient.getGame(this.game.id, false).then(response => {
-
             let data = response.json();
-
             if(this.sendingMoveInProgress) {
                 return;
             }
-
             let dataLastMove = MoveFactory.createMoveFromData(data.lastMove);
             if(this.game.lastMove != null && !this.game.lastMove.isSameMove(dataLastMove)) {
                 this.game.applyMove(dataLastMove);
                 return;
             }
-
             this.reset(response.json());
         });
     }
@@ -227,9 +229,6 @@ export class GameComponent implements OnInit, OnDestroy {
         this.uncolorLastFromToSquare();
 
         this.chessApiClient.play(this.game, this.from, this.to, this.promotion).then(response => {
-            if(response.status == 200) {
-                this.reset(response.json());
-            }
             this.sendingMoveInProgress = false;
         });
 
@@ -315,7 +314,7 @@ export class GameComponent implements OnInit, OnDestroy {
      * Removes styles last-from and last-to on each square
      */
     uncolorLastFromToSquare() {
-        this.chessboard3d.uncolorLastFromToSquare();
+        //this.chessboard3d.uncolorLastFromToSquare();
         jQuery('td').removeClass('last-from');
         jQuery('td').removeClass('last-to');
     }
@@ -328,7 +327,7 @@ export class GameComponent implements OnInit, OnDestroy {
             return;
         }
         this.uncolorLastFromToSquare();
-        this.chessboard3d.colorLastFromToSquare(this.game.lastMove['from'], this.game.lastMove['to']);
+        //this.chessboard3d.colorLastFromToSquare(this.game.lastMove['from'], this.game.lastMove['to']);
         jQuery('td.' + this.game.lastMove['from']).addClass('last-from');
         jQuery('td.' + this.game.lastMove['to']).addClass('last-to');
     }
@@ -337,7 +336,7 @@ export class GameComponent implements OnInit, OnDestroy {
      * Removes styles current-from and current-to on each square
      */
     uncolorCurrentFromToSquare() {
-        this.chessboard3d.uncolorCurrentFromToSquare();
+        //this.chessboard3d.uncolorCurrentFromToSquare();
         jQuery('td').removeClass('current-from');
         jQuery('td').removeClass('current-to');
     }
@@ -347,7 +346,7 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     colorCurrentFromToSquare() {
         this.uncolorCurrentFromToSquare();
-        this.chessboard3d.colorCurrentFromToSquare(this.from, this.to);
+        //this.chessboard3d.colorCurrentFromToSquare(this.from, this.to);
         if(this.from == null) {
             return;
         }

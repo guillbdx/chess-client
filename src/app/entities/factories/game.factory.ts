@@ -6,6 +6,7 @@ import {UserFactory} from "./user.factory";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "../../services/flash-messages.service";
 import {MoveFactory} from "./move.factory";
+import {ChessboardSquare} from "../entities/chessboard-square.entity";
 
 @Injectable()
 export class GameFactory {
@@ -60,8 +61,27 @@ export class GameFactory {
         return null;
     }
 
+    static createChessboardFromData(data: any) {
+        let chessboard = [];
+        for(let key in data) {
+            let square = new ChessboardSquare(
+                key,
+                data[key],
+                false,
+                false,
+                false
+            );
+            chessboard[key] = square;
+        }
+        return chessboard;
+    }
+
     private createGameFromDataCreatorGuest(data: any, creator: User, guest: User) {
-        return new Game(
+
+        let lastMove = MoveFactory.createMoveFromData(data.lastMove);
+        let chessboard = GameFactory.createChessboardFromData(data.chessboard);
+
+        let game = new Game(
             creator,
             guest,
             data.id,
@@ -72,13 +92,15 @@ export class GameFactory {
             data.playingColor,
             data.possibleMoves,
             data.result,
-            data.chessboard,
+            chessboard,
             data.acceptedAt,
             data.endedAt,
             data.wonBy,
             data.winType,
-            MoveFactory.createMoveFromData(data.lastMove)
+            lastMove
         );
+        console.log(game);
+        return game;
     }
 
 }

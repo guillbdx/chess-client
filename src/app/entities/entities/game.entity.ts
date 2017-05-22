@@ -1,5 +1,6 @@
 import {User} from "./user.entity";
 import {Move} from "./move.entity";
+import {ChessboardSquare} from "./chessboard-square.entity";
 
 export class Game {
 
@@ -18,7 +19,7 @@ export class Game {
         public playingColor?       : string,
         public possibleMoves?      : Object[],
         public result?             : string,
-        public chessboard?         : string[],
+        public chessboard?         : ChessboardSquare[],
         public acceptedAt?         : string,
         public endedAt?            : string,
         public wonBy?              : string,
@@ -238,10 +239,10 @@ export class Game {
      * @returns {any}
      */
     getColorPieceOnSquare(square: string): string {
-        if(this.chessboard[square] == null) {
+        if(this.chessboard[square]['piece'] == null) {
             return null;
         }
-        return this.chessboard[square].charAt(0);
+        return this.chessboard[square]['piece'].charAt(0);
     }
 
     /**
