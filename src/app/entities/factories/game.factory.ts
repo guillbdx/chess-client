@@ -80,7 +80,7 @@ export class GameFactory {
         let lastMove = MoveFactory.createMoveFromData(data.lastMove);
         let chessboard = GameFactory.createChessboardFromData(data.chessboard);
 
-        let game = new Game(
+        return new Game(
             creator,
             guest,
             data.id,
@@ -98,8 +98,6 @@ export class GameFactory {
             data.winType,
             lastMove
         );
-        console.log(game);
-        return game;
     }
 
 }

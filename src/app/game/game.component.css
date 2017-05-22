@@ -149,7 +149,7 @@
 }
 .chessboard td.dark.selected,
 .chessboard td.light.selected {
-    background-color: brown;
+    background-color: #f1ed2e;
 }
 .chessboard td.dark.last-from,
 .chessboard td.light.last-from {

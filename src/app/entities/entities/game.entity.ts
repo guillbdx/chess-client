@@ -194,6 +194,12 @@ export class Game {
         return false;
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @returns {any}
+     */
     getCastlingType(from: string, to: string): string|null {
         for(let possibleMove of this.possibleMoves) {
             if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['flags'] == 'q') {
@@ -206,6 +212,12 @@ export class Game {
         return null;
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @returns {any}
+     */
     getInPassingCapturedSquare(from: string, to: string): string|null {
         for(let possibleMove of this.possibleMoves) {
             if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['flags'] == 'e') {
@@ -327,14 +339,22 @@ export class Game {
 
     }
 
+    /**
+     *
+     * @param selectedSquare
+     */
     setSpecialSquares(selectedSquare?: string) {
         for(let i in this.chessboard) {
             this.chessboard[i].selected = false;
             this.chessboard[i].lastFrom = false;
             this.chessboard[i].lastTo = false;
         }
-        this.chessboard[this.lastMove.from]['lastFrom'] = true;
-        this.chessboard[this.lastMove.to]['lastTo'] = true;
+        if(this.lastMove != null) {
+            this.chessboard[this.lastMove.from]['lastFrom'] = true;
+        }
+        if(this.lastMove != null) {
+            this.chessboard[this.lastMove.to]['lastTo'] = true;
+        }
         if(selectedSquare != null) {
             this.chessboard[selectedSquare]['selected'] = true;
         }
