@@ -207,8 +207,10 @@ export class GameComponent implements OnInit, OnDestroy {
      * Sends the move to origin.
      */
     play() {
-        this.showMove(this.from, this.to, this.promotion);
-        this.game.switchPlayingColor();
+
+        let move = this.game.createMove(this.from, this.to, this.promotion);
+        this.game.applyMove(move);
+
         this.refreshing = false;
         this.showPromotionPanel = false;
         this.uncolorLastFromToSquare();
@@ -225,100 +227,6 @@ export class GameComponent implements OnInit, OnDestroy {
         this.promotion = null;
 
     }
-
-    //---------------------------------------------------------------------
-    // SHOW MOVE
-    //---------------------------------------------------------------------
-
-    /**
-     * Plays a move on the view. (nothing is sent to origin)
-     */
-    showMove(from: string, to: string, promotion?: string) {
-
-        this.showNormalMove(from, to);
-        this.chessboard3d.showNormalMove(from, to);
-
-        // Promotion
-        if(this.promotion != null) {
-            this.showPromotionMoveAddOn(from, to, promotion);
-            this.chessboard3d.showPromotionMoveAddOn(from, to, promotion);
-            return;
-        }
-
-        // Castling
-        let castlingType = this.game.getCastlingType(from, to);
-        if(castlingType != null) {
-            this.showCastlingMoveAddOn(from, to, castlingType);
-            this.chessboard3d.showCastlingMoveAddOn(from, to, castlingType);
-            return;
-        }
-
-        // In passing
-        let inPassingCapturedSquare = this.game.getInPassingCapturedSquare(from, to);
-        if(inPassingCapturedSquare != null) {
-            this.showInPassingMoveAddOn(from, to, inPassingCapturedSquare);
-            this.chessboard3d.showInPassingMoveAddOn(from, to, inPassingCapturedSquare);
-            return;
-        }
-    }
-
-    /**
-     *
-     * @param from
-     * @param to
-     */
-    showNormalMove(from: string, to: string) {
-        this.game.chessboard[to] = this.game.chessboard[from];
-        this.game.chessboard[from] = '';
-    }
-
-    /**
-     *
-     * @param from
-     * @param to
-     * @param promotion
-     */
-    showPromotionMoveAddOn(from: string, to: string, promotion: string) {
-        this.game.chessboard[to] = this.game.getColorByUser(this.profile) + '-' + promotion;
-    }
-
-    /**
-     *
-     * @param from
-     * @param to
-     * @param castlingType
-     */
-    showCastlingMoveAddOn(from: string, to: string, castlingType: string) {
-        switch(castlingType) {
-            case 'Q' :
-                this.game.chessboard['a1'] = '';
-                this.game.chessboard['d1'] = 'w-r';
-                break;
-            case 'K' :
-                this.game.chessboard['h1'] = '';
-                this.game.chessboard['f1'] = 'w-r';
-                break;
-            case 'q' :
-                this.game.chessboard['a8'] = '';
-                this.game.chessboard['d8'] = 'b-r';
-                break;
-            case 'k' :
-                this.game.chessboard['h8'] = '';
-                this.game.chessboard['f8'] = 'b-r';
-                break;
-        }
-    }
-
-    /**
-     *
-     * @param from
-     * @param to
-     * @param inPassingCapturedSquare
-     */
-    showInPassingMoveAddOn(from: string, to: string, inPassingCapturedSquare: string) {
-        this.game.chessboard[inPassingCapturedSquare] = '';
-    }
-
 
     //---------------------------------------------------------------------
     // EVENTS

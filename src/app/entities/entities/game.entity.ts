@@ -1,4 +1,5 @@
 import {User} from "./user.entity";
+import {Move} from "./move.entity";
 
 export class Game {
 
@@ -223,6 +224,74 @@ export class Game {
         if(color == Game.COLOR_BLACK) {
             return letter + (number + 1);
         }
+    }
+
+    getColorPieceOnSquare(square: string): string {
+        if(this.chessboard[square] == null) {
+            return null;
+        }
+        return this.chessboard[square].charAt(0);
+    }
+
+    getOppositeColor(color: string): string {
+        if(color == Game.COLOR_WHITE) {
+            return Game.COLOR_BLACK;
+        }
+        return Game.COLOR_WHITE;
+    }
+
+    createMove(from: string, to: string, promotion: string|null): Move {
+        if(!this.isPossibleFromTo(from, to)) {
+            return null
+        }
+        let color = this.getColorPieceOnSquare(from);
+        let castlingType = this.getCastlingType(from, to);
+        let inPassingCapturedSquare = this.getInPassingCapturedSquare(from, to);
+        return new Move(
+            color,
+            from,
+            to,
+            promotion,
+            castlingType,
+            inPassingCapturedSquare
+        );
+    }
+
+    applyMove(move: Move): void {
+        this.playingColor = this.getOppositeColor(move.color);
+
+        this.chessboard[move.to] = this.chessboard[move.from];
+        this.chessboard[move.from] = '';
+
+        if(move.promotion != null) {
+            this.chessboard[move.to] = move.color + '-' + move.promotion;
+        }
+
+        if(move.castlingType != null) {
+            switch(move.castlingType) {
+                case 'Q' :
+                    this.chessboard['a1'] = '';
+                    this.chessboard['d1'] = 'w-r';
+                    break;
+                case 'K' :
+                    this.chessboard['h1'] = '';
+                    this.chessboard['f1'] = 'w-r';
+                    break;
+                case 'q' :
+                    this.chessboard['a8'] = '';
+                    this.chessboard['d8'] = 'b-r';
+                    break;
+                case 'k' :
+                    this.chessboard['h8'] = '';
+                    this.chessboard['f8'] = 'b-r';
+                    break;
+            }
+        }
+
+        if(move.inPassingSquare != null) {
+            this.chessboard[move.inPassingSquare] = '';
+        }
+
     }
 
 }
