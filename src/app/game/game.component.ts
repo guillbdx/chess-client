@@ -178,6 +178,8 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.pgn = data.pgn;
         this.game.lastMove = MoveFactory.createMoveFromData(data.lastMove);
 
+        this.game.setSpecialSquares(this.from);
+
         //this.chessboard3d.recreatePieces(data.chessboard);
 
     }
@@ -255,13 +257,11 @@ export class GameComponent implements OnInit, OnDestroy {
         if(this.from == null && this.game.isPossibleFrom(square)) {
             this.from = square;
             this.game.chessboard[square]['selected'] = true;
-            console.log(this.game.chessboard[square]);
             return;
         }
 
         if(this.game.isPossibleFromTo(this.from, square)) {
             this.to = square;
-            // YYY
             this.promptPromotionIfNeededThenPlay();
             return;
         }

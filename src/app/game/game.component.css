@@ -147,8 +147,6 @@
 .chessboard td.light {
     background-color: #ffce9e;
 }
-
-
 .chessboard td.dark.selected,
 .chessboard td.light.selected {
     background-color: brown;

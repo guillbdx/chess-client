@@ -287,17 +287,10 @@ export class Game {
      */
     applyMove(move: Move): void {
 
-        for(let i in this.chessboard) {
-            this.chessboard[i].lastFrom = false;
-            this.chessboard[i].lastTo = false;
-        }
-
         this.playingColor = this.getOppositeColor(move.color);
 
         this.chessboard[move.to]['piece'] = this.chessboard[move.from]['piece'];
-        this.chessboard[move.to]['lastTo'] = true;
         this.chessboard[move.from]['piece'] = '';
-        this.chessboard[move.from]['lastFrom'] = true;
 
         if(move.promotion != null) {
             this.chessboard[move.to]['piece'] = move.color + '-' + move.promotion;
@@ -330,6 +323,21 @@ export class Game {
 
         this.lastMove = move;
 
+        this.setSpecialSquares();
+
+    }
+
+    setSpecialSquares(selectedSquare?: string) {
+        for(let i in this.chessboard) {
+            this.chessboard[i].selected = false;
+            this.chessboard[i].lastFrom = false;
+            this.chessboard[i].lastTo = false;
+        }
+        this.chessboard[this.lastMove.from]['lastFrom'] = true;
+        this.chessboard[this.lastMove.to]['lastTo'] = true;
+        if(selectedSquare != null) {
+            this.chessboard[selectedSquare]['selected'] = true;
+        }
     }
 
 }
