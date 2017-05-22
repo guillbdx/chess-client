@@ -6,6 +6,7 @@ import {Chessboard3d} from "./chessboard3d";
 import Scene = BABYLON.Scene;
 import Engine = BABYLON.Engine;
 import * as jQuery from 'jquery';
+import {MoveFactory} from "../entities/factories/move.factory";
 
 @Component({
     selector: 'game',
@@ -36,7 +37,8 @@ export class GameComponent implements OnInit, OnDestroy {
     sharingUrl: string;
 
     constructor(
-        private chessApiClient: ChessApiClientService
+        private chessApiClient: ChessApiClientService,
+        private moveFactory: MoveFactory
     ) {
     }
 
@@ -172,6 +174,12 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.fen = data.fen;
         this.game.pgn = data.pgn;
         this.game.lastMove = data.lastMove;
+
+
+        console.log(data.lastMove);
+        console.log(this.moveFactory.createMove(data.lastMove));
+        console.log('---');
+
 
         this.colorCurrentFromToSquare();
         this.colorLastFromToSquare();

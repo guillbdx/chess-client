@@ -12,8 +12,9 @@ import {LoaderService}                      from "../services/loader.service";
 import {FlashMessagesService}               from "../services/flash-messages.service";
 import {SecurityService}                    from "../services/security.service";
 
-import {GameFactory}                        from "../entities/factories/game.factory";
-import {UserFactory}                        from "../entities/factories/user.factory";
+import { GameFactory }                      from "../entities/factories/game.factory";
+import { UserFactory }                      from "../entities/factories/user.factory";
+import { MoveFactory }                      from "../entities/factories/move.factory";
 
 import {CanAccessPrivateAreaGuard}          from "../guards/can-access-private-area.guard";
 import {CanAccessOpenAreaGuard}             from "../guards/can-access-open-area.guard";
@@ -86,7 +87,8 @@ import {FormatDatePipe}                     from "../pipes/format-date.pipe";
         FlashMessagesService,
         SecurityService,
         GameFactory,
-        UserFactory
+        UserFactory,
+        MoveFactory
     ],
     bootstrap: [
         AppComponent

@@ -208,13 +208,19 @@ export class Game {
     getInPassingCapturedSquare(from: string, to: string): string|null {
         for(let possibleMove of this.possibleMoves) {
             if(possibleMove['from'] == from && possibleMove['to'] == to && possibleMove['flags'] == 'e') {
-                return this.getBehindSquare(possibleMove['to'], possibleMove['color']);
+                return Game.getBehindSquare(possibleMove['to'], possibleMove['color']);
             }
         }
         return null;
     }
 
-    getBehindSquare(square: string, color: string): string {
+    /**
+     *
+     * @param square
+     * @param color
+     * @returns {string}
+     */
+    static getBehindSquare(square: string, color: string): string {
         let splitedSquare = square.split('');
         let letter = splitedSquare[0];
         let number = +splitedSquare[1];
@@ -226,6 +232,11 @@ export class Game {
         }
     }
 
+    /**
+     *
+     * @param square
+     * @returns {any}
+     */
     getColorPieceOnSquare(square: string): string {
         if(this.chessboard[square] == null) {
             return null;
@@ -233,6 +244,11 @@ export class Game {
         return this.chessboard[square].charAt(0);
     }
 
+    /**
+     *
+     * @param color
+     * @returns {string}
+     */
     getOppositeColor(color: string): string {
         if(color == Game.COLOR_WHITE) {
             return Game.COLOR_BLACK;
@@ -240,6 +256,13 @@ export class Game {
         return Game.COLOR_WHITE;
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param promotion
+     * @returns {any}
+     */
     createMove(from: string, to: string, promotion: string|null): Move {
         if(!this.isPossibleFromTo(from, to)) {
             return null
@@ -257,6 +280,10 @@ export class Game {
         );
     }
 
+    /**
+     *
+     * @param move
+     */
     applyMove(move: Move): void {
         this.playingColor = this.getOppositeColor(move.color);
 
