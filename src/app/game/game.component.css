@@ -147,16 +147,18 @@
 .chessboard td.light {
     background-color: #ffce9e;
 }
+
+
+.chessboard td.dark.selected,
+.chessboard td.light.selected {
+    background-color: brown;
+}
 .chessboard td.dark.last-from,
-.chessboard td.light.last-from,
-.chessboard td.dark.current-from,
-.chessboard td.light.current-from {
+.chessboard td.light.last-from {
     background-color: #f1ed2e;
 }
 .chessboard td.dark.last-to,
-.chessboard td.light.last-to,
-.chessboard td.dark.current-to,
-.chessboard td.light.current-to {
+.chessboard td.light.last-to {
     background-color: #dad745;
 }
 /*-----------------------------------------*/

@@ -65,7 +65,6 @@ export class GameFactory {
         let chessboard = [];
         for(let key in data) {
             let square = new ChessboardSquare(
-                key,
                 data[key],
                 false,
                 false,

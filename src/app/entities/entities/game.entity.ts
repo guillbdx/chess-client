@@ -286,38 +286,46 @@ export class Game {
      * @param move
      */
     applyMove(move: Move): void {
+
+        for(let i in this.chessboard) {
+            this.chessboard[i].lastFrom = false;
+            this.chessboard[i].lastTo = false;
+        }
+
         this.playingColor = this.getOppositeColor(move.color);
 
-        this.chessboard[move.to] = this.chessboard[move.from];
-        this.chessboard[move.from] = '';
+        this.chessboard[move.to]['piece'] = this.chessboard[move.from]['piece'];
+        this.chessboard[move.to]['lastTo'] = true;
+        this.chessboard[move.from]['piece'] = '';
+        this.chessboard[move.from]['lastFrom'] = true;
 
         if(move.promotion != null) {
-            this.chessboard[move.to] = move.color + '-' + move.promotion;
+            this.chessboard[move.to]['piece'] = move.color + '-' + move.promotion;
         }
 
         if(move.castlingType != null) {
             switch(move.castlingType) {
                 case 'Q' :
-                    this.chessboard['a1'] = '';
-                    this.chessboard['d1'] = 'w-r';
+                    this.chessboard['a1']['piece'] = '';
+                    this.chessboard['d1']['piece'] = 'w-r';
                     break;
                 case 'K' :
-                    this.chessboard['h1'] = '';
-                    this.chessboard['f1'] = 'w-r';
+                    this.chessboard['h1']['piece'] = '';
+                    this.chessboard['f1']['piece'] = 'w-r';
                     break;
                 case 'q' :
-                    this.chessboard['a8'] = '';
-                    this.chessboard['d8'] = 'b-r';
+                    this.chessboard['a8']['piece'] = '';
+                    this.chessboard['d8']['piece'] = 'b-r';
                     break;
                 case 'k' :
-                    this.chessboard['h8'] = '';
-                    this.chessboard['f8'] = 'b-r';
+                    this.chessboard['h8']['piece'] = '';
+                    this.chessboard['f8']['piece'] = 'b-r';
                     break;
             }
         }
 
         if(move.inPassingSquare != null) {
-            this.chessboard[move.inPassingSquare] = '';
+            this.chessboard[move.inPassingSquare]['piece'] = '';
         }
 
         this.lastMove = move;

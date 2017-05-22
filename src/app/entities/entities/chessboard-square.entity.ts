@@ -1,11 +1,14 @@
 export class ChessboardSquare {
 
     constructor(
-        private name: string,
-        private piece: string,
-        private selected: boolean,
-        private lastFrom: boolean,
-        private lastTo: boolean
-    ) {}
+        public piece: string,
+        public selected: boolean,
+        public lastFrom: boolean,
+        public lastTo: boolean
+    ) {
+        this.selected = false;
+        this.lastFrom = false;
+        this.lastTo = false;
+    }
 
 }

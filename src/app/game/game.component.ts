@@ -178,9 +178,6 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.pgn = data.pgn;
         this.game.lastMove = MoveFactory.createMoveFromData(data.lastMove);
 
-        this.colorCurrentFromToSquare();
-        this.colorLastFromToSquare();
-
         //this.chessboard3d.recreatePieces(data.chessboard);
 
     }
@@ -226,7 +223,6 @@ export class GameComponent implements OnInit, OnDestroy {
 
         this.sendingMoveInProgress = true;
         this.showPromotionPanel = false;
-        this.uncolorLastFromToSquare();
 
         this.chessApiClient.play(this.game, this.from, this.to, this.promotion).then(response => {
             this.sendingMoveInProgress = false;
@@ -258,20 +254,21 @@ export class GameComponent implements OnInit, OnDestroy {
 
         if(this.from == null && this.game.isPossibleFrom(square)) {
             this.from = square;
-            this.colorCurrentFromToSquare();
+            this.game.chessboard[square]['selected'] = true;
+            console.log(this.game.chessboard[square]);
             return;
         }
 
         if(this.game.isPossibleFromTo(this.from, square)) {
             this.to = square;
-            this.colorCurrentFromToSquare();
+            // YYY
             this.promptPromotionIfNeededThenPlay();
             return;
         }
 
         if(this.game.isPossibleFrom(square)) {
             this.from = square;
-            this.colorCurrentFromToSquare();
+            this.game.chessboard[square]['selected'] = true;
             return;
         }
 
@@ -305,57 +302,5 @@ export class GameComponent implements OnInit, OnDestroy {
             this.pullOriginAndReset();
         });
     }
-
-    //---------------------------------------------------------------------
-    // FROM - TO SQUARES COLORS
-    //---------------------------------------------------------------------
-
-    /**
-     * Removes styles last-from and last-to on each square
-     */
-    uncolorLastFromToSquare() {
-        //this.chessboard3d.uncolorLastFromToSquare();
-        jQuery('td').removeClass('last-from');
-        jQuery('td').removeClass('last-to');
-    }
-
-    /**
-     * Applies style last-from and last-to on from and to squares
-     */
-    colorLastFromToSquare() {
-        if(this.game.lastMove == undefined) {
-            return;
-        }
-        this.uncolorLastFromToSquare();
-        //this.chessboard3d.colorLastFromToSquare(this.game.lastMove['from'], this.game.lastMove['to']);
-        jQuery('td.' + this.game.lastMove['from']).addClass('last-from');
-        jQuery('td.' + this.game.lastMove['to']).addClass('last-to');
-    }
-
-    /**
-     * Removes styles current-from and current-to on each square
-     */
-    uncolorCurrentFromToSquare() {
-        //this.chessboard3d.uncolorCurrentFromToSquare();
-        jQuery('td').removeClass('current-from');
-        jQuery('td').removeClass('current-to');
-    }
-
-    /**
-     * Applies style current-from and current-to on from and to squares
-     */
-    colorCurrentFromToSquare() {
-        this.uncolorCurrentFromToSquare();
-        //this.chessboard3d.colorCurrentFromToSquare(this.from, this.to);
-        if(this.from == null) {
-            return;
-        }
-        jQuery('td.' + this.from).addClass('current-from');
-        if(this.to == null) {
-            return;
-        }
-        jQuery('td.' + this.to).addClass('current-to');
-    }
-
 
 }
