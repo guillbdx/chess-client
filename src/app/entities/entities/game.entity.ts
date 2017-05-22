@@ -319,6 +319,8 @@ export class Game {
             this.chessboard[move.inPassingSquare] = '';
         }
 
+        this.lastMove = move;
+
     }
 
 }

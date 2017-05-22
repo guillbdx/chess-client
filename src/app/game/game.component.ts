@@ -25,7 +25,7 @@ export class GameComponent implements OnInit, OnDestroy {
     to:         string|null = null;
     promotion:  string|null = null;
 
-    refreshing = true;
+    sendingMoveInProgress = false;
     refreshingInterval: any;
 
     showPromotionPanel = false;
@@ -160,9 +160,7 @@ export class GameComponent implements OnInit, OnDestroy {
      * @param data
      */
     reset(data) {
-        if(!this.refreshing) {
-            return;
-        }
+
         this.game.wonBy = data.wonBy;
         this.game.winType = data.winType;
         this.game.endedAt = data.endedAt;
@@ -186,7 +184,19 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     pullOriginAndReset() {
         this.chessApiClient.getGame(this.game.id, false).then(response => {
-            if(response.status != 200) {}
+
+            let data = response.json();
+
+            if(this.sendingMoveInProgress) {
+                return;
+            }
+
+            let dataLastMove = MoveFactory.createMoveFromData(data.lastMove);
+            if(this.game.lastMove != null && !this.game.lastMove.isSameMove(dataLastMove)) {
+                this.game.applyMove(dataLastMove);
+                return;
+            }
+
             this.reset(response.json());
         });
     }
@@ -212,7 +222,7 @@ export class GameComponent implements OnInit, OnDestroy {
         let move = this.game.createMove(this.from, this.to, this.promotion);
         this.game.applyMove(move);
 
-        this.refreshing = false;
+        this.sendingMoveInProgress = true;
         this.showPromotionPanel = false;
         this.uncolorLastFromToSquare();
 
@@ -220,7 +230,7 @@ export class GameComponent implements OnInit, OnDestroy {
             if(response.status == 200) {
                 this.reset(response.json());
             }
-            this.refreshing = true;
+            this.sendingMoveInProgress = false;
         });
 
         this.from = null;
