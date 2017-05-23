@@ -16,18 +16,13 @@
             <a routerLink="/game-create" class="btn btn-info translate">{{ 'Create a game' | translate }}</a>
 
 
-
-
-
-
             <h4 *ngIf="games.inProgress.length != 0">
                 {{ 'Games in progress' | translate }}
             </h4>
 
             <ul class="games" id="games-in-progress">
                 <li *ngFor="let game of games.inProgress">
-                    <a
-                            [routerLink]="['/game', game.id]"
+                    <a href="game/{{ game.id }}"
                             class="go-to-game pull-right btn btn-primary btn-sm">
                         {{ 'Play' | translate }}
                     </a>
@@ -101,8 +96,7 @@
 
             <ul class="games" id="games-ended">
                 <li *ngFor="let game of games.ended">
-                    <a
-                            [routerLink]="['/game', game.id]"
+                    <a href="game/{{ game.id }}"
                             class="go-to-game pull-right btn btn-primary btn-sm">
                         {{ 'See' | translate}}
                     </a>
