@@ -65,7 +65,7 @@
                 <table class="chessboard">
                     <tr *ngFor="let number of ['1', '2', '3', '4', '5', '6', '7', '8']">
                         <td *ngFor="let letter of ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']"
-                            class="{{ letter }}{{ number }} light"
+                            class="{{ letter }}{{ number }} {{ letter+number | squareTone }}"
                             (click)="onClickSquare(letter+number)"
                             [ngClass]="{'last-from': game.chessboard[letter+number]['lastFrom'], 'last-to': game.chessboard[letter+number]['lastTo'], 'selected': game.chessboard[letter+number]['selected']}">
                             <img src="assets/pieces/piece-{{ game.chessboard[letter+number]['piece']}}.svg">
@@ -152,7 +152,7 @@
                 <table class="chessboard">
                     <tr *ngFor="let number of ['8', '7', '6', '5', '4', '3', '2', '1']">
                         <td *ngFor="let letter of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']"
-                            class="{{ letter }}{{ number }} light"
+                            class="{{ letter }}{{ number }} {{ letter+number | squareTone }}"
                             (click)="onClickSquare(letter+number)"
                             [ngClass]="{'last-from': game.chessboard[letter+number]['lastFrom'], 'last-to': game.chessboard[letter+number]['lastTo'], 'selected': game.chessboard[letter+number]['selected']}">
                             <img src="assets/pieces/piece-{{ game.chessboard[letter+number]['piece']}}.svg">
