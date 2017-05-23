@@ -108,5 +108,6 @@ export class SharedGameComponent implements OnInit, OnDestroy {
         });
     }
 
+    onClickSquare(square: string) {}
 
 }

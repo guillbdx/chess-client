@@ -57,7 +57,7 @@ export class GameComponent implements OnInit, OnDestroy {
         BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
             scene.executeWhenReady(() => {
                 this.initChessboard3d(canvas, scene, engine);
-                this.displayViewType('3d');
+                this.displayViewType('2d');
                 this.pullOriginAndReset();
                 this.loopPull();
                 this.hideOtherColorContainer();
