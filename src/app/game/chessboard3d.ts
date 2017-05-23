@@ -388,7 +388,7 @@ export class Chessboard3d {
      * @param move
      */
     showMove(move: Move): void {
-        this.colorLastFromToSquare(move.from, move.to);
+        this.colorLastFromToSquare(move);
         this.showNormalMove(move.from, move.to);
         if(move.promotion != null) {
             this.showPromotionMoveAddOn(move.from, move.to, move.promotion);
@@ -495,23 +495,24 @@ export class Chessboard3d {
 
     /**
      *
-     * @param from
-     * @param to
+     * @param move
      */
-    colorLastFromToSquare(from: string, to: string): void {
+    colorLastFromToSquare(move: Move, selectedSquare?: string): void {
         this.selectedMarker.position = new BABYLON.Vector3(0,-10000,0);
         this.lastFromMarker.position = new BABYLON.Vector3(0,-10000,0);
         this.lastToMarker.position = new BABYLON.Vector3(0,-10000,0);
-        if(from != null) {
-            let fromPosition = this.getPositionBySquare(from);
-            fromPosition.y += 0.06;
-            this.lastFromMarker.position = fromPosition;
+        if(selectedSquare != null) {
+            this.colorSelectedSquare(selectedSquare);
         }
-        if(to != null) {
-            let toPosition = this.getPositionBySquare(to);
-            toPosition.y += 0.06;
-            this.lastToMarker.position = toPosition;
+        if(move == null) {
+            return;
         }
+        let fromPosition = this.getPositionBySquare(move.from);
+        fromPosition.y += 0.06;
+        this.lastFromMarker.position = fromPosition;
+        let toPosition = this.getPositionBySquare(move.to);
+        toPosition.y += 0.06;
+        this.lastToMarker.position = toPosition;
     }
 
     //--------------------------------------------------------

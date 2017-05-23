@@ -103,7 +103,7 @@ export class GameComponent implements OnInit, OnDestroy {
         }
         // Active black camera
         if(this.game.getColorByUser(this.profile) == Game.COLOR_BLACK ) {
-            //this.chessboard3d.activeCamera('b');
+            this.chessboard3d.activeCamera('b');
         }
     }
 
@@ -175,6 +175,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.setSpecialSquares(this.from);
 
         this.chessboard3d.recreatePieces(this.game.chessboard);
+        this.chessboard3d.colorLastFromToSquare(this.game.lastMove, this.from);
 
     }
 
