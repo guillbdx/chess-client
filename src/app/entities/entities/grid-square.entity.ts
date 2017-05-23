@@ -1,4 +1,4 @@
-export class ChessboardSquare {
+export class GridSquare {
 
     constructor(
         public piece: string,

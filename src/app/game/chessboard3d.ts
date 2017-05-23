@@ -8,7 +8,7 @@ import Vector3 = BABYLON.Vector3;
 import CircleEase = BABYLON.CircleEase;
 import AbstractMesh = BABYLON.AbstractMesh;
 import {SharedGameComponent} from "./shared-game.component";
-import {ChessboardSquare} from "../entities/entities/chessboard-square.entity";
+import {GridSquare} from "../entities/entities/grid-square.entity";
 import {Move} from "../entities/entities/move.entity";
 
 export class Chessboard3d {
@@ -262,7 +262,7 @@ export class Chessboard3d {
      *
      * @param chessboard
      */
-    public recreatePieces(chessboard: ChessboardSquare[]) {
+    public recreatePieces(chessboard: GridSquare[]) {
         if(this.moveInProgress) {
             return;
         }

@@ -6,7 +6,7 @@ import {UserFactory} from "./user.factory";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "../../services/flash-messages.service";
 import {MoveFactory} from "./move.factory";
-import {ChessboardSquare} from "../entities/chessboard-square.entity";
+import {GridSquare} from "../entities/grid-square.entity";
 
 @Injectable()
 export class GameFactory {
@@ -64,7 +64,7 @@ export class GameFactory {
     static createChessboardFromData(data: any) {
         let chessboard = [];
         for(let key in data) {
-            let square = new ChessboardSquare(
+            let square = new GridSquare(
                 data[key],
                 false,
                 false,

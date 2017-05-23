@@ -1,6 +1,6 @@
 import {User} from "./user.entity";
 import {Move} from "./move.entity";
-import {ChessboardSquare} from "./chessboard-square.entity";
+import {GridSquare} from "./grid-square.entity";
 
 export class Game {
 
@@ -19,7 +19,7 @@ export class Game {
         public playingColor?       : string,
         public possibleMoves?      : Object[],
         public result?             : string,
-        public chessboard?         : ChessboardSquare[],
+        public chessboard?         : GridSquare[],
         public acceptedAt?         : string,
         public endedAt?            : string,
         public wonBy?              : string,
