@@ -8,6 +8,8 @@ import Vector3 = BABYLON.Vector3;
 import CircleEase = BABYLON.CircleEase;
 import AbstractMesh = BABYLON.AbstractMesh;
 import {SharedGameComponent} from "./shared-game.component";
+import {ChessboardSquare} from "../entities/entities/chessboard-square.entity";
+import {Move} from "../entities/entities/move.entity";
 
 export class Chessboard3d {
 
@@ -33,9 +35,7 @@ export class Chessboard3d {
 
     private moveEasingFunction: CircleEase;
 
-    private currentFromMarker: Mesh;
-
-    private currentToMarker: Mesh;
+    private selectedMarker: Mesh;
 
     private lastFromMarker: Mesh;
 
@@ -99,27 +99,30 @@ export class Chessboard3d {
         blackTexture.ampScale = 1000;
         this.blackMaterial.diffuseTexture = blackTexture;
 
-        // Init from and to materials
-        let materialFromMarker = new BABYLON.StandardMaterial("materialFromMarker", this.scene);
-        materialFromMarker.diffuseColor = BABYLON.Color3.FromHexString('#805a08');
-        let materialToMarker = new BABYLON.StandardMaterial("materialToMarker", this.scene);
-        materialToMarker.diffuseColor = BABYLON.Color3.FromHexString('#7e8004');
+        // Init selected, from and to materials
+        let materialSelectedMarker = new BABYLON.StandardMaterial("materialSelectedMarker", this.scene);
+        materialSelectedMarker.diffuseColor = BABYLON.Color3.FromHexString('#805a08');
+        let materialLastFromMarker = new BABYLON.StandardMaterial("materialLastFromMarker", this.scene);
+        materialLastFromMarker.diffuseColor = BABYLON.Color3.FromHexString('#805a08');
+        let materialLastToMarker = new BABYLON.StandardMaterial("materialLastToMarker", this.scene);
+        materialLastToMarker.diffuseColor = BABYLON.Color3.FromHexString('#7e8004');
 
-        // Init from markers
-        this.currentFromMarker = BABYLON.Mesh.CreatePlane("fromMarker", 1, this.scene);
-        this.currentFromMarker.position = new BABYLON.Vector3(4, -10000, 1);                       // 0.06
-        this.currentFromMarker.rotation = new BABYLON.Vector3(Math.PI / 2,0,0);
-        this.currentFromMarker.material = materialFromMarker;
-        this.lastFromMarker = this.currentFromMarker.clone('');
-        this.lastFromMarker.position = new BABYLON.Vector3(4, -10000, 3);
+        // Init markers
+        this.selectedMarker = BABYLON.Mesh.CreatePlane("selectedMarker", 1, this.scene);
+        this.selectedMarker.position = new BABYLON.Vector3(4, -10000, 1);                       // 0.06
+        this.selectedMarker.rotation = new BABYLON.Vector3(Math.PI / 2,0,0);
+        this.selectedMarker.material = materialSelectedMarker;
 
-        // Init to markers
-        this.currentToMarker = BABYLON.Mesh.CreatePlane("toMarker", 1, this.scene);
-        this.currentToMarker.position = new BABYLON.Vector3(2, -10000, 1);
-        this.currentToMarker.rotation = new BABYLON.Vector3(Math.PI / 2,0,0);
-        this.currentToMarker.material = materialToMarker;
-        this.lastToMarker = this.currentToMarker.clone('');
-        this.lastToMarker.position = new BABYLON.Vector3(2, -10000, 3);
+        this.lastFromMarker = BABYLON.Mesh.CreatePlane("toMarker", 1, this.scene);
+        this.lastFromMarker.position = new BABYLON.Vector3(2, -10000, 1);
+        this.lastFromMarker.rotation = new BABYLON.Vector3(Math.PI / 2,0,0);
+        this.lastFromMarker.material = materialLastFromMarker;
+
+        this.lastToMarker = BABYLON.Mesh.CreatePlane("toMarker", 1, this.scene);
+        this.lastToMarker.position = new BABYLON.Vector3(2, -10000, 1);
+        this.lastToMarker.rotation = new BABYLON.Vector3(Math.PI / 2,0,0);
+        this.lastToMarker.material = materialLastToMarker;
+
 
         // Init original pieces
         this.originalPieces = {
@@ -256,21 +259,21 @@ export class Chessboard3d {
     }
 
     /**
-     * Creates and place pieces from pieces position
      *
-     * @param piecesPosition
+     * @param chessboard
      */
-    public recreatePieces(piecesPosition: Object) {
+    public recreatePieces(chessboard: ChessboardSquare[]) {
         if(this.moveInProgress) {
             return;
         }
-        for(let square in piecesPosition) {
-            let currentPiece = this.getPieceOnSquare(square);
-            if(piecesPosition[square]['piece'] != '') {
-                //this.createPiece(piecesPosition[square]['piece'].charAt(2), piecesPosition[square]['piece'].charAt(0), square);
+        for(let squareName in chessboard) {
+            let currentMeshPiece = this.getPieceOnSquare(squareName);
+            if(currentMeshPiece != null) {
+                this.disposePiece(squareName);
             }
-            if(currentPiece != null) {
-                //this.disposePiece(square);
+            let currentDataPiece = chessboard[squareName]['piece'];
+            if(currentDataPiece != '' && currentDataPiece != undefined) {
+                this.createPiece(chessboard[squareName]['piece'].charAt(2), chessboard[squareName]['piece'].charAt(0), squareName);
             }
         }
     }
@@ -382,6 +385,24 @@ export class Chessboard3d {
 
     /**
      *
+     * @param move
+     */
+    showMove(move: Move): void {
+        this.colorLastFromToSquare(move.from, move.to);
+        this.showNormalMove(move.from, move.to);
+        if(move.promotion != null) {
+            this.showPromotionMoveAddOn(move.from, move.to, move.promotion);
+        }
+        if(move.castlingType != null) {
+            this.showCastlingMoveAddOn(move.from, move.to, move.castlingType);
+        }
+        if(move.inPassingSquare != null) {
+            this.showInPassingMoveAddOn(move.from, move.to, move.inPassingSquare);
+        }
+    }
+
+    /**
+     *
      * @param from
      * @param to
      */
@@ -460,36 +481,16 @@ export class Chessboard3d {
 
     /**
      *
+     * @param square
      */
-    uncolorCurrentFromToSquare() {
-        this.currentFromMarker.position = new BABYLON.Vector3(0,-10000,0);
-        this.currentToMarker.position = new BABYLON.Vector3(0,-10000,0);
-    }
-
-    /**
-     *
-     * @param from
-     * @param to
-     */
-    colorCurrentFromToSquare(from: string, to: string): void {
-        if(from != null) {
-            let fromPosition = this.getPositionBySquare(from);
-            fromPosition.y += 0.06;
-            this.currentFromMarker.position = fromPosition;
+    colorSelectedSquare(square: string|null): void {
+        if(square == null) {
+            this.selectedMarker.position = new BABYLON.Vector3(0,-10000,0);
+            return;
         }
-        if(to != null) {
-            let toPosition = this.getPositionBySquare(to);
-            toPosition.y += 0.06;
-            this.currentToMarker.position = toPosition;
-        }
-    }
-
-    /**
-     *
-     */
-    uncolorLastFromToSquare() {
-        this.lastFromMarker.position = new BABYLON.Vector3(0,-10000,0);
-        this.lastToMarker.position = new BABYLON.Vector3(0,-10000,0);
+        let position = this.getPositionBySquare(square);
+        position.y += 0.06;
+        this.selectedMarker.position = position;
     }
 
     /**
@@ -498,6 +499,9 @@ export class Chessboard3d {
      * @param to
      */
     colorLastFromToSquare(from: string, to: string): void {
+        this.selectedMarker.position = new BABYLON.Vector3(0,-10000,0);
+        this.lastFromMarker.position = new BABYLON.Vector3(0,-10000,0);
+        this.lastToMarker.position = new BABYLON.Vector3(0,-10000,0);
         if(from != null) {
             let fromPosition = this.getPositionBySquare(from);
             fromPosition.y += 0.06;

@@ -52,22 +52,17 @@ export class GameComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.resizeContainer();
         this.sharingUrl = location.protocol + '//' + window.location.host + '/shared-game/' + this.game.id;
-        // let canvas = <HTMLCanvasElement>document.getElementById('canvas');
-        // let engine = new Engine(canvas, true);
-        // BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
-        //     scene.executeWhenReady(() => {
-        //         this.initChessboard3d(canvas, scene, engine);
-        //         this.displayViewType('2d');
-        //         this.pullOriginAndReset();
-        //         this.loopPull();
-        //         this.hideOtherColorContainer();
-        //     });
-        // });
-
-        this.displayViewType('2d');
-        this.pullOriginAndReset();
-        this.loopPull();
-        this.hideOtherColorContainer();
+        let canvas = <HTMLCanvasElement>document.getElementById('canvas');
+        let engine = new Engine(canvas, true);
+        BABYLON.SceneLoader.Load("", 'assets/scene/chessboard-03.babylon', engine, (scene) => {
+            scene.executeWhenReady(() => {
+                this.initChessboard3d(canvas, scene, engine);
+                this.displayViewType('3d');
+                this.pullOriginAndReset();
+                this.loopPull();
+                this.hideOtherColorContainer();
+            });
+        });
     }
 
     /**
@@ -132,7 +127,6 @@ export class GameComponent implements OnInit, OnDestroy {
     initChessboard3d(canvas: HTMLCanvasElement, scene: Scene, engine: Engine) {
         this.chessboard3d = new Chessboard3d(canvas, scene, this);
         this.chessboard3d.initSceneEnvironment();
-        this.chessboard3d.recreatePieces(this.game.chessboard);
         this.chessboard3d.activeClickListener();
         engine.runRenderLoop(() => {
             scene.render();
@@ -180,7 +174,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
         this.game.setSpecialSquares(this.from);
 
-        //this.chessboard3d.recreatePieces(data.chessboard);
+        this.chessboard3d.recreatePieces(this.game.chessboard);
 
     }
 
@@ -196,6 +190,7 @@ export class GameComponent implements OnInit, OnDestroy {
             let dataLastMove = MoveFactory.createMoveFromData(data.lastMove);
             if(this.game.lastMove != null && !this.game.lastMove.isSameMove(dataLastMove)) {
                 this.game.applyMove(dataLastMove);
+                this.chessboard3d.showMove(dataLastMove);
                 return;
             }
             this.reset(response.json());
@@ -222,6 +217,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
         let move = this.game.createMove(this.from, this.to, this.promotion);
         this.game.applyMove(move);
+        this.chessboard3d.showMove(move);
 
         this.sendingMoveInProgress = true;
         this.showPromotionPanel = false;
@@ -256,7 +252,8 @@ export class GameComponent implements OnInit, OnDestroy {
 
         if(this.from == null && this.game.isPossibleFrom(square)) {
             this.from = square;
-            this.game.chessboard[square]['selected'] = true;
+            this.game.setSpecialSquares(this.from);
+            this.chessboard3d.colorSelectedSquare(this.from);
             return;
         }
 
@@ -268,7 +265,8 @@ export class GameComponent implements OnInit, OnDestroy {
 
         if(this.game.isPossibleFrom(square)) {
             this.from = square;
-            this.game.chessboard[square]['selected'] = true;
+            this.game.setSpecialSquares(this.from);
+            this.chessboard3d.colorSelectedSquare(this.from);
             return;
         }
 
