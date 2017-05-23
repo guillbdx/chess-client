@@ -74,5 +74,6 @@ export let enTranslations = {
     "2d": "2d",
     "Your games": "Your games",
     "Share": "Share",
-    "For sharing this game, please copy/pase this code:": "For sharing this game, please copy/pase this code:"
+    "For sharing this game, please copy/pase this code:": "For sharing this game, please copy/pase this code:",
+    "Difficulty level": "Difficulty level"
 };

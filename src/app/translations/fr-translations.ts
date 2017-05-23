@@ -74,5 +74,6 @@ export let frTranslations = {
     "2d": "2d",
     "Your games": "Vos parties",
     "Share": "Partager",
-    "For sharing this game, please copy/pase this code:": "Pour partager cette partie, copiez/collez ce code :"
+    "For sharing this game, please copy/pase this code:": "Pour partager cette partie, copiez/collez ce code :",
+    "Difficulty level": "Niveau de difficulté"
 };

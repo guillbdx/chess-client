@@ -11,7 +11,8 @@ import {FlashMessagesService} from "../services/flash-messages.service";
 export class GameVsComputerCreateFormComponent {
 
     model = {
-        color: ''
+        color: '',
+        level: 0
     };
 
     constructor(
@@ -28,7 +29,7 @@ export class GameVsComputerCreateFormComponent {
         if(this.model.color == 'black') {
             creatorIsWhite = null;
         }
-        this.chessApiClient.createGameVsComputer(creatorIsWhite)
+        this.chessApiClient.createGameVsComputer(creatorIsWhite, this.model.level)
             .then(response => {
                 switch(response.status) {
                     case 201 :

@@ -185,13 +185,14 @@ export class ChessApiClientService {
             });
     }
 
-    createGameVsComputer(creatorIsWhite: boolean|null) {
+    createGameVsComputer(creatorIsWhite: boolean|null, computerLevel: number) {
 
         this.loader.show();
         this.resetHeadersWithBearer();
 
         let body = {
-            creatorIsWhite: creatorIsWhite
+            creatorIsWhite: creatorIsWhite,
+            computerLevel: computerLevel
         };
         return this.http.post(
             environment.apiBaseUrl + '/computer-games',
