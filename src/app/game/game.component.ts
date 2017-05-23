@@ -184,17 +184,22 @@ export class GameComponent implements OnInit, OnDestroy {
      */
     pullOriginAndReset() {
         this.chessApiClient.getGame(this.game.id, false).then(response => {
+
             let data = response.json();
             if(this.sendingMoveInProgress) {
                 return;
             }
+
             let dataLastMove = MoveFactory.createMoveFromData(data.lastMove);
             if(this.game.lastMove != null && !this.game.lastMove.isSameMove(dataLastMove)) {
                 this.game.applyMove(dataLastMove);
+                this.game.possibleMoves = data.possibleMoves;
                 this.chessboard3d.showMove(dataLastMove);
                 return;
             }
+
             this.reset(response.json());
+
         });
     }
 
