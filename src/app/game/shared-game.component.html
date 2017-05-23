@@ -23,84 +23,84 @@
             <td rowspan="8" colspan="8">
                 <table class="chessboard">
                     <tr>
-                        <td class="a8 light" (click)="onClickSquare('a8')"><img src="assets/pieces/piece-{{ game.chessboard['a8'] }}.svg"></td>
-                        <td class="b8 dark"  (click)="onClickSquare('b8')"><img src="assets/pieces/piece-{{ game.chessboard['b8'] }}.svg"></td>
-                        <td class="c8 light" (click)="onClickSquare('c8')"><img src="assets/pieces/piece-{{ game.chessboard['c8'] }}.svg"></td>
-                        <td class="d8 dark"  (click)="onClickSquare('d8')"><img src="assets/pieces/piece-{{ game.chessboard['d8'] }}.svg"></td>
-                        <td class="e8 light" (click)="onClickSquare('e8')"><img src="assets/pieces/piece-{{ game.chessboard['e8'] }}.svg"></td>
-                        <td class="f8 dark"  (click)="onClickSquare('f8')"><img src="assets/pieces/piece-{{ game.chessboard['f8'] }}.svg"></td>
-                        <td class="g8 light" (click)="onClickSquare('g8')"><img src="assets/pieces/piece-{{ game.chessboard['g8'] }}.svg"></td>
-                        <td class="h8 dark"  (click)="onClickSquare('h8')"><img src="assets/pieces/piece-{{ game.chessboard['h8'] }}.svg"></td>
+                        <td class="a8 light" (click)="onClickSquare('a8')" [ngClass]="{'last-from': game.chessboard['a8']['lastFrom'], 'last-to': game.chessboard['a8']['lastTo'], 'selected': game.chessboard['a8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a8']['piece']}}.svg"></td>
+                        <td class="b8 dark"  (click)="onClickSquare('b8')" [ngClass]="{'last-from': game.chessboard['b8']['lastFrom'], 'last-to': game.chessboard['b8']['lastTo'], 'selected': game.chessboard['b8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b8']['piece']}}.svg"></td>
+                        <td class="c8 light" (click)="onClickSquare('c8')" [ngClass]="{'last-from': game.chessboard['c8']['lastFrom'], 'last-to': game.chessboard['c8']['lastTo'], 'selected': game.chessboard['c8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c8']['piece']}}.svg"></td>
+                        <td class="d8 dark"  (click)="onClickSquare('d8')" [ngClass]="{'last-from': game.chessboard['d8']['lastFrom'], 'last-to': game.chessboard['d8']['lastTo'], 'selected': game.chessboard['d8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d8']['piece']}}.svg"></td>
+                        <td class="e8 light" (click)="onClickSquare('e8')" [ngClass]="{'last-from': game.chessboard['e8']['lastFrom'], 'last-to': game.chessboard['e8']['lastTo'], 'selected': game.chessboard['e8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e8']['piece']}}.svg"></td>
+                        <td class="f8 dark"  (click)="onClickSquare('f8')" [ngClass]="{'last-from': game.chessboard['f8']['lastFrom'], 'last-to': game.chessboard['f8']['lastTo'], 'selected': game.chessboard['f8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f8']['piece']}}.svg"></td>
+                        <td class="g8 light" (click)="onClickSquare('g8')" [ngClass]="{'last-from': game.chessboard['g8']['lastFrom'], 'last-to': game.chessboard['g8']['lastTo'], 'selected': game.chessboard['g8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g8']['piece']}}.svg"></td>
+                        <td class="h8 dark"  (click)="onClickSquare('h8')" [ngClass]="{'last-from': game.chessboard['h8']['lastFrom'], 'last-to': game.chessboard['h8']['lastTo'], 'selected': game.chessboard['h8']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h8']['piece']}}.svg"></td>
                     </tr>
                     <tr>
-                        <td class="a7 dark"  (click)="onClickSquare('a7')"><img src="assets/pieces/piece-{{ game.chessboard['a7'] }}.svg"></td>
-                        <td class="b7 light" (click)="onClickSquare('b7')"><img src="assets/pieces/piece-{{ game.chessboard['b7'] }}.svg"></td>
-                        <td class="c7 dark"  (click)="onClickSquare('c7')"><img src="assets/pieces/piece-{{ game.chessboard['c7'] }}.svg"></td>
-                        <td class="d7 light" (click)="onClickSquare('d7')"><img src="assets/pieces/piece-{{ game.chessboard['d7'] }}.svg"></td>
-                        <td class="e7 dark"  (click)="onClickSquare('e7')"><img src="assets/pieces/piece-{{ game.chessboard['e7'] }}.svg"></td>
-                        <td class="f7 light" (click)="onClickSquare('f7')"><img src="assets/pieces/piece-{{ game.chessboard['f7'] }}.svg"></td>
-                        <td class="g7 dark"  (click)="onClickSquare('g7')"><img src="assets/pieces/piece-{{ game.chessboard['g7'] }}.svg"></td>
-                        <td class="h7 light" (click)="onClickSquare('h7')"><img src="assets/pieces/piece-{{ game.chessboard['h7'] }}.svg"></td>
+                        <td class="a7 dark"  (click)="onClickSquare('a7')" [ngClass]="{'last-from': game.chessboard['a7']['lastFrom'], 'last-to': game.chessboard['a7']['lastTo'], 'selected': game.chessboard['a7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a7']['piece']}}.svg"></td>
+                        <td class="b7 light" (click)="onClickSquare('b7')" [ngClass]="{'last-from': game.chessboard['b7']['lastFrom'], 'last-to': game.chessboard['b7']['lastTo'], 'selected': game.chessboard['b7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b7']['piece']}}.svg"></td>
+                        <td class="c7 dark"  (click)="onClickSquare('c7')" [ngClass]="{'last-from': game.chessboard['c7']['lastFrom'], 'last-to': game.chessboard['c7']['lastTo'], 'selected': game.chessboard['c7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c7']['piece']}}.svg"></td>
+                        <td class="d7 light" (click)="onClickSquare('d7')" [ngClass]="{'last-from': game.chessboard['d7']['lastFrom'], 'last-to': game.chessboard['d7']['lastTo'], 'selected': game.chessboard['d7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d7']['piece']}}.svg"></td>
+                        <td class="e7 dark"  (click)="onClickSquare('e7')" [ngClass]="{'last-from': game.chessboard['e7']['lastFrom'], 'last-to': game.chessboard['e7']['lastTo'], 'selected': game.chessboard['e7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e7']['piece']}}.svg"></td>
+                        <td class="f7 light" (click)="onClickSquare('f7')" [ngClass]="{'last-from': game.chessboard['f7']['lastFrom'], 'last-to': game.chessboard['f7']['lastTo'], 'selected': game.chessboard['f7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f7']['piece']}}.svg"></td>
+                        <td class="g7 dark"  (click)="onClickSquare('g7')" [ngClass]="{'last-from': game.chessboard['g7']['lastFrom'], 'last-to': game.chessboard['g7']['lastTo'], 'selected': game.chessboard['g7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g7']['piece']}}.svg"></td>
+                        <td class="h7 light" (click)="onClickSquare('h7')" [ngClass]="{'last-from': game.chessboard['h7']['lastFrom'], 'last-to': game.chessboard['h7']['lastTo'], 'selected': game.chessboard['h7']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h7']['piece']}}.svg"></td>
                     </tr>
                     <tr>
-                        <td class="a6 light" (click)="onClickSquare('a6')"><img src="assets/pieces/piece-{{ game.chessboard['a6'] }}.svg"></td>
-                        <td class="b6 dark"  (click)="onClickSquare('b6')"><img src="assets/pieces/piece-{{ game.chessboard['b6'] }}.svg"></td>
-                        <td class="c6 light" (click)="onClickSquare('c6')"><img src="assets/pieces/piece-{{ game.chessboard['c6'] }}.svg"></td>
-                        <td class="d6 dark"  (click)="onClickSquare('d6')"><img src="assets/pieces/piece-{{ game.chessboard['d6'] }}.svg"></td>
-                        <td class="e6 light" (click)="onClickSquare('e6')"><img src="assets/pieces/piece-{{ game.chessboard['e6'] }}.svg"></td>
-                        <td class="f6 dark"  (click)="onClickSquare('f6')"><img src="assets/pieces/piece-{{ game.chessboard['f6'] }}.svg"></td>
-                        <td class="g6 light" (click)="onClickSquare('g6')"><img src="assets/pieces/piece-{{ game.chessboard['g6'] }}.svg"></td>
-                        <td class="h6 dark"  (click)="onClickSquare('h6')"><img src="assets/pieces/piece-{{ game.chessboard['h6'] }}.svg"></td>
+                        <td class="a6 light" (click)="onClickSquare('a6')" [ngClass]="{'last-from': game.chessboard['a6']['lastFrom'], 'last-to': game.chessboard['a6']['lastTo'], 'selected': game.chessboard['a6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a6']['piece']}}.svg"></td>
+                        <td class="b6 dark"  (click)="onClickSquare('b6')" [ngClass]="{'last-from': game.chessboard['b6']['lastFrom'], 'last-to': game.chessboard['b6']['lastTo'], 'selected': game.chessboard['b6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b6']['piece']}}.svg"></td>
+                        <td class="c6 light" (click)="onClickSquare('c6')" [ngClass]="{'last-from': game.chessboard['c6']['lastFrom'], 'last-to': game.chessboard['c6']['lastTo'], 'selected': game.chessboard['c6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c6']['piece']}}.svg"></td>
+                        <td class="d6 dark"  (click)="onClickSquare('d6')" [ngClass]="{'last-from': game.chessboard['d6']['lastFrom'], 'last-to': game.chessboard['d6']['lastTo'], 'selected': game.chessboard['d6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d6']['piece']}}.svg"></td>
+                        <td class="e6 light" (click)="onClickSquare('e6')" [ngClass]="{'last-from': game.chessboard['e6']['lastFrom'], 'last-to': game.chessboard['e6']['lastTo'], 'selected': game.chessboard['e6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e6']['piece']}}.svg"></td>
+                        <td class="f6 dark"  (click)="onClickSquare('f6')" [ngClass]="{'last-from': game.chessboard['f6']['lastFrom'], 'last-to': game.chessboard['f6']['lastTo'], 'selected': game.chessboard['f6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f6']['piece']}}.svg"></td>
+                        <td class="g6 light" (click)="onClickSquare('g6')" [ngClass]="{'last-from': game.chessboard['g6']['lastFrom'], 'last-to': game.chessboard['g6']['lastTo'], 'selected': game.chessboard['g6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g6']['piece']}}.svg"></td>
+                        <td class="h6 dark"  (click)="onClickSquare('h6')" [ngClass]="{'last-from': game.chessboard['h6']['lastFrom'], 'last-to': game.chessboard['h6']['lastTo'], 'selected': game.chessboard['h6']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h6']['piece']}}.svg"></td>
                     </tr>
                     <tr>
-                        <td class="a5 dark"  (click)="onClickSquare('a5')"><img src="assets/pieces/piece-{{ game.chessboard['a5'] }}.svg"></td>
-                        <td class="b5 light" (click)="onClickSquare('b5')"><img src="assets/pieces/piece-{{ game.chessboard['b5'] }}.svg"></td>
-                        <td class="c5 dark"  (click)="onClickSquare('c5')"><img src="assets/pieces/piece-{{ game.chessboard['c5'] }}.svg"></td>
-                        <td class="d5 light" (click)="onClickSquare('d5')"><img src="assets/pieces/piece-{{ game.chessboard['d5'] }}.svg"></td>
-                        <td class="e5 dark"  (click)="onClickSquare('e5')"><img src="assets/pieces/piece-{{ game.chessboard['e5'] }}.svg"></td>
-                        <td class="f5 light" (click)="onClickSquare('f5')"><img src="assets/pieces/piece-{{ game.chessboard['f5'] }}.svg"></td>
-                        <td class="g5 dark"  (click)="onClickSquare('g5')"><img src="assets/pieces/piece-{{ game.chessboard['g5'] }}.svg"></td>
-                        <td class="h5 light" (click)="onClickSquare('h5')"><img src="assets/pieces/piece-{{ game.chessboard['h5'] }}.svg"></td>
+                        <td class="a5 dark"  (click)="onClickSquare('a5')" [ngClass]="{'last-from': game.chessboard['a5']['lastFrom'], 'last-to': game.chessboard['a5']['lastTo'], 'selected': game.chessboard['a5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a5']['piece']}}.svg"></td>
+                        <td class="b5 light" (click)="onClickSquare('b5')" [ngClass]="{'last-from': game.chessboard['b5']['lastFrom'], 'last-to': game.chessboard['b5']['lastTo'], 'selected': game.chessboard['b5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b5']['piece']}}.svg"></td>
+                        <td class="c5 dark"  (click)="onClickSquare('c5')" [ngClass]="{'last-from': game.chessboard['c5']['lastFrom'], 'last-to': game.chessboard['c5']['lastTo'], 'selected': game.chessboard['c5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c5']['piece']}}.svg"></td>
+                        <td class="d5 light" (click)="onClickSquare('d5')" [ngClass]="{'last-from': game.chessboard['d5']['lastFrom'], 'last-to': game.chessboard['d5']['lastTo'], 'selected': game.chessboard['d5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d5']['piece']}}.svg"></td>
+                        <td class="e5 dark"  (click)="onClickSquare('e5')" [ngClass]="{'last-from': game.chessboard['e5']['lastFrom'], 'last-to': game.chessboard['e5']['lastTo'], 'selected': game.chessboard['e5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e5']['piece']}}.svg"></td>
+                        <td class="f5 light" (click)="onClickSquare('f5')" [ngClass]="{'last-from': game.chessboard['f5']['lastFrom'], 'last-to': game.chessboard['f5']['lastTo'], 'selected': game.chessboard['f5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f5']['piece']}}.svg"></td>
+                        <td class="g5 dark"  (click)="onClickSquare('g5')" [ngClass]="{'last-from': game.chessboard['g5']['lastFrom'], 'last-to': game.chessboard['g5']['lastTo'], 'selected': game.chessboard['g5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g5']['piece']}}.svg"></td>
+                        <td class="h5 light" (click)="onClickSquare('h5')" [ngClass]="{'last-from': game.chessboard['h5']['lastFrom'], 'last-to': game.chessboard['h5']['lastTo'], 'selected': game.chessboard['h5']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h5']['piece']}}.svg"></td>
                     </tr>
                     <tr>
-                        <td class="a4 light" (click)="onClickSquare('a4')"><img src="assets/pieces/piece-{{ game.chessboard['a4'] }}.svg"></td>
-                        <td class="b4 dark"  (click)="onClickSquare('b4')"><img src="assets/pieces/piece-{{ game.chessboard['b4'] }}.svg"></td>
-                        <td class="c4 light" (click)="onClickSquare('c4')"><img src="assets/pieces/piece-{{ game.chessboard['c4'] }}.svg"></td>
-                        <td class="d4 dark"  (click)="onClickSquare('d4')"><img src="assets/pieces/piece-{{ game.chessboard['d4'] }}.svg"></td>
-                        <td class="e4 light" (click)="onClickSquare('e4')"><img src="assets/pieces/piece-{{ game.chessboard['e4'] }}.svg"></td>
-                        <td class="f4 dark"  (click)="onClickSquare('f4')"><img src="assets/pieces/piece-{{ game.chessboard['f4'] }}.svg"></td>
-                        <td class="g4 light" (click)="onClickSquare('g4')"><img src="assets/pieces/piece-{{ game.chessboard['g4'] }}.svg"></td>
-                        <td class="h4 dark"  (click)="onClickSquare('h4')"><img src="assets/pieces/piece-{{ game.chessboard['h4'] }}.svg"></td>
+                        <td class="a4 light" (click)="onClickSquare('a4')" [ngClass]="{'last-from': game.chessboard['a4']['lastFrom'], 'last-to': game.chessboard['a4']['lastTo'], 'selected': game.chessboard['a4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a4']['piece']}}.svg"></td>
+                        <td class="b4 dark"  (click)="onClickSquare('b4')" [ngClass]="{'last-from': game.chessboard['b4']['lastFrom'], 'last-to': game.chessboard['b4']['lastTo'], 'selected': game.chessboard['b4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b4']['piece']}}.svg"></td>
+                        <td class="c4 light" (click)="onClickSquare('c4')" [ngClass]="{'last-from': game.chessboard['c4']['lastFrom'], 'last-to': game.chessboard['c4']['lastTo'], 'selected': game.chessboard['c4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c4']['piece']}}.svg"></td>
+                        <td class="d4 dark"  (click)="onClickSquare('d4')" [ngClass]="{'last-from': game.chessboard['d4']['lastFrom'], 'last-to': game.chessboard['d4']['lastTo'], 'selected': game.chessboard['d4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d4']['piece']}}.svg"></td>
+                        <td class="e4 light" (click)="onClickSquare('e4')" [ngClass]="{'last-from': game.chessboard['e4']['lastFrom'], 'last-to': game.chessboard['e4']['lastTo'], 'selected': game.chessboard['e4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e4']['piece']}}.svg"></td>
+                        <td class="f4 dark"  (click)="onClickSquare('f4')" [ngClass]="{'last-from': game.chessboard['f4']['lastFrom'], 'last-to': game.chessboard['f4']['lastTo'], 'selected': game.chessboard['f4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f4']['piece']}}.svg"></td>
+                        <td class="g4 light" (click)="onClickSquare('g4')" [ngClass]="{'last-from': game.chessboard['g4']['lastFrom'], 'last-to': game.chessboard['g4']['lastTo'], 'selected': game.chessboard['g4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g4']['piece']}}.svg"></td>
+                        <td class="h4 dark"  (click)="onClickSquare('h4')" [ngClass]="{'last-from': game.chessboard['h4']['lastFrom'], 'last-to': game.chessboard['h4']['lastTo'], 'selected': game.chessboard['h4']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h4']['piece']}}.svg"></td>
                     </tr>
                     <tr>
-                        <td class="a3 dark"  (click)="onClickSquare('a3')"><img src="assets/pieces/piece-{{ game.chessboard['a3'] }}.svg"></td>
-                        <td class="b3 light" (click)="onClickSquare('b3')"><img src="assets/pieces/piece-{{ game.chessboard['b3'] }}.svg"></td>
-                        <td class="c3 dark"  (click)="onClickSquare('c3')"><img src="assets/pieces/piece-{{ game.chessboard['c3'] }}.svg"></td>
-                        <td class="d3 light" (click)="onClickSquare('d3')"><img src="assets/pieces/piece-{{ game.chessboard['d3'] }}.svg"></td>
-                        <td class="e3 dark"  (click)="onClickSquare('e3')"><img src="assets/pieces/piece-{{ game.chessboard['e3'] }}.svg"></td>
-                        <td class="f3 light" (click)="onClickSquare('f3')"><img src="assets/pieces/piece-{{ game.chessboard['f3'] }}.svg"></td>
-                        <td class="g3 dark"  (click)="onClickSquare('g3')"><img src="assets/pieces/piece-{{ game.chessboard['g3'] }}.svg"></td>
-                        <td class="h3 light" (click)="onClickSquare('h3')"><img src="assets/pieces/piece-{{ game.chessboard['h3'] }}.svg"></td>
+                        <td class="a3 dark"  (click)="onClickSquare('a3')" [ngClass]="{'last-from': game.chessboard['a3']['lastFrom'], 'last-to': game.chessboard['a3']['lastTo'], 'selected': game.chessboard['a3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a3']['piece']}}.svg"></td>
+                        <td class="b3 light" (click)="onClickSquare('b3')" [ngClass]="{'last-from': game.chessboard['b3']['lastFrom'], 'last-to': game.chessboard['b3']['lastTo'], 'selected': game.chessboard['b3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b3']['piece']}}.svg"></td>
+                        <td class="c3 dark"  (click)="onClickSquare('c3')" [ngClass]="{'last-from': game.chessboard['c3']['lastFrom'], 'last-to': game.chessboard['c3']['lastTo'], 'selected': game.chessboard['c3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c3']['piece']}}.svg"></td>
+                        <td class="d3 light" (click)="onClickSquare('d3')" [ngClass]="{'last-from': game.chessboard['d3']['lastFrom'], 'last-to': game.chessboard['d3']['lastTo'], 'selected': game.chessboard['d3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d3']['piece']}}.svg"></td>
+                        <td class="e3 dark"  (click)="onClickSquare('e3')" [ngClass]="{'last-from': game.chessboard['e3']['lastFrom'], 'last-to': game.chessboard['e3']['lastTo'], 'selected': game.chessboard['e3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e3']['piece']}}.svg"></td>
+                        <td class="f3 light" (click)="onClickSquare('f3')" [ngClass]="{'last-from': game.chessboard['f3']['lastFrom'], 'last-to': game.chessboard['f3']['lastTo'], 'selected': game.chessboard['f3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f3']['piece']}}.svg"></td>
+                        <td class="g3 dark"  (click)="onClickSquare('g3')" [ngClass]="{'last-from': game.chessboard['g3']['lastFrom'], 'last-to': game.chessboard['g3']['lastTo'], 'selected': game.chessboard['g3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g3']['piece']}}.svg"></td>
+                        <td class="h3 light" (click)="onClickSquare('h3')" [ngClass]="{'last-from': game.chessboard['h3']['lastFrom'], 'last-to': game.chessboard['h3']['lastTo'], 'selected': game.chessboard['h3']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h3']['piece']}}.svg"></td>
                     </tr>
                     <tr>
-                        <td class="a2 light" (click)="onClickSquare('a2')"><img src="assets/pieces/piece-{{ game.chessboard['a2'] }}.svg"></td>
-                        <td class="b2 dark"  (click)="onClickSquare('b2')"><img src="assets/pieces/piece-{{ game.chessboard['b2'] }}.svg"></td>
-                        <td class="c2 light" (click)="onClickSquare('c2')"><img src="assets/pieces/piece-{{ game.chessboard['c2'] }}.svg"></td>
-                        <td class="d2 dark"  (click)="onClickSquare('d2')"><img src="assets/pieces/piece-{{ game.chessboard['d2'] }}.svg"></td>
-                        <td class="e2 light" (click)="onClickSquare('e2')"><img src="assets/pieces/piece-{{ game.chessboard['e2'] }}.svg"></td>
-                        <td class="f2 dark"  (click)="onClickSquare('f2')"><img src="assets/pieces/piece-{{ game.chessboard['f2'] }}.svg"></td>
-                        <td class="g2 light" (click)="onClickSquare('g2')"><img src="assets/pieces/piece-{{ game.chessboard['g2'] }}.svg"></td>
-                        <td class="h2 dark"  (click)="onClickSquare('h2')"><img src="assets/pieces/piece-{{ game.chessboard['h2'] }}.svg"></td>
+                        <td class="a2 light" (click)="onClickSquare('a2')" [ngClass]="{'last-from': game.chessboard['a2']['lastFrom'], 'last-to': game.chessboard['a2']['lastTo'], 'selected': game.chessboard['a2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a2']['piece']}}.svg"></td>
+                        <td class="b2 dark"  (click)="onClickSquare('b2')" [ngClass]="{'last-from': game.chessboard['b2']['lastFrom'], 'last-to': game.chessboard['b2']['lastTo'], 'selected': game.chessboard['b2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b2']['piece']}}.svg"></td>
+                        <td class="c2 light" (click)="onClickSquare('c2')" [ngClass]="{'last-from': game.chessboard['c2']['lastFrom'], 'last-to': game.chessboard['c2']['lastTo'], 'selected': game.chessboard['c2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c2']['piece']}}.svg"></td>
+                        <td class="d2 dark"  (click)="onClickSquare('d2')" [ngClass]="{'last-from': game.chessboard['d2']['lastFrom'], 'last-to': game.chessboard['d2']['lastTo'], 'selected': game.chessboard['d2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d2']['piece']}}.svg"></td>
+                        <td class="e2 light" (click)="onClickSquare('e2')" [ngClass]="{'last-from': game.chessboard['e2']['lastFrom'], 'last-to': game.chessboard['e2']['lastTo'], 'selected': game.chessboard['e2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e2']['piece']}}.svg"></td>
+                        <td class="f2 dark"  (click)="onClickSquare('f2')" [ngClass]="{'last-from': game.chessboard['f2']['lastFrom'], 'last-to': game.chessboard['f2']['lastTo'], 'selected': game.chessboard['f2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f2']['piece']}}.svg"></td>
+                        <td class="g2 light" (click)="onClickSquare('g2')" [ngClass]="{'last-from': game.chessboard['g2']['lastFrom'], 'last-to': game.chessboard['g2']['lastTo'], 'selected': game.chessboard['g2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g2']['piece']}}.svg"></td>
+                        <td class="h2 dark"  (click)="onClickSquare('h2')" [ngClass]="{'last-from': game.chessboard['h2']['lastFrom'], 'last-to': game.chessboard['h2']['lastTo'], 'selected': game.chessboard['h2']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h2']['piece']}}.svg"></td>
                     </tr>
                     <tr>
-                        <td class="a1 dark"  (click)="onClickSquare('a1')"><img src="assets/pieces/piece-{{ game.chessboard['a1'] }}.svg"></td>
-                        <td class="b1 light" (click)="onClickSquare('b1')"><img src="assets/pieces/piece-{{ game.chessboard['b1'] }}.svg"></td>
-                        <td class="c1 dark"  (click)="onClickSquare('c1')"><img src="assets/pieces/piece-{{ game.chessboard['c1'] }}.svg"></td>
-                        <td class="d1 light" (click)="onClickSquare('d1')"><img src="assets/pieces/piece-{{ game.chessboard['d1'] }}.svg"></td>
-                        <td class="e1 dark"  (click)="onClickSquare('e1')"><img src="assets/pieces/piece-{{ game.chessboard['e1'] }}.svg"></td>
-                        <td class="f1 light" (click)="onClickSquare('f1')"><img src="assets/pieces/piece-{{ game.chessboard['f1'] }}.svg"></td>
-                        <td class="g1 dark"  (click)="onClickSquare('g1')"><img src="assets/pieces/piece-{{ game.chessboard['g1'] }}.svg"></td>
-                        <td class="h1 light" (click)="onClickSquare('h1')"><img src="assets/pieces/piece-{{ game.chessboard['h1'] }}.svg"></td>
+                        <td class="a1 dark"  (click)="onClickSquare('a1')" [ngClass]="{'last-from': game.chessboard['a1']['lastFrom'], 'last-to': game.chessboard['a1']['lastTo'], 'selected': game.chessboard['a1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['a1']['piece']}}.svg"></td>
+                        <td class="b1 light" (click)="onClickSquare('b1')" [ngClass]="{'last-from': game.chessboard['b1']['lastFrom'], 'last-to': game.chessboard['b1']['lastTo'], 'selected': game.chessboard['b1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['b1']['piece']}}.svg"></td>
+                        <td class="c1 dark"  (click)="onClickSquare('c1')" [ngClass]="{'last-from': game.chessboard['c1']['lastFrom'], 'last-to': game.chessboard['c1']['lastTo'], 'selected': game.chessboard['c1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['c1']['piece']}}.svg"></td>
+                        <td class="d1 light" (click)="onClickSquare('d1')" [ngClass]="{'last-from': game.chessboard['d1']['lastFrom'], 'last-to': game.chessboard['d1']['lastTo'], 'selected': game.chessboard['d1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['d1']['piece']}}.svg"></td>
+                        <td class="e1 dark"  (click)="onClickSquare('e1')" [ngClass]="{'last-from': game.chessboard['e1']['lastFrom'], 'last-to': game.chessboard['e1']['lastTo'], 'selected': game.chessboard['e1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['e1']['piece']}}.svg"></td>
+                        <td class="f1 light" (click)="onClickSquare('f1')" [ngClass]="{'last-from': game.chessboard['f1']['lastFrom'], 'last-to': game.chessboard['f1']['lastTo'], 'selected': game.chessboard['f1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['f1']['piece']}}.svg"></td>
+                        <td class="g1 dark"  (click)="onClickSquare('g1')" [ngClass]="{'last-from': game.chessboard['g1']['lastFrom'], 'last-to': game.chessboard['g1']['lastTo'], 'selected': game.chessboard['g1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['g1']['piece']}}.svg"></td>
+                        <td class="h1 light" (click)="onClickSquare('h1')" [ngClass]="{'last-from': game.chessboard['h1']['lastFrom'], 'last-to': game.chessboard['h1']['lastTo'], 'selected': game.chessboard['h1']['selected']}"><img src="assets/pieces/piece-{{ game.chessboard['h1']['piece']}}.svg"></td>
                     </tr>
                 </table>
             </td>
